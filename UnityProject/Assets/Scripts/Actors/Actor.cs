@@ -3,14 +3,22 @@ using UnityEngine;
 
 public class Actor : MonoBehaviour
 {
+    public List<List<int>> Position = new List<List<int>>();
     public int Speed;
     public int Health;
     // to-do: implement rest of fields needed
 
     private ActorState currentState;
     private Animator animator;
-    public List<Item> Items; // to-do: create Item script, then import
-    
+    public List<Item> Drops; // to-do: create Item script, then import
+
+    public Actor(int speed, int health, List<List<int>> position)
+    {
+        this.Speed = speed;
+        this.Health = health;
+        this.Position = position;
+    }
+
     // Update is called once per frame
     void Start()
     {
