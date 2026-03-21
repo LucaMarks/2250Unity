@@ -6,11 +6,25 @@ public class Actor : MonoBehaviour
     public List<List<int>> Position = new List<List<int>>();
     public int Speed;
     public int Health;
+    public int Damage;
     // to-do: implement rest of fields needed
 
     private ActorState currentState;
     private Animator animator;
     public List<Item> Drops; // to-do: create Item script, then import
+
+    //this is 
+    public List<string> Dialogue;
+    private int DialogueIndex = 0;
+
+
+    public Actor(int speed, int health, int damage, List<List<int>> position)
+    {
+        this.Speed = speed;
+        this.Health = health;
+        this.Position = position;
+        this.Damage = damage;
+    }
 
     public Actor(int speed, int health, List<List<int>> position)
     {
@@ -65,6 +79,14 @@ public class Actor : MonoBehaviour
     void Die()
     {
         // deathstate now freezes the game, drops and ui trigger will go here later
+    }
+
+    public void OutputDialogue()
+    {
+        //draw dialouge to screen
+        //Dialogue[DialogueIndex];
+        DialogueIndex++;
+        if (DialogueIndex >= Dialogue.Count){DialogueIndex = 0;}
     }
 
     

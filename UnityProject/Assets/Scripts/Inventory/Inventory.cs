@@ -4,9 +4,14 @@ using Unity.VisualScripting;
 
 public class Inventory
 {
-        private List<Item> items = new List<Item>();
-        private int maxSlots;
+    List<Item> items = new List<Item>();
+    private int maxSlots;
 
+    public Inventory(int maxSlots)
+    {
+        this.maxSlots = maxSlots;
+    }
+    public Inventory(){}
 
     public bool hasItem(Item item)
     {

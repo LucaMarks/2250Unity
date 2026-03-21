@@ -28,12 +28,12 @@ public class Item : StaticObject
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         
     }
 
-    void Action()
+    public void Action()
     {
         //some effect
     }
