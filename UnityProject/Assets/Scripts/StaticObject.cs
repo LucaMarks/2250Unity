@@ -1,12 +1,9 @@
 using UnityEngine;
-
-public class Item : StaticObject
+using System.Collections.Generic;
+public class StaticObject : MonoBehaviour
 {
-    private string ID;
-    private string Name;
-    private string Description;
-
-    private int Value;
+    private Vector3 Position;
+    
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -20,8 +17,7 @@ public class Item : StaticObject
         
     }
 
-    void Action()
+    void UpdatePosition()
     {
-        //some effect
     }
 }
