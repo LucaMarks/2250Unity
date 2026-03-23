@@ -53,7 +53,7 @@ public class Actor : MonoBehaviour
         // Debug.Log("Start is called for actor");
     }
 
-    void Update()
+    public virtual void Update()
     {
         Move();
         // currentState?.Update(); //update current state -> commented out for now -Luca
@@ -98,7 +98,7 @@ public class Actor : MonoBehaviour
     //to-do: implement state updating with appropriate animations
     
     //to-do: implement attacking (melee or projectile will depend on class) with animations
-    void Attack()
+    public virtual void Attack()
     {
         //potentially make this into a separate script
     }
