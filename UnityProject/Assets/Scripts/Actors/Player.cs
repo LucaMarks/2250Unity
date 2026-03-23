@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -21,8 +22,15 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
     public InputAction mouseAction;
 
     public GameObject sword;
-    private float swordSwingDistance = 0.5f;
+    private float swordSwingDistanceX = 1f;
+    private float swordSwingDistanceY = 0.6f;
     private float swordSwingAngle = 35f;
+    private float swordSwingDuration = 0.35f;
+    private Coroutine swordSwingRoutine;
+    private Vector3 swordStartLocalPos;
+    private Quaternion swordStartLocalRot;
+    private bool swordCached;
+
 
     // private float yRotation;
     // public Player(int speed, int health, int damage, float xRotation , float yRotation) : base(health, damage, xRotation, yRotation) //i don't think this gets called when the game starts
@@ -89,7 +97,58 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
     public override void Attack()
     {
         base.Attack();
-        
+        if (sword == null)
+        {
+            return;
+        }
+
+        if (!swordCached)
+        {
+            swordStartLocalPos = sword.transform.localPosition;
+            swordStartLocalRot = sword.transform.localRotation;
+            swordCached = true;
+        }
+
+        if (swordSwingRoutine != null)
+        {
+            StopCoroutine(swordSwingRoutine);
+        }
+
+        swordSwingRoutine = StartCoroutine(SwingSword());
+    }
+
+    private IEnumerator SwingSword()
+    {
+        float half = swordSwingDuration * 0.5f;
+        float t = 0f;
+
+        Vector3 targetPos = swordStartLocalPos + new Vector3(-swordSwingDistanceX, -swordSwingDistanceY, 0f);
+        Quaternion targetRot = swordStartLocalRot * Quaternion.Euler(0f, -swordSwingAngle, -swordSwingAngle);
+
+        // Swing out
+        while (t < half)
+        {
+            float lerp = t / half;
+            sword.transform.localPosition = Vector3.Lerp(swordStartLocalPos, targetPos, lerp);
+            sword.transform.localRotation = Quaternion.Slerp(swordStartLocalRot, targetRot, lerp);
+            t += Time.deltaTime;
+            yield return null;
+        }
+
+        // Swing back
+        t = 0f;
+        while (t < half)
+        {
+            float lerp = t / half;
+            sword.transform.localPosition = Vector3.Lerp(targetPos, swordStartLocalPos, lerp);
+            sword.transform.localRotation = Quaternion.Slerp(targetRot, swordStartLocalRot, lerp);
+            t += Time.deltaTime;
+            yield return null;
+        }
+
+        sword.transform.localPosition = swordStartLocalPos;
+        sword.transform.localRotation = swordStartLocalRot;
+        swordSwingRoutine = null;
     }
 
     public override void Move()
