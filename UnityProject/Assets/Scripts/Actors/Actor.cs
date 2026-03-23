@@ -1,9 +1,17 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Actor : MonoBehaviour
 {
-    public List<List<int>> Position = new List<List<int>>();
+    public List<List<int>> Position = new List<List<int>>();//i don't think we actually need this
+
+    public PlayerInput playerInput;
+    public InputAction moveAction;
+    public PlayerInput playerOrientation;
+    public InputAction orientationAction;
+
+
     public int Speed;
     public int Health;
     public int Damage;
@@ -18,32 +26,37 @@ public class Actor : MonoBehaviour
     private int DialogueIndex = 0;
 
 
-    public Actor(int speed, int health, int damage, List<List<int>> position)
+    public Actor()
+    {
+    }
+
+    public Actor(int speed, int health, int damage)
     {
         this.Speed = speed;
         this.Health = health;
-        this.Position = position;
         this.Damage = damage;
     }
 
-    public Actor(int speed, int health, List<List<int>> position)
+    public Actor(int speed, int health)
     {
         this.Speed = speed;
         this.Health = health;
-        this.Position = position;
     }
 
     // Update is called once per frame
-    void Start()
+    private void Start()
     {
-        animator = GetComponent<Animator>();
-        ChangeState(new IdleState(this, animator)); //start idle for now
+        // animator = GetComponent<Animator>();
+        // ChangeState(new IdleState(this, animator)); //start idle for now -> Commented this out temp -Luca
+
+
+        // Debug.Log("Start is called for actor");
     }
 
     void Update()
     {
         Move();
-        currentState?.Update(); //update current state
+        // currentState?.Update(); //update current state -> commented out for now -Luca
     }
     
     public void ChangeState(ActorState newState)
@@ -53,13 +66,33 @@ public class Actor : MonoBehaviour
         currentState?.Enter();
     }
     
-    public void Move()
+    public virtual void Move()
     {
-        float ForwardMove = Input.GetAxis("Vertical") * Speed * Time.deltaTime;
-        float TurnMove = Input.GetAxis("Horizontal") * Speed * Time.deltaTime;
 
-        transform.Translate(Vector3.forward * ForwardMove);
-        transform.Rotate(Vector3.up * TurnMove);
+        // Debug.Log(moveAction.ReadValue<Vector2>());
+
+
+        
+
+        //legacy input system
+        // float ForwardMove = Input.GetAxis("Vertical") * Speed * Time.deltaTime;
+        // float TurnMove = Input.GetAxis("Horizontal") * Speed * Time.deltaTime;
+        //
+        // transform.Translate(Vector3.forward * ForwardMove);
+        // transform.Rotate(Vector3.up * TurnMove);
+        //
+        // //get mouse input
+        // float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * 400; //400 -> mouse sensitivity
+        // float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * 400;
+        //
+        // yRotation += mouseX;
+        //
+        // xRotation -= mouseY;
+        // xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+        //
+        // //rotate cam & orientation
+        // transform.rotation = Quaternion.Euler(xRotation, yRotation, 0); 
+        // orientation.rotation = Quaternion.Euler(0, yRotation, 0);
     }
 
     //to-do: implement state updating with appropriate animations
