@@ -10,19 +10,19 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
     public Inventory inventory = new Inventory();
     private int SkillPoints;
 
+    //this works in tandem with input listeners in Actor
     private Transform cameraPivot;
     private float lookSensitivity = 0.5f;
     private float pitch;
     private float yaw;
 
 
-    // public int speed;
+    public PlayerInput playerMouse;
+    public InputAction mouseAction;
 
-    // public int health;
-
-    // public int damage;
-
-    // private float xRotation;
+    public GameObject sword;
+    private float swordSwingDistance = 0.5f;
+    private float swordSwingAngle = 35f;
 
     // private float yRotation;
     // public Player(int speed, int health, int damage, float xRotation , float yRotation) : base(health, damage, xRotation, yRotation) //i don't think this gets called when the game starts
@@ -34,6 +34,8 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
     private void Start()
     {
         Debug.Log("Player created");
+        if (sword == null){Debug.Log("Player sword not created. Player sword is equal to null");}
+
         // base(health, damage, xRotation, yRotation);
         playerInput = GetComponent<PlayerInput>();
         moveAction = playerInput.actions.FindAction("Move");
@@ -48,6 +50,9 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
                 cameraPivot = cam.transform;
             }
         }
+
+        playerMouse = GetComponent<PlayerInput>();
+        mouseAction = playerMouse.actions.FindAction("MouseClick");
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -65,6 +70,26 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
             Debug.Log($"Player collided with hazard: {hazard.name}");
             //handle hazard collision cases
         }
+    }
+
+    public override void Update()
+    {
+        base.Update();
+        //swing sword
+        /*
+            this may cause issues in the future since mouseAction can account for any action
+                -> mostly including other mouse buttons pressed 
+         */
+        if (mouseAction.triggered)
+        {
+            Attack();
+        }                
+    }
+
+    public override void Attack()
+    {
+        base.Attack();
+        
     }
 
     public override void Move()
