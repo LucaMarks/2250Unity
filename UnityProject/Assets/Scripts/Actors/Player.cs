@@ -31,6 +31,10 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
     private Quaternion swordStartLocalRot;
     private bool swordCached;
 
+    private const string SolidObjectTag = "SolidObject";
+    private bool isCollidingSolid;
+    private Vector3 preMovePosition;
+    private Vector3 lastMoveDelta;
 
     // private float yRotation;
     // public Player(int speed, int health, int damage, float xRotation , float yRotation) : base(health, damage, xRotation, yRotation) //i don't think this gets called when the game starts
@@ -64,6 +68,8 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        preMovePosition = transform.position;
     }    
 
     private void HazardCollide(Collision collision)
@@ -155,7 +161,10 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
     {
         //camera and player body movement
         Vector2 dir = moveAction.ReadValue<Vector2>();
-        transform.position += new Vector3(dir.x, 0, dir.y) * Speed * Time.deltaTime;
+
+        preMovePosition = transform.position;
+        lastMoveDelta = new Vector3(dir.x, 0f, dir.y) * Speed * Time.deltaTime;
+        transform.position += lastMoveDelta;
 
         Vector2 look = orientationAction.ReadValue<Vector2>() * lookSensitivity;
         yaw += look.x;
@@ -168,10 +177,30 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
             cameraPivot.localRotation = Quaternion.Euler(pitch, 0f, 0f);
         }
 
+        if (!isCollidingSolid)
+        {
+            preMovePosition = transform.position;
+        }
     }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        HandleSolidCollision(collision);
+    }
+
+    public void OnCollisionStay(Collision collision)
+    {
+        HandleSolidCollision(collision);
+    }
+    
 
     public void OnCollisionExit(Collision collision)
     {
+        if (collision.gameObject.CompareTag(SolidObjectTag))
+        {
+            isCollidingSolid = false;
+        }
+
         HazardCollide(collision);        
         // throw new NotImplementedException();
         //check other cases of collision
@@ -180,6 +209,34 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
             Interact(collision.gameObject.GetComponent<Actor>());
         } 
 
+    }
+
+    private void HandleSolidCollision(Collision collision)
+    {
+        if (collision == null)
+        {
+            return;
+        }
+
+        if (!collision.gameObject.CompareTag(SolidObjectTag))
+        {
+            return;
+        }
+
+        isCollidingSolid = true;
+
+        if (collision.contactCount > 0)
+        {
+            Vector3 normal = collision.GetContact(0).normal;
+            if (Vector3.Dot(lastMoveDelta, normal) < 0f)
+            {
+                transform.position = preMovePosition;
+            }
+        }
+        else
+        {
+            transform.position = preMovePosition;
+        }
     }
 
     public void UseItem(Item item)
