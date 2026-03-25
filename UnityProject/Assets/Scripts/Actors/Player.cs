@@ -20,6 +20,8 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
     private float pitch;
     private float yaw;
 
+	//reference to the dialogue system in the scene
+	private DialogueSystem dialogueSystem;
 
     public PlayerInput playerMouse;
     public InputAction mouseAction;
@@ -56,6 +58,9 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
         {
             progressionSystem = GetComponent<ProgressionSystem>();
         }
+
+		//find DialogueSystem
+		dialogueSystem = FindFirstObjectByType<DialogueSystem>();
 
         // base(health, damage, xRotation, yRotation);
         playerInput = GetComponent<PlayerInput>();
@@ -228,10 +233,11 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
         HazardCollide(collision);        
         // throw new NotImplementedException();
         //check other cases of collision
+        // if player walks into an NPC, start dialogue directly
         if (collision.gameObject.TryGetComponent<NPC>(out var npc))
         {
-            Interact(collision.gameObject.GetComponent<Actor>());
-        } 
+            npc.StartDialogue();
+        }
 
     }
 
@@ -277,7 +283,7 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
     //interact with another actor
     public void Interact(Actor actor)
     {
-        //assume actor is an npc for now since it's really the only interactable thing
+        //output dialogue for any actor type
         actor.OutputDialogue();
     }
 
