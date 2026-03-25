@@ -10,6 +10,9 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
     private List<string> skills;
     public Inventory inventory = new Inventory();
     private int SkillPoints;
+    
+    //refernce to the XP system attatched to this game object
+    public ProgressionSystem progressionSystem;
 
     //this works in tandem with input listeners in Actor
     private Transform cameraPivot;
@@ -124,6 +127,14 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
 
         swordSwingRoutine = StartCoroutine(SwingSword());
     }
+    
+    //placeholder method for gaining monster kill XP
+    public void OnEnemyKilled()
+    {
+        if (progressionSystem != null){progressionSystem.AwardCombatXP();}//to avoid crashes
+        
+    }
+    
     private IEnumerator SwingSword()
     {
         float half = swordSwingDuration * 0.5f;
@@ -243,6 +254,12 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
     public void UseItem(Item item)
     {
         item.Action();
+        
+        //award XP for item use (could be moved to on pickup)
+        if (progressionSystem != null)
+        {
+            progressionSystem.AwardItemXP();
+        }
     }
 
     //interact with another actor
