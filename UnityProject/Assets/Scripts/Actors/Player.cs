@@ -135,6 +135,12 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
         
     }
     
+    //debug method to display current player progression stats in console
+    public void DisplayStats()
+    {
+        Debug.Log($"Level: {progressionSystem.currentLevel} | XP: {progressionSystem.currentXP}/{progressionSystem.xpToNextLevel} | Health: {Health} | Damage: {Damage}");
+    }
+    
     private IEnumerator SwingSword()
     {
         float half = swordSwingDuration * 0.5f;
