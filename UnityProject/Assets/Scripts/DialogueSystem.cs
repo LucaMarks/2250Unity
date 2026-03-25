@@ -12,8 +12,8 @@ public class DialogueSystem : MonoBehaviour
     public TextMeshProUGUI dialogueText;//what
     public TextMeshProUGUI[] optionTexts;//2/3 response buttons
     
-    //dialogue states
-    private bool isDialogueActive = false;
+    //dialogue states public so NPC can check if dialogue is already open
+    public bool isDialogueActive = false;
     private int currentDialogueIndex = 0;
     private int selectedOptionIndex = 0;
     private NPC currentNPC;

@@ -60,7 +60,7 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
         }
 
 		//find DialogueSystem
-		dialogueSystem = FindObjectOfType<DialogueSystem>();
+		dialogueSystem = FindFirstObjectByType<DialogueSystem>();
 
         // base(health, damage, xRotation, yRotation);
         playerInput = GetComponent<PlayerInput>();
@@ -233,10 +233,11 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
         HazardCollide(collision);        
         // throw new NotImplementedException();
         //check other cases of collision
+        // if player walks into an NPC, start dialogue directly
         if (collision.gameObject.TryGetComponent<NPC>(out var npc))
         {
-            Interact(collision.gameObject.GetComponent<Actor>());
-        } 
+            npc.StartDialogue();
+        }
 
     }
 
@@ -282,10 +283,8 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
     //interact with another actor
     public void Interact(Actor actor)
     {
-        //assume actor is an npc for now since it's really the only interactable thing
-        //if the actor is an NPC, start dialogue through the dialogue system
-    	if (actor is NPC npc){npc.StartDialogue();}
-    	     
+        //output dialogue for any actor type
+        actor.OutputDialogue();
     }
 
     public void AddCurrency(int amount)
