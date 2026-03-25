@@ -50,6 +50,12 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
     {
         Debug.Log("Player created");
         if (sword == null){Debug.Log("Player sword not created. Player sword is equal to null");}
+        
+        //xp system
+        if (progressionSystem == null)
+        {
+            progressionSystem = GetComponent<ProgressionSystem>();
+        }
 
         // base(health, damage, xRotation, yRotation);
         playerInput = GetComponent<PlayerInput>();
