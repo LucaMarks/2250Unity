@@ -7,6 +7,9 @@ public class Quest : MonoBehaviour
 
     public List<Item> Rewards;
 
+	//reference to the player to award XP on quest completion
+	public Player player;
+
     public bool Completion = false;
     
     public bool flag = false;
@@ -29,9 +32,12 @@ public class Quest : MonoBehaviour
 
     public void SetCompleted(bool flg)
     {
-        if (flg)
+        if (flg && !Completion)
         {
             Completion = true;
+			//award quest XP
+			if (player != null && player.progressionSystem != null){player.progressionSystem.AwardQuestXP();}
+		
         }
     }
 }
