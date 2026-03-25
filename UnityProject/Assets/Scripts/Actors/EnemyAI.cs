@@ -108,11 +108,17 @@ public class EnemyAI : MonoBehaviour
 
         if (!alreadyAttacked)
         {
-            ///Attack code here
-            Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-            rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
-            rb.AddForce(transform.up * 8f, ForceMode.Impulse);
-            ///End of attack code
+            float distance =Vector3.Distance(transform.position, player.position);
+            if (distance <= attackRange)
+            {
+                Player playerScript = player.GetComponent<Player>();
+
+                if (playerScript != null)
+                {
+                    //Add player damage here
+                }
+                
+            }
 
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
