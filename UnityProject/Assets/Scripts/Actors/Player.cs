@@ -162,8 +162,10 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
         //camera and player body movement
         Vector2 dir = moveAction.ReadValue<Vector2>();
 
+        Vector3 moveDirection = transform.forward*dir.y + transform.right*dir.x;
+        
         preMovePosition = transform.position;
-        lastMoveDelta = new Vector3(dir.x, 0f, dir.y) * Speed * Time.deltaTime;
+        lastMoveDelta = moveDirection * Speed * Time.deltaTime;
         transform.position += lastMoveDelta;
 
         Vector2 look = orientationAction.ReadValue<Vector2>() * lookSensitivity;
