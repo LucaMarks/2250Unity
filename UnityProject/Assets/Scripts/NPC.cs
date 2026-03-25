@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class NPC : StaticObject
 {
@@ -27,7 +28,7 @@ public class NPC : StaticObject
         //quest logic will go here
         
         //interaction logic
-        if (Input.GetKeyDown(KeyCode.E) && (dialogueSystem == null || !dialogueSystem.isDialogueActive))
+        if (Keyboard.current.eKey.wasPressedThisFrame && (dialogueSystem == null || !dialogueSystem.isDialogueActive))
         {
             CheckIfPlayerLookingAtMe();
         }

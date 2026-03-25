@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System.Collections.Generic;
+using UnityEngine.InputSystem;
 
 //manage NPC dialogue display and behaviour
 //attatch to canvas UI in Unity
@@ -52,7 +53,7 @@ public class DialogueSystem : MonoBehaviour
         if (!isDialogueActive) return;
         
         //arrow Up move to previous option
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Keyboard.current.upArrowKey.wasPressedThisFrame)
         {
             selectedOptionIndex--;
             if (selectedOptionIndex < 0)
@@ -63,12 +64,12 @@ public class DialogueSystem : MonoBehaviour
         }
 
         //arrow Down move to next option
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (Keyboard.current.downArrowKey.wasPressedThisFrame)
         {
             //figure out how far down we can go, how many options are there
             DialogueLine currentLine = currentDialogueTree[currentDialogueIndex];
             int maxOptions = currentLine.options.Count;
-            
+
             selectedOptionIndex++;
             if (selectedOptionIndex >= maxOptions)
             {
@@ -76,8 +77,9 @@ public class DialogueSystem : MonoBehaviour
             }
             HighlightSelectedOption();//show
         }
-        
-        if (Input.GetKeyDown(KeyCode.E))//use E to select option
+
+        //use E to select option
+        if (Keyboard.current.eKey.wasPressedThisFrame)
         {
             AdvanceDialogue(selectedOptionIndex);
         }
