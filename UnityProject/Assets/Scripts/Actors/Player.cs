@@ -272,34 +272,6 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
         }
     }
 
-    private void HandleSolidCollision(Collision collision)
-    {
-        if (collision == null)
-        {
-            return;
-        }
-
-        if (!collision.gameObject.CompareTag(SolidObjectTag))
-        {
-            return;
-        }
-
-        isCollidingSolid = true;
-
-        if (collision.contactCount > 0)
-        {
-            Vector3 normal = collision.GetContact(0).normal;
-            if (Vector3.Dot(lastMoveDelta, normal) < 0f)
-            {
-                transform.position = preMovePosition;
-            }
-        }
-        else
-        {
-            transform.position = preMovePosition;
-        }
-    }
-
     public void UseItem(Item item)
     {
         item.Action();
