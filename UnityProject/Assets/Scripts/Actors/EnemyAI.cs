@@ -40,7 +40,7 @@ public class EnemyAI : Actor
     private void Update()
     {
         base.Update();
-        attackCooldown++;
+       attackCooldown++;
         //Check for sight and attack range
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
