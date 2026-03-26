@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VectorGraphics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -25,9 +26,14 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
 
     public PlayerInput playerMouse;
     public InputAction mouseAction;
+    public InputAction numberKeyAction;
+    
     // public InputAction
 
     public GameObject sword;
+    public GameObject leftArm;
+    public GameObject rightArm;
+
     private float swordSwingDistanceX = 1f;
     private float swordSwingDistanceY = 0.6f;
     private float swordSwingAngle = 35f;
@@ -35,6 +41,10 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
     private Coroutine swordSwingRoutine;
     private Vector3 swordStartLocalPos;
     private Quaternion swordStartLocalRot;
+    private Vector3 leftArmStartLocalPos;
+    private Quaternion leftArmStartLocalRot;
+    private Vector3 rightArmStartLocalPos;
+    private Quaternion rightArmStartLocalRot;
     private bool swordCached;
 
     private const string SolidObjectTag = "SolidObject";
@@ -129,7 +139,13 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
         {
             swordStartLocalPos = sword.transform.localPosition;
             swordStartLocalRot = sword.transform.localRotation;
+
+            leftArmStartLocalPos = leftArm.transform.localPosition;
+            leftArmStartLocalRot = leftArm.transform.localRotation;
+            rightArmStartLocalPos = rightArm.transform.localPosition;
+            rightArmStartLocalRot = rightArm.transform.localRotation;
             swordCached = true;
+            
         }
 
         if (swordSwingRoutine != null)
@@ -161,12 +177,22 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
         Vector3 targetPos = swordStartLocalPos + new Vector3(-swordSwingDistanceX, -swordSwingDistanceY, 0f);
         Quaternion targetRot = swordStartLocalRot * Quaternion.Euler(0f, -swordSwingAngle, -swordSwingAngle);
 
+        Vector3 leftArmTargetPos = leftArmStartLocalPos + new Vector3(-swordSwingDistanceX, -swordSwingDistanceY, 0f);
+        Quaternion leftArmTargetRot = leftArmStartLocalRot * Quaternion.Euler(0f, -swordSwingAngle, -swordSwingAngle);
+
+        Vector3 rightArmTargetPos = rightArmStartLocalPos + new Vector3(swordSwingDistanceX, -swordSwingDistanceY, 0f);
+        Quaternion rightArmTargetRot = rightArmStartLocalRot * Quaternion.Euler(0f, swordSwingAngle, swordSwingAngle);
+
         // Swing out
         while (t < half)
         {
             float lerp = t / half;
             sword.transform.localPosition = Vector3.Lerp(swordStartLocalPos, targetPos, lerp);
             sword.transform.localRotation = Quaternion.Slerp(swordStartLocalRot, targetRot, lerp);
+            leftArm.transform.localPosition = Vector3.Lerp(leftArmStartLocalPos, leftArmTargetPos, lerp);
+            leftArm.transform.localRotation = Quaternion.Slerp(leftArmStartLocalRot, leftArmTargetRot, lerp);
+            rightArm.transform.localPosition = Vector3.Lerp(rightArmStartLocalPos, rightArmTargetPos, lerp);
+            rightArm.transform.localRotation = Quaternion.Lerp(rightArmStartLocalRot, rightArmTargetRot, lerp);
             t += Time.deltaTime;
             yield return null;
         }
@@ -178,12 +204,20 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
             float lerp = t / half;
             sword.transform.localPosition = Vector3.Lerp(targetPos, swordStartLocalPos, lerp);
             sword.transform.localRotation = Quaternion.Slerp(targetRot, swordStartLocalRot, lerp);
+            leftArm.transform.localPosition = Vector3.Lerp(leftArmTargetPos, leftArmStartLocalPos, lerp);
+            leftArm.transform.localRotation = Quaternion.Slerp(leftArmTargetRot, leftArmStartLocalRot, lerp);
+            rightArm.transform.localPosition = Vector3.Lerp(rightArmTargetPos, rightArmStartLocalPos, lerp);
+            rightArm.transform.localRotation = Quaternion.Lerp(rightArmTargetRot, rightArmStartLocalRot, lerp);
             t += Time.deltaTime;
             yield return null;
         }
 
         sword.transform.localPosition = swordStartLocalPos;
         sword.transform.localRotation = swordStartLocalRot;
+        leftArm.transform.localPosition = leftArmStartLocalPos;
+        leftArm.transform.localRotation = leftArmStartLocalRot;
+        rightArm.transform.localPosition = rightArmStartLocalPos;
+        rightArm.transform.localRotation = rightArmStartLocalRot;
         swordSwingRoutine = null;
     }
 
