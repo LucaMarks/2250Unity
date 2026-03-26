@@ -16,7 +16,7 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
 
     //this works in tandem with input listeners in Actor
     private Transform cameraPivot;
-    private float lookSensitivity = 0.5f;
+    private float lookSensitivity = 3f;
     private float pitch;
     private float yaw;
 
