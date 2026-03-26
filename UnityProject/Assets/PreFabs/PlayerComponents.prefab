@@ -75,6 +75,10 @@ MonoBehaviour:
   Damage: 0
   Drops: []
   Dialogue: []
+  attackCooldown: 0
+  whatIsEnemy:
+    serializedVersion: 2
+    m_Bits: 0
   Currency: 100
   progressionSystem: {fileID: 0}
   playerMouse: {fileID: 0}
@@ -87,6 +91,7 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
+  playerNumberKeys: {fileID: 0}
   numberKeyAction:
     m_Name: Number Key
     m_Type: 0
@@ -99,6 +104,11 @@ MonoBehaviour:
   sword: {fileID: 3578956038313819520}
   leftArm: {fileID: 7475429461944874772}
   rightArm: {fileID: 7598281930771574793}
+  swordColours:
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 0, g: 1, b: 0, a: 1}
+  - {r: 0, g: 0, b: 1, a: 1}
+  - {r: 0, g: 0, b: 0, a: 1}
 --- !u!114 &5263100448548731373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -402,6 +412,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -198.032
       objectReference: {fileID: 0}
+    - target: {fileID: 7412148998715957506, guid: 27da4ffc7dd95f741a27d4bc97d0e5e3, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 16f41a5b9a439f94c896807d9aaedeee, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
