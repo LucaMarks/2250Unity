@@ -23,6 +23,7 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
     float lookSensitivity = 3f;
     private float pitch;
     private float yaw;
+    private int attackAnimationCooldown;
 
 	//reference to the dialogue system in the scene
 	private DialogueSystem dialogueSystem;
@@ -118,6 +119,8 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
     public override void Update()
     {
         base.Update();
+        attackCooldown++;
+        attackAnimationCooldown++;
         //swing sword
         /*
             this may cause issues in the future since mouseAction can account for any action
@@ -125,9 +128,12 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
          */
         if (mouseAction.triggered)
         {
-            Attack();
-        }                
-
+            if (attackAnimationCooldown > 60)
+            {
+                attackAnimationCooldown = 0;
+                Attack();
+            }
+        }
 
     }
 
@@ -156,7 +162,6 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
         {
             StopCoroutine(swordSwingRoutine);
         }
-
 
         swordSwingRoutine = StartCoroutine(SwingSword());
     }
@@ -235,12 +240,12 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
         //check collision from sword to ennemy/actor
         Vector3 swordScale = sword.transform.localScale;
         double swordRadius = Math.Sqrt(swordScale.x * swordScale.x + swordScale.y * swordScale.y + swordScale.z * swordScale.z);
-        swordRadius *= 3;
+        swordRadius *= 2;//increase this if colliosn detection with enemy is too buggy
         // Debug.Log(swordRadius);
         Collider[] hits = Physics.OverlapSphere(sword.transform.position, (int)swordRadius, whatIsEnemy);
         if(hits.Length > 0)
         {
-            Debug.Log("We hit something!");
+            // Debug.Log("We hit something!");
         }
         for (int i = 0; i < hits.Length; i++)
         {
@@ -248,8 +253,12 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
             if (enemyObject != null)
             {
                 // enemyObject.Health -= Damage;
-                enemyObject.TakeDamage(Damage);
-                Debug.Log(enemyObject.name + "at " + enemyObject.Health);
+                if (attackCooldown > 120)//decrease this value if swings are not doing damage
+                {
+                    attackCooldown = 0;
+                    Debug.Log(enemyObject.name + "at " + enemyObject.Health + " - " + Damage);
+                    enemyObject.TakeDamage(Damage);
+                }
             }
         }
     }

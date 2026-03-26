@@ -20,7 +20,7 @@ public class EnemyAI : Actor
     public float timeBetweenAttacks;
     public bool alreadyAttacked;
     public GameObject projectile;
-    private int attackCooldown;
+    // private int attackCooldown;//moved this to actor class
     
     //States
     public float sightRange, attackRange;
@@ -30,16 +30,17 @@ public class EnemyAI : Actor
     {
         player = GameObject.Find("Knight").transform;
         agent = GetComponent<NavMeshAgent>();
-        enemyRenderer = GetComponentInChildren<Renderer>();
-        // enemyRenderer = GetComponent<Renderer>();
-        Damage = 25;//this is a variable from Actor
+        enemyRenderer = GetComponent<Renderer>();
+        //these are variables from actor
+        Health = 100;
+        Damage = 25;
 
     }
 
     private void Update()
     {
         base.Update();
-        attackCooldown++;
+       attackCooldown++;
         //Check for sight and attack range
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
@@ -140,7 +141,11 @@ public class EnemyAI : Actor
     {
         Health -= damage;
 
-        if (Health <= 0) Invoke(nameof(DestroyEnemy), 0.5f);
+        if (Health <= 0)
+        {
+            Debug.Log(this.name + " Killed");
+            Invoke(nameof(DestroyEnemy), 0.5f);
+        }
     }
     private void DestroyEnemy()
     {
