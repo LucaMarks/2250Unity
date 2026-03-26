@@ -6,13 +6,22 @@ namespace namespace_animclip_offset{
 public class anim_clip_offset : MonoBehaviour
 {
     private Animator animator;
-   
+    
+
+    private Vector3 startPos;
+    
     // Start is called before the first frame update
     void Awake()
     {
         animator = GetComponent<Animator>();
         Play_Animationclip_offset();
     }
+    
+    void Start()
+    {
+
+    }
+
 
     void Play_Animationclip_offset()
     {
@@ -23,11 +32,11 @@ public class anim_clip_offset : MonoBehaviour
             int clip_position = animator.GetCurrentAnimatorStateInfo(0).shortNameHash;
 
             animator.Play(clip_position, 0, time / anim_clip.length);
-            
-
+        
     }
-    void Update(){
 
+    void Update(){
+   
         
     }
     
