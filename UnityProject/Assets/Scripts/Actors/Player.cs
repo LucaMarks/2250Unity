@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VectorGraphics;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 using UnityEngine.Rendering;
 
 public class Player : Actor //this also gives us access to MonoBehavoiour
@@ -30,14 +31,17 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
 
     public PlayerInput playerMouse;
     public InputAction mouseAction;
+    public PlayerInput playerNumberKeys;
     public InputAction numberKeyAction;
     
     // public InputAction
 
+    //Physical Objects associated with player
     public GameObject sword;
     public GameObject leftArm;
     public GameObject rightArm;
 
+    //player animation variables
     private float swordSwingDistanceX = 1f;
     private float swordSwingDistanceY = 0.6f;
     private float swordSwingAngle = 35f;
@@ -50,7 +54,14 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
     private Vector3 rightArmStartLocalPos;
     private Quaternion rightArmStartLocalRot;
     private bool swordCached;
+    private Renderer swordRenderer;
+    private SpriteRenderer swordSpriteRenderer;
 
+    [SerializeField] private Color[] swordColours = new[] { Color.red, Color.green, Color.blue, Color.black };
+    public Material[] swordMaterials = new Material[4];
+    private int currWeaponIndex = 0;
+
+    //object collision handling variables
     private const string SolidObjectTag = "SolidObject";
     private bool isCollidingSolid;
     private Vector3 preMovePosition;
@@ -67,6 +78,7 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
     {
         Debug.Log("Player created");
         if (sword == null){Debug.Log("Player sword not created. Player sword is equal to null");}
+        CacheSwordVisuals();
         
         //xp system
         if (progressionSystem == null)
@@ -95,8 +107,14 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
         playerMouse = GetComponent<PlayerInput>();
         mouseAction = playerMouse.actions.FindAction("MouseClick");
 
+        playerNumberKeys = GetComponent<PlayerInput>();
+        // playerNumberKeys.SwitchCurrentActionMap("NumberKeys");
+        numberKeyAction = playerNumberKeys.actions.FindAction("NumberKeys");
+
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        if (swordRenderer != null){swordRenderer.material = swordMaterials[currWeaponIndex];}
 
         preMovePosition = transform.position;
         Damage = 50;
@@ -135,6 +153,101 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
             }
         }
 
+        if (numberKeyAction.triggered)
+        {
+            // Debug.Log("Key pressed!");
+            changeWeapon();
+        }
+    }
+
+    private void changeWeapon()
+    {
+        if (sword == null){Debug.LogWarning("Cannot change sword colour because sword is not assigned.");return;}
+
+        // if (swordColours == null || swordColours.Length == 0)
+        // {
+        //     Debug.LogWarning("Cannot change sword colour because no sword colours are configured.");
+        //     return;
+        // }
+
+        CacheSwordVisuals();
+
+        int colourIndex = GetPressedNumberKeyIndex();
+        if (colourIndex < 0 || colourIndex >= swordColours.Length)
+        {
+            Debug.LogWarning("NumberKeys was triggered, but no supported number key was detected.");
+            return;
+        }
+
+
+        if (swordRenderer != null)
+        {
+            swordRenderer.material.color = swordColours[colourIndex];
+            swordRenderer.material = swordMaterials[colourIndex];
+            return;
+        }
+
+        if (swordSpriteRenderer != null)
+        {
+            swordSpriteRenderer.color = swordColours[colourIndex];
+            return;
+        }
+
+        Debug.LogWarning("Sword has no Renderer or SpriteRenderer to recolour.");
+    }
+
+    private void CacheSwordVisuals()
+    {
+        if (sword == null)
+        {
+            swordRenderer = null;
+            swordSpriteRenderer = null;
+            return;
+        }
+
+        // Debug.Log("Made it here");
+        swordRenderer = sword.GetComponentInChildren<Renderer>();
+        swordSpriteRenderer = sword.GetComponentInChildren<SpriteRenderer>();
+        // Debug.Log("Name " + swordSpriteRenderer.name);
+    }
+
+    private int GetPressedNumberKeyIndex()
+    {
+        if (numberKeyAction == null || numberKeyAction.activeControl == null)
+        {
+            return -1;
+        }
+
+        if (numberKeyAction.activeControl is KeyControl keyControl)
+        {
+            switch (keyControl.keyCode)
+            {
+                case Key.Digit1:
+                case Key.Numpad1:
+                    return 0;
+                case Key.Digit2:
+                case Key.Numpad2:
+                    return 1;
+                case Key.Digit3:
+                case Key.Numpad3:
+                    return 2;
+                case Key.Digit4:
+                case Key.Numpad4:
+                    return 3;
+            }
+        }
+
+        string controlText = $"{numberKeyAction.activeControl.displayName}{numberKeyAction.activeControl.name}{numberKeyAction.activeControl.path}";
+        for (int i = 0; i < swordColours.Length && i < 9; i++)
+        {
+            string keyNumber = (i + 1).ToString();
+            if (controlText.Contains(keyNumber))
+            {
+                return i;
+            }
+        }
+
+        return -1;
     }
 
     public override void Attack()

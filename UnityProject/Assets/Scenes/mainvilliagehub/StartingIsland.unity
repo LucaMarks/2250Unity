@@ -3961,6 +3961,30 @@ PrefabInstance:
       propertyPath: numberKeyAction.m_Name
       value: Number Key
       objectReference: {fileID: 0}
+    - target: {fileID: 2640219862400282323, guid: 4e746d462ded6584ab8a9a0d60e4e93f, type: 3}
+      propertyPath: swordMaterials.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2640219862400282323, guid: 4e746d462ded6584ab8a9a0d60e4e93f, type: 3}
+      propertyPath: 'swordMaterials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 45808885276b04043872dc442d0905e9, type: 2}
+    - target: {fileID: 2640219862400282323, guid: 4e746d462ded6584ab8a9a0d60e4e93f, type: 3}
+      propertyPath: 'swordMaterials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 16f41a5b9a439f94c896807d9aaedeee, type: 2}
+    - target: {fileID: 2640219862400282323, guid: 4e746d462ded6584ab8a9a0d60e4e93f, type: 3}
+      propertyPath: 'swordMaterials.Array.data[2]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 901fd274bd70d6842bccafbf9cb461c6, type: 2}
+    - target: {fileID: 2640219862400282323, guid: 4e746d462ded6584ab8a9a0d60e4e93f, type: 3}
+      propertyPath: 'swordMaterials.Array.data[3]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 0d8d1dd29b47e514a9138416682c0f22, type: 2}
+    - target: {fileID: 2640219862400282323, guid: 4e746d462ded6584ab8a9a0d60e4e93f, type: 3}
+      propertyPath: 'swordMaterials.Array.data[4]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 0d8d1dd29b47e514a9138416682c0f22, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
