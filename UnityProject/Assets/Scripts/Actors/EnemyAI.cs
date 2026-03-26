@@ -8,6 +8,7 @@ public class EnemyAI : MonoBehaviour
     public Transform player;
     public LayerMask whatIsGround, whatIsPlayer;
     public float health;
+    // public Player player;
     
     //Patrolling
     public Vector3 walkPoint;
@@ -49,8 +50,8 @@ public class EnemyAI : MonoBehaviour
         }
         else if (playerInAttackRange)
         {
-           // AttackPlayer();
             enemyRenderer.material.color = Color.red;
+            AttackPlayer();
         }
     }
 
@@ -107,7 +108,8 @@ public class EnemyAI : MonoBehaviour
                 if (playerScript != null)
                 {
                    //Add player take damge method
-                    Debug.Log("Melee hit!");
+                    
+                    Debug.Log("Melee hit! by " + gameObject.name);
                 }
             }
 
