@@ -10,6 +10,9 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
     private List<string> skills;
     public Inventory inventory = new Inventory();
     private int SkillPoints;
+    
+    //refernce to the XP system attatched to this game object
+    public ProgressionSystem progressionSystem;
 
     //this works in tandem with input listeners in Actor
     private Transform cameraPivot;
@@ -17,6 +20,8 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
     private float pitch;
     private float yaw;
 
+	//reference to the dialogue system in the scene
+	private DialogueSystem dialogueSystem;
 
     public PlayerInput playerMouse;
     public InputAction mouseAction;
@@ -47,6 +52,15 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
     {
         Debug.Log("Player created");
         if (sword == null){Debug.Log("Player sword not created. Player sword is equal to null");}
+        
+        //xp system
+        if (progressionSystem == null)
+        {
+            progressionSystem = GetComponent<ProgressionSystem>();
+        }
+
+		//find DialogueSystem
+		dialogueSystem = FindFirstObjectByType<DialogueSystem>();
 
         // base(health, damage, xRotation, yRotation);
         playerInput = GetComponent<PlayerInput>();
@@ -98,6 +112,8 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
         {
             Attack();
         }                
+
+
     }
 
     public override void Attack()
@@ -122,7 +138,20 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
 
         swordSwingRoutine = StartCoroutine(SwingSword());
     }
-
+    
+    //placeholder method for gaining monster kill XP
+    public void OnEnemyKilled()
+    {
+        if (progressionSystem != null){progressionSystem.AwardCombatXP();}//to avoid crashes
+        
+    }
+    
+    //debug method to display current player progression stats in console
+    public void DisplayStats()
+    {
+        Debug.Log($"Level: {progressionSystem.currentLevel} | XP: {progressionSystem.currentXP}/{progressionSystem.xpToNextLevel} | Health: {Health} | Damage: {Damage}");
+    }
+    
     private IEnumerator SwingSword()
     {
         float half = swordSwingDuration * 0.5f;
@@ -187,6 +216,7 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
 
     public void OnCollisionEnter(Collision collision)
     {
+        Debug.Log("Collision detected");
         HandleSolidCollision(collision);
     }
 
@@ -206,11 +236,40 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
         HazardCollide(collision);        
         // throw new NotImplementedException();
         //check other cases of collision
+        // if player walks into an NPC, start dialogue directly
         if (collision.gameObject.TryGetComponent<NPC>(out var npc))
         {
-            Interact(collision.gameObject.GetComponent<Actor>());
-        } 
+            npc.StartDialogue();
+        }
 
+    }
+
+    private void HandleSolidCollision(Collision collision)
+    {
+        if (collision == null)
+        {
+            return;
+        }
+
+        if (!collision.gameObject.CompareTag(SolidObjectTag))
+        {
+            return;
+        }
+
+        isCollidingSolid = true;
+
+        if (collision.contactCount > 0)
+        {
+            Vector3 normal = collision.GetContact(0).normal;
+            if (Vector3.Dot(lastMoveDelta, normal) < 0f)
+            {
+                transform.position = preMovePosition;
+            }
+        }
+        else
+        {
+            transform.position = preMovePosition;
+        }
     }
 
     private void HandleSolidCollision(Collision collision)
@@ -244,12 +303,18 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
     public void UseItem(Item item)
     {
         item.Action();
+        
+        //award XP for item use (could be moved to on pickup)
+        if (progressionSystem != null)
+        {
+            progressionSystem.AwardItemXP();
+        }
     }
 
     //interact with another actor
     public void Interact(Actor actor)
     {
-        //assume actor is an npc for now since it's really the only interactable thing
+        //output dialogue for any actor type
         actor.OutputDialogue();
     }
 
