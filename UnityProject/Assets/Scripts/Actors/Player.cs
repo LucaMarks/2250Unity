@@ -25,6 +25,7 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
 
     public PlayerInput playerMouse;
     public InputAction mouseAction;
+    // public InputAction
 
     public GameObject sword;
     private float swordSwingDistanceX = 1f;
