@@ -25,6 +25,7 @@ public class Actor : MonoBehaviour
     public List<string> Dialogue;
     private int DialogueIndex = 0;
 
+    public int attackCooldown;
 
     public Actor()
     {
