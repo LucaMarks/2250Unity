@@ -119,6 +119,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &113170915 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 538513958784941335, guid: 4e746d462ded6584ab8a9a0d60e4e93f, type: 3}
+  m_PrefabInstance: {fileID: 597873248173408437}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &682214287
 GameObject:
   m_ObjectHideFlags: 0
@@ -435,8 +440,10 @@ MonoBehaviour:
     m_Bits: 64
   health: 120
   walkPoint: {x: 0, y: 0, z: 0}
+  walkPointSet: 0
   walkPointRange: 3
   timeBetweenAttacks: 1
+  alreadyAttacked: 0
   projectile: {fileID: 0}
   sightRange: 10
   attackRange: 1
@@ -754,13 +761,39 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 538513958784941335, guid: 4e746d462ded6584ab8a9a0d60e4e93f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8111459144701225254}
   m_SourcePrefab: {fileID: 100100000, guid: 4e746d462ded6584ab8a9a0d60e4e93f, type: 3}
 --- !u!4 &8111459144701225253 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1320164084003266846, guid: 4e746d462ded6584ab8a9a0d60e4e93f, type: 3}
   m_PrefabInstance: {fileID: 597873248173408437}
   m_PrefabAsset: {fileID: 0}
+--- !u!136 &8111459144701225254
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113170915}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1.5
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -11,12 +11,12 @@ public class EnemyAI : MonoBehaviour
     
     //Patrolling
     public Vector3 walkPoint;
-    bool walkPointSet;
+    public bool walkPointSet;
     public float walkPointRange;
     
     //Attacking
     public float timeBetweenAttacks;
-    bool alreadyAttacked;
+    public bool alreadyAttacked;
     public GameObject projectile;
     
     //States
@@ -32,25 +32,10 @@ public class EnemyAI : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("Enemy running");
         //Check for sight and attack range
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
         Debug.Log("Sight: " + playerInSightRange + " Attack: " + playerInAttackRange);
-        if (!playerInSightRange && !playerInAttackRange)
-        {
-            Patroling();
-        }
-
-        if (playerInSightRange && !playerInAttackRange)
-        {
-            ChasePlayer();
-        }
-
-        if (playerInSightRange && playerInAttackRange)
-        {
-           // AttackPlayer();
-        }
         
         if (!playerInSightRange && !playerInAttackRange)
         {
@@ -99,7 +84,7 @@ public class EnemyAI : MonoBehaviour
         agent.SetDestination(player.position);
     }
 
-    private void AttackPlayer()
+    protected virtual void AttackPlayer()
     {
         //Make sure enemy doesn't move
         agent.SetDestination(transform.position);
@@ -108,23 +93,29 @@ public class EnemyAI : MonoBehaviour
 
         if (!alreadyAttacked)
         {
-            float distance =Vector3.Distance(transform.position, player.position);
-            if (distance <= attackRange)
-            {
-                Player playerScript = player.GetComponent<Player>();
+            // Point slightly in front of enemy
+            Vector3 attackPoint = transform.position + transform.forward * 0.8f;
 
+            // Small melee range (you can keep 1!)
+            float radius = attackRange;
+
+            Collider[] hits = Physics.OverlapSphere(attackPoint, radius, whatIsPlayer);
+
+            foreach (Collider hit in hits)
+            {
+                Player playerScript = hit.GetComponent<Player>();
                 if (playerScript != null)
                 {
-                    //Add player damage here
+                   //Add player take damge method
+                    Debug.Log("Melee hit!");
                 }
-                
             }
 
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
     }
-    private void ResetAttack()
+    protected void ResetAttack()
     {
         alreadyAttacked = false;
     }
