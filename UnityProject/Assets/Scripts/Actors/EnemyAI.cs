@@ -30,6 +30,7 @@ public class EnemyAI : Actor
     {
         player = GameObject.Find("Knight").transform;
         agent = GetComponent<NavMeshAgent>();
+        enemyRenderer = GetComponentInChildren<Renderer>();
         enemyRenderer = GetComponent<Renderer>();
         Damage = 25;//this is a variable from Actor
 
