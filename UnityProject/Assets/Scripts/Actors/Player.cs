@@ -55,9 +55,7 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
     private Quaternion rightArmStartLocalRot;
     private bool swordCached;
     private Renderer swordRenderer;
-    private SpriteRenderer swordSpriteRenderer;
 
-    [SerializeField] private Color[] swordColours = new[] { Color.red, Color.green, Color.blue, Color.black };
     public Material[] swordMaterials = new Material[4];
     private int currWeaponIndex = 0;
 
@@ -163,54 +161,34 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
     private void changeWeapon()
     {
         if (sword == null){Debug.LogWarning("Cannot change sword colour because sword is not assigned.");return;}
-
-        // if (swordColours == null || swordColours.Length == 0)
-        // {
-        //     Debug.LogWarning("Cannot change sword colour because no sword colours are configured.");
-        //     return;
-        // }
-
         CacheSwordVisuals();
 
         int colourIndex = GetPressedNumberKeyIndex();
-        if (colourIndex < 0 || colourIndex >= swordColours.Length)
+        if (colourIndex < 0 || colourIndex >= swordMaterials.Length)
         {
             Debug.LogWarning("NumberKeys was triggered, but no supported number key was detected.");
             return;
         }
-
-
         if (swordRenderer != null)
         {
-            swordRenderer.material.color = swordColours[colourIndex];
             swordRenderer.material = swordMaterials[colourIndex];
-            return;
-        }
-
-        if (swordSpriteRenderer != null)
-        {
-            swordSpriteRenderer.color = swordColours[colourIndex];
             return;
         }
 
         Debug.LogWarning("Sword has no Renderer or SpriteRenderer to recolour.");
     }
-
     private void CacheSwordVisuals()
     {
         if (sword == null)
         {
             swordRenderer = null;
-            swordSpriteRenderer = null;
             return;
         }
 
         // Debug.Log("Made it here");
         swordRenderer = sword.GetComponentInChildren<Renderer>();
-        swordSpriteRenderer = sword.GetComponentInChildren<SpriteRenderer>();
         // Debug.Log("Name " + swordSpriteRenderer.name);
     }
-
     private int GetPressedNumberKeyIndex()
     {
         if (numberKeyAction == null || numberKeyAction.activeControl == null)
@@ -238,7 +216,7 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
         }
 
         string controlText = $"{numberKeyAction.activeControl.displayName}{numberKeyAction.activeControl.name}{numberKeyAction.activeControl.path}";
-        for (int i = 0; i < swordColours.Length && i < 9; i++)
+        for (int i = 0; i < swordMaterials.Length && i < 9; i++)
         {
             string keyNumber = (i + 1).ToString();
             if (controlText.Contains(keyNumber))
