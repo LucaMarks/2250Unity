@@ -1,14 +1,15 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyAI : MonoBehaviour
+public class EnemyAI : Actor 
 {
     private Renderer enemyRenderer;
     public NavMeshAgent agent;
     public Transform player;
     public LayerMask whatIsGround, whatIsPlayer;
     public float health;
-    // public Player player;
+    public Player playerComponents;
     
     //Patrolling
     public Vector3 walkPoint;
@@ -19,6 +20,7 @@ public class EnemyAI : MonoBehaviour
     public float timeBetweenAttacks;
     public bool alreadyAttacked;
     public GameObject projectile;
+    private int attackCooldown;
     
     //States
     public float sightRange, attackRange;
@@ -29,10 +31,13 @@ public class EnemyAI : MonoBehaviour
         player = GameObject.Find("Knight").transform;
         agent = GetComponent<NavMeshAgent>();
         enemyRenderer = GetComponent<Renderer>();
+        Damage = 25;//this is a variable from Actor
+
     }
 
     private void Update()
     {
+        attackCooldown++;
         //Check for sight and attack range
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
@@ -51,7 +56,11 @@ public class EnemyAI : MonoBehaviour
         else if (playerInAttackRange)
         {
             enemyRenderer.material.color = Color.red;
-            AttackPlayer();
+            if (attackCooldown > 60)
+            {
+                attackCooldown = 0;
+                AttackPlayer();
+            }
         }
     }
 
@@ -87,6 +96,10 @@ public class EnemyAI : MonoBehaviour
 
     protected virtual void AttackPlayer()
     {
+        playerComponents.Health -= Damage;
+        Debug.Log("Melee hit! by " + gameObject.name);
+        // Debug.Log("Player health is " +  playerComponents.Health);
+
         //Make sure enemy doesn't move
         agent.SetDestination(transform.position);
 
@@ -108,8 +121,7 @@ public class EnemyAI : MonoBehaviour
                 if (playerScript != null)
                 {
                    //Add player take damge method
-                    
-                    Debug.Log("Melee hit! by " + gameObject.name);
+
                 }
             }
 
