@@ -27,7 +27,8 @@ public class EnemyAI : MonoBehaviour
     {
         player = GameObject.Find("Knight").transform;
         agent = GetComponent<NavMeshAgent>();
-        enemyRenderer = GetComponent<Renderer>();
+        enemyRenderer = GetComponentInChildren<Renderer>();
+        
     }
 
     private void Update()
