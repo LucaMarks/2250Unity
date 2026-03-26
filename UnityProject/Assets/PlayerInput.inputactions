@@ -32,6 +32,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "NumberKeys",
+                    "type": "Button",
+                    "id": "3fdcba3b-2500-408b-9d90-cda6e3f168c3",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -188,76 +197,48 @@
                     "action": "MouseClick",
                     "isComposite": false,
                     "isPartOfComposite": false
-                }
-            ]
-        },
-        {
-            "name": "NumberKeys",
-            "id": "6a940d4c-2b93-40f5-97cb-3b65b053754d",
-            "actions": [
-                {
-                    "name": "New action",
-                    "type": "Button",
-                    "id": "c1c2c362-907b-4f6b-91fb-c743bc1af048",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
-                {
-                    "name": "",
-                    "id": "afd25c2f-01ff-40f2-831a-4423e1a81e2f",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "New action",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "02c6f1af-d495-4173-8ad8-06ab1e9ca9e3",
+                    "id": "afceda35-ab12-4b59-9992-3ab5277bb254",
                     "path": "<Keyboard>/1",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "NumberKeys",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "5222eaed-e73d-4609-871c-7ed4222004f3",
+                    "id": "b689f0a7-3071-4557-a663-5e5d0b429046",
                     "path": "<Keyboard>/2",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "NumberKeys",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "d8dbcb60-ed0e-42df-b89d-5cb2ceb9e581",
+                    "id": "a19c374c-ca7e-4c4e-a106-fb4ad4225097",
                     "path": "<Keyboard>/3",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "NumberKeys",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "5dab3311-0c65-479b-8211-dca56cf48dfb",
+                    "id": "bf1cf311-f74c-4025-963a-36a404480189",
                     "path": "<Keyboard>/4",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "NumberKeys",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
