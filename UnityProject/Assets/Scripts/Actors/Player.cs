@@ -4,16 +4,19 @@ using System.Collections.Generic;
 using Unity.VectorGraphics;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 
 public class Player : Actor //this also gives us access to MonoBehavoiour
 {
+    public LayerMask whatIsEnemy;
+
     public int Currency = 100;//default currency
     private List<string> skills;
     public Inventory inventory = new Inventory();
     private int SkillPoints;
     
     //refernce to the XP system attatched to this game object
-    public ProgressionSystem progressionSystem;
+    public ProgressionSystem progressionSystem;//this isn't set up rn and is not connected on unity
 
     //this works in tandem with input listeners in Actor
     private Transform cameraPivot;
@@ -59,7 +62,7 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
     //     //
     // }
 
-    private void Start()
+    private void Awake()
     {
         Debug.Log("Player created");
         if (sword == null){Debug.Log("Player sword not created. Player sword is equal to null");}
@@ -95,6 +98,7 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
         Cursor.visible = false;
 
         preMovePosition = transform.position;
+        Damage = 50;
     }    
 
     private void HazardCollide(Collision collision)
@@ -153,6 +157,7 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
             StopCoroutine(swordSwingRoutine);
         }
 
+
         swordSwingRoutine = StartCoroutine(SwingSword());
     }
     
@@ -171,6 +176,7 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
     
     private IEnumerator SwingSword()
     {
+        
         float half = swordSwingDuration * 0.5f;
         float t = 0f;
 
@@ -186,6 +192,7 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
         // Swing out
         while (t < half)
         {
+            checkCollisionWithEnemy(); 
             float lerp = t / half;
             sword.transform.localPosition = Vector3.Lerp(swordStartLocalPos, targetPos, lerp);
             sword.transform.localRotation = Quaternion.Slerp(swordStartLocalRot, targetRot, lerp);
@@ -201,6 +208,7 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
         t = 0f;
         while (t < half)
         {
+            checkCollisionWithEnemy();
             float lerp = t / half;
             sword.transform.localPosition = Vector3.Lerp(targetPos, swordStartLocalPos, lerp);
             sword.transform.localRotation = Quaternion.Slerp(targetRot, swordStartLocalRot, lerp);
@@ -219,8 +227,32 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
         rightArm.transform.localPosition = rightArmStartLocalPos;
         rightArm.transform.localRotation = rightArmStartLocalRot;
         swordSwingRoutine = null;
+
     }
 
+    private void checkCollisionWithEnemy()
+    {
+        //check collision from sword to ennemy/actor
+        Vector3 swordScale = sword.transform.localScale;
+        double swordRadius = Math.Sqrt(swordScale.x * swordScale.x + swordScale.y * swordScale.y + swordScale.z * swordScale.z);
+        swordRadius *= 3;
+        // Debug.Log(swordRadius);
+        Collider[] hits = Physics.OverlapSphere(sword.transform.position, (int)swordRadius, whatIsEnemy);
+        if(hits.Length > 0)
+        {
+            Debug.Log("We hit something!");
+        }
+        for (int i = 0; i < hits.Length; i++)
+        {
+            EnemyAI enemyObject = hits[i].GetComponent<EnemyAI>();
+            if (enemyObject != null)
+            {
+                // enemyObject.Health -= Damage;
+                enemyObject.TakeDamage(Damage);
+                Debug.Log(enemyObject.name + "at " + enemyObject.Health);
+            }
+        }
+    }
     public override void Move()
     {
         //camera and player body movement
