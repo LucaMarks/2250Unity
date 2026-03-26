@@ -58,4 +58,9 @@ public class ProgressionSystem : MonoBehaviour
     {
         AwardXP(10, "item collection");
     }
+
+    public void AwardNpcInteractionXP()
+    {
+        AwardXP(25, "NPC interaction");
+    }
 }

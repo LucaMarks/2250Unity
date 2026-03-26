@@ -95,7 +95,18 @@ public class DialogueSystem : MonoBehaviour
         }
         
         DialogueLine currentLine = currentDialogueTree[currentDialogueIndex];
-        
+
+        //check if this line awards XP (positive path reward)
+        if (currentLine.xpReward > 0 && currentNPC != null && !currentNPC.hasAwardedXP)
+        {
+            ProgressionSystem progression = FindFirstObjectByType<ProgressionSystem>();
+            if (progression != null)
+            {
+                progression.AwardNpcInteractionXP();
+                currentNPC.hasAwardedXP = true;//prevent farming XP by talking again
+            }
+        }
+
         //show name and dialogue text
         if (npcNameText != null) { npcNameText.text = currentLine.npcName; }
         if (dialogueText != null) { dialogueText.text = currentLine.dialogueText; }
@@ -174,6 +185,7 @@ public class DialogueLine
     public string npcName;//who
     public string dialogueText;//what they say
     public List<DialogueOption> options;//list of responses
+    public int xpReward = 0;//if greater than 0, awards XP when this line is displayed
 
     public DialogueLine(string name, string text)
     {
