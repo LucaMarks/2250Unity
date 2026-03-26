@@ -253,7 +253,7 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
             if (enemyObject != null)
             {
                 // enemyObject.Health -= Damage;
-                if (attackCooldown > 120)//decrease this value if swings are not doing damage
+                if (attackCooldown > 60)//decrease this value if swings are not doing damage
                 {
                     attackCooldown = 0;
                     Debug.Log(enemyObject.name + "at " + enemyObject.Health + " - " + Damage);

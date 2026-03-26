@@ -6,6 +6,8 @@ public class RangedEnemy : EnemyAI
 
     protected override void AttackPlayer()
     {
+        playerComponents.Health -= Damage;
+        Debug.Log("ranged hit! by " + gameObject.name + " onto player");
         //Make sure enemy doesn't move
         agent.SetDestination(transform.position);
 

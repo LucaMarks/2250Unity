@@ -36,7 +36,12 @@ public class EnemyAI : Actor
         Damage = 25;
 
     }
-
+/*
+    There is an issue with this when we try to add an asset as an enemy (and not just a capsul)
+    enemyRendered dosen't exit because EnemyAI dosen't try to add colours to imported assets
+    need to add a fix so that enemies that have imported assets don't try to use enemyRendered
+        -> or remove this feature since all enemies going forward should be from created or imported assets 
+ */
     private void Update()
     {
         base.Update();
@@ -49,16 +54,17 @@ public class EnemyAI : Actor
         if (!playerInSightRange && !playerInAttackRange)
         {
             Patroling();
-            enemyRenderer.material.color = Color.green;
+            // enemyRenderer.material.color = Color.green;
         }
         else if (playerInSightRange && !playerInAttackRange)
         {
             ChasePlayer();
-            enemyRenderer.material.color = Color.yellow;
+            // enemyRenderer.material.color = Color.yellow;
         }
         else if (playerInAttackRange)
         {
-            enemyRenderer.material.color = Color.red;
+            
+            // enemyRenderer.material.color = Color.red;
             if (attackCooldown > 60)
             {
                 attackCooldown = 0;
@@ -99,8 +105,9 @@ public class EnemyAI : Actor
 
     protected virtual void AttackPlayer()
     {
+
         playerComponents.Health -= Damage;
-        Debug.Log("Melee hit! by " + gameObject.name);
+        Debug.Log("Melee hit! by " + gameObject.name + " onto player");
         // Debug.Log("Player health is " +  playerComponents.Health);
 
         //Make sure enemy doesn't move
