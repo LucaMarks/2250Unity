@@ -4,6 +4,8 @@
 TagManager:
   serializedVersion: 3
   tags:
+  - UMAKeepChain
+  - UMAIgnore
   - SolidObject
   layers:
   - Default
@@ -12,7 +14,7 @@ TagManager:
   - Ground
   - Water
   - UI
-  - 
+  - Player
   - 
   - 
   - 

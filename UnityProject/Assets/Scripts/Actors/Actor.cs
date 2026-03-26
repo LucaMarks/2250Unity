@@ -93,6 +93,7 @@ public class Actor : MonoBehaviour
         // //rotate cam & orientation
         // transform.rotation = Quaternion.Euler(xRotation, yRotation, 0); 
         // orientation.rotation = Quaternion.Euler(0, yRotation, 0);
+        
     }
 
     //to-do: implement state updating with appropriate animations

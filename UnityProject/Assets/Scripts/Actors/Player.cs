@@ -191,8 +191,10 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
         //camera and player body movement
         Vector2 dir = moveAction.ReadValue<Vector2>();
 
+        Vector3 moveDirection = transform.forward*dir.y + transform.right*dir.x;
+        
         preMovePosition = transform.position;
-        lastMoveDelta = new Vector3(dir.x, 0f, dir.y) * Speed * Time.deltaTime;
+        lastMoveDelta = moveDirection * Speed * Time.deltaTime;
         transform.position += lastMoveDelta;
 
         Vector2 look = orientationAction.ReadValue<Vector2>() * lookSensitivity;
@@ -222,6 +224,7 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
     {
         HandleSolidCollision(collision);
     }
+    
 
     public void OnCollisionExit(Collision collision)
     {
@@ -239,6 +242,34 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
             npc.StartDialogue();
         }
 
+    }
+
+    private void HandleSolidCollision(Collision collision)
+    {
+        if (collision == null)
+        {
+            return;
+        }
+
+        if (!collision.gameObject.CompareTag(SolidObjectTag))
+        {
+            return;
+        }
+
+        isCollidingSolid = true;
+
+        if (collision.contactCount > 0)
+        {
+            Vector3 normal = collision.GetContact(0).normal;
+            if (Vector3.Dot(lastMoveDelta, normal) < 0f)
+            {
+                transform.position = preMovePosition;
+            }
+        }
+        else
+        {
+            transform.position = preMovePosition;
+        }
     }
 
     private void HandleSolidCollision(Collision collision)
