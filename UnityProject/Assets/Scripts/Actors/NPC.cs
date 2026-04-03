@@ -146,4 +146,4 @@ public class NPC : StaticObject
         //after interaction (if defined) will give an item (currency for example)
     }
 }
-#endif
+#endif  
