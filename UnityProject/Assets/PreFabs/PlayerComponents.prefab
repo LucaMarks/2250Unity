@@ -101,14 +101,24 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
+  playerInteract: {fileID: 0}
+  InteractAction:
+    m_Name: Interact
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 0e1ce95d-36fb-45fc-99b2-93616500724d
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
   sword: {fileID: 3578956038313819520}
   leftArm: {fileID: 7475429461944874772}
   rightArm: {fileID: 7598281930771574793}
-  swordColours:
-  - {r: 1, g: 0, b: 0, a: 1}
-  - {r: 0, g: 1, b: 0, a: 1}
-  - {r: 0, g: 0, b: 1, a: 1}
-  - {r: 0, g: 0, b: 0, a: 1}
+  swordMaterials:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &5263100448548731373
 MonoBehaviour:
   m_ObjectHideFlags: 0

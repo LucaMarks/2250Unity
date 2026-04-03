@@ -1,3 +1,4 @@
+#if false
 using UnityEngine;
 using TMPro;
 using System.Collections.Generic;
@@ -207,3 +208,4 @@ public class DialogueOption
         nextLineIndex = nextIndex;
     }
 }
+#endif

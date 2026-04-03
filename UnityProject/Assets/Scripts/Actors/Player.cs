@@ -27,12 +27,14 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
     private int attackAnimationCooldown;
 
 	//reference to the dialogue system in the scene
-	private DialogueSystem dialogueSystem;
+	private UpdatedDialogueSystem dialogueSystem;
 
     public PlayerInput playerMouse;
     public InputAction mouseAction;
     public PlayerInput playerNumberKeys;
     public InputAction numberKeyAction;
+    public PlayerInput playerInteract;
+    public InputAction InteractAction;
     
     // public InputAction
 
@@ -85,7 +87,7 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
         }
 
 		//find DialogueSystem
-		dialogueSystem = FindFirstObjectByType<DialogueSystem>();
+		dialogueSystem = FindFirstObjectByType<UpdatedDialogueSystem>();
 
         // base(health, damage, xRotation, yRotation);
         playerInput = GetComponent<PlayerInput>();
@@ -108,6 +110,10 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
         playerNumberKeys = GetComponent<PlayerInput>();
         // playerNumberKeys.SwitchCurrentActionMap("NumberKeys");
         numberKeyAction = playerNumberKeys.actions.FindAction("NumberKeys");
+        
+        
+        playerInteract = GetComponent<PlayerInput>();
+        InteractAction = playerInteract.actions.FindAction("Interact");
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -155,6 +161,11 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
         {
             // Debug.Log("Key pressed!");
             changeWeapon();
+        }
+        
+        if (InteractAction.triggered)
+        {
+            Interact();
         }
     }
 
@@ -380,6 +391,47 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
             preMovePosition = transform.position;
         }
     }
+    
+    private UpdatedNPC currentNPC;
+
+    public void SetCurrentNPC(UpdatedNPC npc)
+    {
+        currentNPC = npc;
+    }
+
+    public void ClearCurrentNPC(UpdatedNPC npc)
+    {
+        if (currentNPC == npc)
+        {
+            currentNPC = null;
+        }
+    }
+
+    private void Interact()
+    {
+        if (dialogueSystem == null)
+        {
+            Debug.LogWarning("DialogueSystem not found.");
+            return;
+        }
+
+        // If already talking → go to next line
+        if (dialogueSystem.IsTalking())
+        {
+            dialogueSystem.NextLine();
+            return;
+        }
+
+        // If near an NPC → start dialogue
+        if (currentNPC != null)
+        {
+            currentNPC.StartDialogue();
+        }
+        else
+        {
+            Debug.Log("No NPC in range");
+        }
+    }
 
     public void OnCollisionEnter(Collision collision)
     {
@@ -410,11 +462,7 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
         // throw new NotImplementedException();
         //check other cases of collision
         // if player walks into an NPC, start dialogue directly
-        if (collision.gameObject.TryGetComponent<NPC>(out var npc))
-        {
-            npc.StartDialogue();
-        }
-
+        
     }
 
     private void HandleSolidCollision(Collision collision)
@@ -461,11 +509,11 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
 
     //interact with another actor
     //this method isn't used with the current NPC system
-    public void Interact(Actor actor)
-    {
+    //public void Interact(Actor actor)
+    //{
         //output dialogue for any actor type
-        actor.OutputDialogue();
-    }
+        //actor.OutputDialogue();
+   // }
 
     public void AddCurrency(int amount)
     {
