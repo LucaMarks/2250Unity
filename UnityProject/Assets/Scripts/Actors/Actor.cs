@@ -116,6 +116,7 @@ public class Actor : MonoBehaviour
         // deathstate now freezes the game, drops and ui trigger will go here later
     }
 
+    //this method isn't used in the current npc system
     public void OutputDialogue()
     {
         //draw dialouge to screen

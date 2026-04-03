@@ -385,6 +385,12 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
     {
         Debug.Log("Collision detected");
         HandleSolidCollision(collision);
+        // Debug.Log("Checking collisions...");
+        if (collision.gameObject.CompareTag("Stairs"))
+        {
+            Debug.Log("Collision with stair!");
+            transform.position += new Vector3(0, 0.1f, 0);
+        }
     }
 
     public void OnCollisionStay(Collision collision)
@@ -425,6 +431,7 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
 
         isCollidingSolid = true;
 
+        //i don't know if this does anything, could probably remove it
         if (collision.contactCount > 0)
         {
             Vector3 normal = collision.GetContact(0).normal;
@@ -437,6 +444,8 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
         {
             transform.position = preMovePosition;
         }
+
+
     }
 
     public void UseItem(Item item)
@@ -451,6 +460,7 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
     }
 
     //interact with another actor
+    //this method isn't used with the current NPC system
     public void Interact(Actor actor)
     {
         //output dialogue for any actor type

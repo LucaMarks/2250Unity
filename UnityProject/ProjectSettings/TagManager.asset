@@ -8,6 +8,7 @@ TagManager:
   - UMAIgnore
   - SolidObject
   - Volumes
+  - Stairs
   layers:
   - Default
   - TransparentFX
