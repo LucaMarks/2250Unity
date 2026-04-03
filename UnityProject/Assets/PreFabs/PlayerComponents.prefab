@@ -78,7 +78,7 @@ MonoBehaviour:
   attackCooldown: 0
   whatIsEnemy:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   Currency: 100
   progressionSystem: {fileID: 0}
   playerMouse: {fileID: 0}
@@ -104,11 +104,11 @@ MonoBehaviour:
   sword: {fileID: 3578956038313819520}
   leftArm: {fileID: 7475429461944874772}
   rightArm: {fileID: 7598281930771574793}
-  swordColours:
-  - {r: 1, g: 0, b: 0, a: 1}
-  - {r: 0, g: 1, b: 0, a: 1}
-  - {r: 0, g: 0, b: 1, a: 1}
-  - {r: 0, g: 0, b: 0, a: 1}
+  swordMaterials:
+  - {fileID: 2100000, guid: 45808885276b04043872dc442d0905e9, type: 2}
+  - {fileID: 2100000, guid: 16f41a5b9a439f94c896807d9aaedeee, type: 2}
+  - {fileID: 2100000, guid: 901fd274bd70d6842bccafbf9cb461c6, type: 2}
+  - {fileID: 2100000, guid: 0d8d1dd29b47e514a9138416682c0f22, type: 2}
 --- !u!114 &5263100448548731373
 MonoBehaviour:
   m_ObjectHideFlags: 0
