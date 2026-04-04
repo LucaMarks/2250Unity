@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VectorGraphics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
@@ -35,6 +36,9 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
     public InputAction numberKeyAction;
     public PlayerInput playerInteract;
     public InputAction InteractAction;
+    private bool isInMotion = false;
+    private bool stairCollision = false;
+    private Rigidbody rigidBody;
     
     // public InputAction
 
@@ -79,7 +83,13 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
         Debug.Log("Player created");
         if (sword == null){Debug.Log("Player sword not created. Player sword is equal to null");}
         CacheSwordVisuals();
-        
+
+        if (rigidBody != null)
+        {
+            rigidBody = thisObject.GetComponent<Rigidbody>();
+        }
+        else{Debug.Log("add PlayerComponents to 'This Object' field");}
+
         //xp system
         if (progressionSystem == null)
         {
@@ -366,6 +376,20 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
     }
     public override void Move()
     {
+        if (moveAction.IsPressed()){isInMotion = true;Debug.Log("Moving");}
+        else{isInMotion = false;Debug.Log("Not Moving");}
+
+        if (!isInMotion && stairCollision)
+        {
+            //if the player is colliding with the stair but not moving(not pressing a move key), gravity will move then downwards by default                
+            //      -> do not let the player move in this case
+            rigidBody.constraints = RigidbodyConstraints.FreezeAll;
+
+            //this dosen't stop the player moving tho lol
+            // Rigidbody body = gameObject.GetComponent("Rigidbody");
+            return;
+        }
+        rigidBody.constraints = RigidbodyConstraints.None;
         //camera and player body movement
         Vector2 dir = moveAction.ReadValue<Vector2>();
 
@@ -440,8 +464,16 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
         // Debug.Log("Checking collisions...");
         if (collision.gameObject.CompareTag("Stairs"))
         {
-            Debug.Log("Collision with stair!");
-            transform.position += new Vector3(0, 0.1f, 0);
+            stairCollision = true;
+            if (isInMotion)
+            {
+                // Debug.Log("Collision with stair!");
+                transform.position += new Vector3(0, 0.1f, 0);
+            }
+            else{
+                //if the player is colliding with the stair but not moving(not pressing a move key), gravity will move then downwards by default                
+                //      -> do not let the player move in this case
+            }
         }
     }
 
@@ -462,7 +494,11 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
         // throw new NotImplementedException();
         //check other cases of collision
         // if player walks into an NPC, start dialogue directly
-        
+
+        if (collision.gameObject.CompareTag("Stairs"))
+        {
+            stairCollision = false;
+        }
     }
 
     private void HandleSolidCollision(Collision collision)
@@ -480,18 +516,18 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
         isCollidingSolid = true;
 
         //i don't know if this does anything, could probably remove it
-        if (collision.contactCount > 0)
-        {
-            Vector3 normal = collision.GetContact(0).normal;
-            if (Vector3.Dot(lastMoveDelta, normal) < 0f)
-            {
-                transform.position = preMovePosition;
-            }
-        }
-        else
-        {
-            transform.position = preMovePosition;
-        }
+        // if (collision.contactCount > 0)
+        // {
+        //     Vector3 normal = collision.GetContact(0).normal;
+        //     if (Vector3.Dot(lastMoveDelta, normal) < 0f)
+        //     {
+        //         transform.position = preMovePosition;
+        //     }
+        // }
+        // else
+        // {
+        //     transform.position = preMovePosition;
+        // }
 
 
     }

@@ -10,6 +10,8 @@ public class Actor : MonoBehaviour
     public InputAction moveAction;
     public PlayerInput playerOrientation;
     public InputAction orientationAction;
+    public GameObject thisObject;
+    
 
 
     public int Speed;
