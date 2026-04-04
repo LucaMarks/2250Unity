@@ -12,6 +12,10 @@ public class NPCInteractionRange : MonoBehaviour
             player.SetCurrentNPC(npc);
             Debug.Log("Player entered range of: " + npc.npcName);
         }
+        else
+        {
+            Debug.Log("Cannot find player");
+        }
     }
 
     private void OnTriggerExit(Collider other)

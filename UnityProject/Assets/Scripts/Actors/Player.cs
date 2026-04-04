@@ -150,7 +150,7 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
          */
         if (mouseAction.triggered)
         {
-            if (attackAnimationCooldown > 60)
+            if (attackAnimationCooldown > 120)
             {
                 attackAnimationCooldown = 0;
                 Attack();
