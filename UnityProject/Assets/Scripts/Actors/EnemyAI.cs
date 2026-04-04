@@ -105,8 +105,10 @@ public class EnemyAI : Actor
 
     protected virtual void AttackPlayer()
     {
-
+        
+        
         playerComponents.Health -= Damage;
+        
         Debug.Log("Melee hit! by " + gameObject.name + " onto player");
         // Debug.Log("Player health is " +  playerComponents.Health);
 
