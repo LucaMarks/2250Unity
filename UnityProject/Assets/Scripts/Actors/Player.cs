@@ -84,9 +84,10 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
         if (sword == null){Debug.Log("Player sword not created. Player sword is equal to null");}
         CacheSwordVisuals();
 
-        if (rigidBody != null)
+        if (thisObject != null)
         {
             rigidBody = thisObject.GetComponent<Rigidbody>();
+            Debug.Log("Rigid body initialized!");
         }
         else{Debug.Log("add PlayerComponents to 'This Object' field");}
 
