@@ -2462,9 +2462,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UpdatedNPC
   npcName: Villager
-  dialogueLines:
-  - Hello knight!
-  - Your not the first knight from the kingdome to pass through this village...
+  dialogueStages:
+  - lines: []
+    isLocked: 0
+    lockedLines: []
+  - lines: []
+    isLocked: 0
+    lockedLines: []
 --- !u!114 &1121767226
 MonoBehaviour:
   m_ObjectHideFlags: 0
