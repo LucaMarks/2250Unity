@@ -156,7 +156,7 @@ public class EnemyAI : Actor
             Invoke(nameof(DestroyEnemy), 0.5f);
         }
     }
-    private void DestroyEnemy()
+    protected virtual void DestroyEnemy()
     {
         Destroy(gameObject);
     }
