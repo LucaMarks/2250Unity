@@ -14,6 +14,7 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
     public LayerMask whatIsEnemy;
 
     public int Currency = 100;//default currency
+    public int jumpHeight = 1;
     private List<string> skills;
     public Inventory inventory = new Inventory();
     private int SkillPoints;
@@ -31,6 +32,15 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
 	//reference to the dialogue system in the scene
 	private UpdatedDialogueSystem dialogueSystem;
 
+    public PlayerInput playerInput;
+    public InputAction moveAction;
+
+    public PlayerInput playerOrientation;
+    public InputAction orientationAction;
+
+    public PlayerInput jumpKey;
+    public InputAction jumpKeyAction;
+
     public PlayerInput playerMouse;
     public InputAction mouseAction;
 
@@ -45,6 +55,9 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
     private bool isInMotion = false;
     private bool stairCollision = false;
     private Rigidbody rigidBody;
+    private Collider playerCollider;
+    [SerializeField] private float groundCheckDistance = 0.15f;
+    [SerializeField] private float groundNormalMinY = 0.5f;
     
     // public InputAction
 
@@ -97,9 +110,15 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
         if (thisObject != null)
         {
             rigidBody = thisObject.GetComponent<Rigidbody>();
+            playerCollider = thisObject.GetComponent<Collider>();
             Debug.Log("Rigid body initialized!");
         }
         else{Debug.Log("add PlayerComponents to 'This Object' field");}
+
+        if (playerCollider == null)
+        {
+            playerCollider = GetComponent<Collider>();
+        }
 
         //xp system
         if (progressionSystem == null)
@@ -113,6 +132,9 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
         // base(health, damage, xRotation, yRotation);
         playerInput = GetComponent<PlayerInput>();
         moveAction = playerInput.actions.FindAction("Move");
+
+        jumpKey = GetComponent<PlayerInput>();
+        jumpKeyAction = playerInput.actions.FindAction("Jump");
 
         playerOrientation = GetComponent<PlayerInput>();
         orientationAction = playerOrientation.actions.FindAction("Orientation");
@@ -178,6 +200,11 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
                 attackAnimationCooldown = 0;
                 Attack();
             }
+        }
+
+        if (jumpKeyAction.triggered)
+        {
+            Jump();
         }
 
         if (numberKeyAction.triggered)
@@ -460,6 +487,48 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
         {
             preMovePosition = transform.position;
         }
+    }
+
+    private void Jump()
+    {
+        if (rigidBody == null)
+        {
+            Debug.LogWarning("Player cannot jump because no Rigidbody was found.");
+            return;
+        }
+
+        if (!IsGrounded())
+        {
+            return;
+        }
+
+        Vector3 velocity = rigidBody.linearVelocity;
+        if (velocity.y < 0f)
+        {
+            velocity.y = 0f;
+            rigidBody.linearVelocity = velocity;
+        }
+
+        float jumpVelocity = Mathf.Sqrt(jumpHeight * -2f * Physics.gravity.y);
+        rigidBody.AddForce(Vector3.up * jumpVelocity * rigidBody.mass, ForceMode.Impulse);
+    }
+    private bool IsGrounded()
+    {
+        if (playerCollider == null)
+        {
+            return false;
+        }
+
+        Bounds bounds = playerCollider.bounds;
+        Vector3 halfExtents = bounds.extents;
+        halfExtents.y = Mathf.Max(halfExtents.y - 0.05f, 0.01f);
+
+        if (!Physics.BoxCast(bounds.center, halfExtents, Vector3.down, out RaycastHit hit, transform.rotation, groundCheckDistance, Physics.AllLayers, QueryTriggerInteraction.Ignore))
+        {
+            return false;
+        }
+
+        return hit.normal.y >= groundNormalMinY;
     }
 
     public void MoveToScene(int sceneIndex)
