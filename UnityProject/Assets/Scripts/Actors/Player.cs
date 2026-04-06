@@ -33,10 +33,15 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
 
     public PlayerInput playerMouse;
     public InputAction mouseAction;
+
     public PlayerInput playerNumberKeys;
     public InputAction numberKeyAction;
+
     public PlayerInput playerInteract;
     public InputAction InteractAction;
+
+
+
     private bool isInMotion = false;
     private bool stairCollision = false;
     private Rigidbody rigidBody;
@@ -71,6 +76,10 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
     private bool isCollidingSolid;
     private Vector3 preMovePosition;
     private Vector3 lastMoveDelta;
+
+
+    private UpdatedNPC currentNPC;
+    private Item currItem;
 
     // private float yRotation;
     // public Player(int speed, int health, int damage, float xRotation , float yRotation) : base(health, damage, xRotation, yRotation) //i don't think this gets called when the game starts
@@ -192,8 +201,27 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
         
         if (InteractAction.triggered)
         {
-            Interact();
+            if (InteractAction.activeControl is KeyControl keyControl)
+            {
+                switch (keyControl.keyCode)
+                {
+                    case Key.E: NPCInteract();break;
+                    case Key.Q: ItemInteract(); break;
+
+                }
+            }
+            NPCInteract();
         }
+
+// -> Debug to show all items in player inventory
+        // string builder = "";
+        // for(int i =0; i < inventory.getLen(); i++)
+        // {
+        //     builder += inventory.getItem(i).Name;
+        //     if(i+1 < inventory.getLen()){builder += ", ";}
+        // }
+        // if(builder == ""){Debug.Log("No inventoryItems to display");}
+        // else{Debug.Log(builder);}
     }
 
     private void changeWeapon()
@@ -448,13 +476,11 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
         // SceneManager.LoadScene(sceneIndex);
     }
 
-    private UpdatedNPC currentNPC;
 
     public void SetCurrentNPC(UpdatedNPC npc)
     {
         currentNPC = npc;
     }
-
     public void ClearCurrentNPC(UpdatedNPC npc)
     {
         if (currentNPC == npc)
@@ -463,7 +489,20 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
         }
     }
 
-    private void Interact()
+    public void setCurrItem(Item item)
+    {
+        currItem = item;
+    }
+
+    public void clearCurrItem(Item item)
+    {
+        if (currItem == item)
+        {
+            currItem = null;
+        }else{Debug.Log("Item we are trying to clear is not the curr item -> " + item.ID);}
+    }
+
+    private void NPCInteract()
     {
         if (dialogueSystem == null)
         {
@@ -489,9 +528,18 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
         }
     }
 
+    private void ItemInteract()
+    {
+        if (currItem != null)
+        {
+            inventory.addItem(currItem); 
+            GameObject.Destroy(currItem.itemContainer);
+        }
+    }
+
     public void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Collision detected");
+        // Debug.Log("Collision detected");
         HandleSolidCollision(collision);
         // Debug.Log("Checking collisions...");
         if (collision.gameObject.CompareTag("Stairs"))
