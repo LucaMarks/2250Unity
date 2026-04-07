@@ -50,6 +50,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9df099c5cd074218877d92ca60eebf10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
+  thisObject: {fileID: 389233261851085789}
+  Speed: 5
+  Health: 100
+  Damage: 0
+  Drops: []
+  Dialogue: []
+  attackCooldown: 0
+  whatIsEnemy:
+    serializedVersion: 2
+    m_Bits: 0
+  Currency: 100
+  jumpHeight: 1
+  progressionSystem: {fileID: 0}
   playerInput: {fileID: 0}
   moveAction:
     m_Name: Move
@@ -70,18 +83,16 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
-  thisObject: {fileID: 389233261851085789}
-  Speed: 5
-  Health: 100
-  Damage: 0
-  Drops: []
-  Dialogue: []
-  attackCooldown: 0
-  whatIsEnemy:
-    serializedVersion: 2
-    m_Bits: 0
-  Currency: 100
-  progressionSystem: {fileID: 0}
+  jumpKey: {fileID: 0}
+  jumpKeyAction:
+    m_Name: Jump Key
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: c8e43600-bd96-4ee8-aeaf-91f90195caa2
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
   playerMouse: {fileID: 0}
   mouseAction:
     m_Name: Mouse
@@ -112,6 +123,8 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
+  groundCheckDistance: 0.15
+  groundNormalMinY: 0.5
   sword: {fileID: 3578956038313819520}
   leftArm: {fileID: 7475429461944874772}
   rightArm: {fileID: 7598281930771574793}
