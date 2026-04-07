@@ -93,6 +93,7 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
 
     private UpdatedNPC currentNPC;
     private Item currItem;
+    private Rope currRope;
 
     // private float yRotation;
     // public Player(int speed, int health, int damage, float xRotation , float yRotation) : base(health, damage, xRotation, yRotation) //i don't think this gets called when the game starts
@@ -232,12 +233,16 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
             {
                 switch (keyControl.keyCode)
                 {
-                    case Key.E: NPCInteract();break;
+                    case Key.E: 
+                        if(currentNPC != null){NPCInteract();} 
+                        if(currRope != null){currRope.Interact();}
+                        break;
                     case Key.Q: ItemInteract(); break;
 
                 }
             }
-            NPCInteract();
+            
+            // NPCInteract();
         }
 
 // -> Debug to show all items in player inventory
@@ -562,13 +567,25 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
     {
         currItem = item;
     }
-
     public void clearCurrItem(Item item)
     {
         if (currItem == item)
         {
             currItem = null;
         }else{Debug.Log("Item we are trying to clear is not the curr item -> " + item.ID);}
+    }
+
+    public void setCurrRope(Rope rope)
+    {
+        currRope = rope;
+    }
+
+    public void clearCurrRope(Rope rope)
+    {
+        if (rope == currRope)
+        {
+            currRope = null;
+        }else{Debug.Log("Item we are trying to clear is no the curr item -> " + rope.name);}
     }
 
     private void NPCInteract()
