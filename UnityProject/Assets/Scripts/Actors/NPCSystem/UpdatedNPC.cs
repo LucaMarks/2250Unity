@@ -7,6 +7,8 @@ public class DialogueStage
     public string[] lines;
 
     public bool isLocked;
+    [Header("Start the quest associated with this npc when the player reads this dialogue")] 
+    public bool startQuest;
 
     [TextArea(2, 5)]
     public string[] lockedLines;
@@ -17,6 +19,9 @@ public class UpdatedNPC : MonoBehaviour
     [Header("NPC Info")]
     public string npcName;
 
+    public QuestStarter[] questStarters;
+    private int questStarterIndex = 0;
+    
     [Header("Dialogue Stages")]
     public DialogueStage[] dialogueStages;
 
@@ -45,6 +50,12 @@ public class UpdatedNPC : MonoBehaviour
         }
 
         DialogueStage stage = dialogueStages[currentStage];
+
+        if (stage.startQuest)
+        {
+            questStarters[questStarterIndex].StartQuest();
+            questStarterIndex++;
+        }
 
         if (stage.isLocked)
         {
