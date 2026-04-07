@@ -24,8 +24,8 @@ public class UpdatedNPC : MonoBehaviour
     
     [Header("Dialogue Stages")]
     public DialogueStage[] dialogueStages;
+    public int currentStage = 0;
 
-    private int currentStage = 0;
 
     public void StartDialogue()
     {
@@ -50,6 +50,10 @@ public class UpdatedNPC : MonoBehaviour
         }
 
         DialogueStage stage = dialogueStages[currentStage];
+        if (currentStage + 1 < dialogueStages.Length)
+        {
+            currentStage++;
+        }
 
         if (stage.startQuest)
         {
@@ -61,7 +65,7 @@ public class UpdatedNPC : MonoBehaviour
         {
             if (stage.lockedLines != null && stage.lockedLines.Length > 0)
             {
-                dialogueSystem.StartDialogue(npcName, stage.lockedLines);
+                dialogueSystem.StartDialogue(this, npcName, stage.lockedLines);
             }
             else
             {
@@ -77,7 +81,7 @@ public class UpdatedNPC : MonoBehaviour
             return;
         }
 
-        dialogueSystem.StartDialogue(npcName, stage.lines);
+        dialogueSystem.StartDialogue(this, npcName, stage.lines);
     }
 
     public void AdvanceDialogueStage()
