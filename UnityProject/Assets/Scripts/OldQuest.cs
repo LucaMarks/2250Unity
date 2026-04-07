@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Quest : MonoBehaviour
+public class OldQuest : MonoBehaviour
 {
     public double QuestID;
 

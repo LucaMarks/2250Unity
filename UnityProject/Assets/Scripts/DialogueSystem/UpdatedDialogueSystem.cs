@@ -4,7 +4,7 @@ using TMPro;
 public class UpdatedDialogueSystem : MonoBehaviour
 {
     public static UpdatedDialogueSystem Instance;
-    
+
     public GameObject dialoguePanel;
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI dialogueText;
@@ -12,7 +12,7 @@ public class UpdatedDialogueSystem : MonoBehaviour
     private string[] currentLines;
     private int currentLineIndex;
     private bool isTalking;
-    
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
