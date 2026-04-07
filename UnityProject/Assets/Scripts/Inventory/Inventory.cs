@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 
 public class Inventory
 {
-    List<Item> items = new List<Item>();
+    private List<Item> items = new List<Item>();
     private int maxSlots;
 
     public Inventory(int maxSlots)
@@ -34,5 +34,15 @@ public class Inventory
     public void addItem(Item item)
     {
         items.Add(item);
+    }
+
+    public int getLen()
+    {
+        return items.Count;
+    }
+
+    public Item getItem(int slot)
+    {
+        return items[slot];
     }
 }

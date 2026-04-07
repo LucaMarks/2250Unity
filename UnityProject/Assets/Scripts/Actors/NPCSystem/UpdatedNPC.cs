@@ -1,0 +1,119 @@
+using UnityEngine;
+
+[System.Serializable]
+public class DialogueStage
+{
+    [TextArea(2, 5)]
+    public string[] lines;
+
+    public bool isLocked;
+    [Header("Start the quest associated with this npc when the player reads this dialogue")] 
+    public bool startQuest;
+
+    [TextArea(2, 5)]
+    public string[] lockedLines;
+}
+
+public class UpdatedNPC : MonoBehaviour
+{
+    [Header("NPC Info")]
+    public string npcName;
+
+    public QuestStarter[] questStarters;
+    private int questStarterIndex = 0;
+    
+    [Header("Dialogue Stages")]
+    public DialogueStage[] dialogueStages;
+    public int currentStage = 0;
+
+
+    public void StartDialogue()
+    {
+        UpdatedDialogueSystem dialogueSystem = FindFirstObjectByType<UpdatedDialogueSystem>();
+
+        if (dialogueSystem == null)
+        {
+            Debug.LogWarning("No UpdatedDialogueSystem found in scene.");
+            return;
+        }
+
+        if (dialogueStages == null || dialogueStages.Length == 0)
+        {
+            Debug.LogWarning(npcName + " has no dialogue stages.");
+            return;
+        }
+
+        if (currentStage < 0 || currentStage >= dialogueStages.Length)
+        {
+            Debug.LogWarning(npcName + " has an invalid current stage.");
+            return;
+        }
+
+        DialogueStage stage = dialogueStages[currentStage];
+
+
+        if (stage.startQuest)
+        {
+            // Debug.Log("Quest started...");
+            if (questStarters[questStarterIndex] != null)
+            {
+                questStarters[questStarterIndex].StartQuest();
+                questStarterIndex++;
+            }else{Debug.Log("Add quest starter element to QuestStarters list in UpdatedNPC inspector (Find your npc object, you are need to add one more Object!");}
+        }
+
+        if (stage.isLocked)
+        {
+            if (stage.lockedLines != null && stage.lockedLines.Length > 0)
+            {
+                dialogueSystem.StartDialogue(this, npcName, stage.lockedLines);
+            }
+            else
+            {
+                Debug.LogWarning(npcName + " has a locked stage with no lockedLines set.");
+            }
+
+            return;
+        }
+
+        if (stage.lines == null || stage.lines.Length == 0)
+        {
+            Debug.LogWarning(npcName + " has an empty unlocked dialogue stage.");
+            return;
+        }
+
+        dialogueSystem.StartDialogue(this, npcName, stage.lines);
+
+        if (currentStage + 1 < dialogueStages.Length)
+        {
+            currentStage++;
+        }
+    }
+
+    public void AdvanceDialogueStage()
+    {
+        if (dialogueStages == null || dialogueStages.Length == 0)
+            return;
+
+        if (currentStage < dialogueStages.Length - 1)
+        {
+            currentStage++;
+        }
+    }
+
+    public void SetDialogueStage(int stage)
+    {
+        if (dialogueStages == null)
+            return;
+
+        if (stage >= 0 && stage < dialogueStages.Length)
+        {
+            currentStage = stage;
+        }
+    }
+
+    public int GetDialogueStage()
+    {
+        return currentStage;
+    }
+}

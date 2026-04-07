@@ -6,10 +6,9 @@ public class Actor : MonoBehaviour
 {
     public List<List<int>> Position = new List<List<int>>();//i don't think we actually need this
 
-    public PlayerInput playerInput;
-    public InputAction moveAction;
-    public PlayerInput playerOrientation;
-    public InputAction orientationAction;
+
+    public GameObject thisObject;
+    
 
 
     public int Speed;

@@ -2,11 +2,17 @@ using UnityEngine;
 
 public class Item : StaticObject
 {
-    private string ID;
+    public string ID;
     public string Name;
     private string Description;
+    public GameObject itemContainer;
 
     private int Value;
+
+    public Item()
+    {
+        
+    }
 
     public Item(string ID, string Name, string Description, int Value)
     {

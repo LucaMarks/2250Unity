@@ -2,16 +2,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VectorGraphics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 
 public class Player : Actor //this also gives us access to MonoBehavoiour
 {
     public LayerMask whatIsEnemy;
 
     public int Currency = 100;//default currency
+    public int jumpHeight = 1;
     private List<string> skills;
     public Inventory inventory = new Inventory();
     private int SkillPoints;
@@ -29,12 +32,32 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
 	//reference to the dialogue system in the scene
 	private UpdatedDialogueSystem dialogueSystem;
 
+    public PlayerInput playerInput;
+    public InputAction moveAction;
+
+    public PlayerInput playerOrientation;
+    public InputAction orientationAction;
+
+    public PlayerInput jumpKey;
+    public InputAction jumpKeyAction;
+
     public PlayerInput playerMouse;
     public InputAction mouseAction;
+
     public PlayerInput playerNumberKeys;
     public InputAction numberKeyAction;
+
     public PlayerInput playerInteract;
     public InputAction InteractAction;
+
+
+
+    private bool isInMotion = false;
+    private bool stairCollision = false;
+    private Rigidbody rigidBody;
+    private Collider playerCollider;
+    [SerializeField] private float groundCheckDistance = 0.15f;
+    [SerializeField] private float groundNormalMinY = 0.5f;
     
     // public InputAction
 
@@ -67,6 +90,11 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
     private Vector3 preMovePosition;
     private Vector3 lastMoveDelta;
 
+
+    private UpdatedNPC currentNPC;
+    private Item currItem;
+    private Rope currRope;
+
     // private float yRotation;
     // public Player(int speed, int health, int damage, float xRotation , float yRotation) : base(health, damage, xRotation, yRotation) //i don't think this gets called when the game starts
     // {
@@ -79,7 +107,20 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
         Debug.Log("Player created");
         if (sword == null){Debug.Log("Player sword not created. Player sword is equal to null");}
         CacheSwordVisuals();
-        
+
+        if (thisObject != null)
+        {
+            rigidBody = thisObject.GetComponent<Rigidbody>();
+            playerCollider = thisObject.GetComponent<Collider>();
+            Debug.Log("Rigid body initialized!");
+        }
+        else{Debug.Log("add PlayerComponents to 'This Object' field");}
+
+        if (playerCollider == null)
+        {
+            playerCollider = GetComponent<Collider>();
+        }
+
         //xp system
         if (progressionSystem == null)
         {
@@ -92,6 +133,9 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
         // base(health, damage, xRotation, yRotation);
         playerInput = GetComponent<PlayerInput>();
         moveAction = playerInput.actions.FindAction("Move");
+
+        jumpKey = GetComponent<PlayerInput>();
+        jumpKeyAction = playerInput.actions.FindAction("Jump");
 
         playerOrientation = GetComponent<PlayerInput>();
         orientationAction = playerOrientation.actions.FindAction("Orientation");
@@ -122,6 +166,8 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
 
         preMovePosition = transform.position;
         Damage = 50;
+
+       // MoveToScene(0); 
     }    
 
     private void HazardCollide(Collision collision)
@@ -135,6 +181,21 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
         {
             Debug.Log($"Player collided with hazard: {hazard.name}");
             //handle hazard collision cases
+        }
+        
+        if (collision.gameObject.TryGetComponent<LavaDamage>(out var lava))
+        {
+            lava.lavaTimer += Time.deltaTime;
+
+            if (lava.lavaTimer >= lava.lavaTickRate)
+            {
+                lava.lavaTimer = 0f;
+
+                Health -= lava.damagePerSecond;
+
+                Debug.Log("Player took lava damage!");
+                Debug.Log(Health);
+            }
         }
     }
 
@@ -150,23 +211,64 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
          */
         if (mouseAction.triggered)
         {
-            if (attackAnimationCooldown > 60)
+            if (attackAnimationCooldown > 120)
             {
                 attackAnimationCooldown = 0;
                 Attack();
             }
         }
 
+        if (jumpKeyAction.triggered)
+        {
+            Jump();
+        }
+
         if (numberKeyAction.triggered)
         {
             // Debug.Log("Key pressed!");
-            changeWeapon();
+            /*
+             This is how the player will teleport between scenes
+             Right now unity is set for keys 1-4 -> we can use indexes 0-3
+             Can add more later if we need
+             To add your scene to the list:
+                File -> Build Profiles -> Scene List, then drag & drop your scene
+                The index values are also shown there so you know which index to pass for MoveToScene() to switch to your scene
+            we should have 6 total scenes in there by the time we're done
+             */
+            switch (GetPressedNumberKeyIndex())
+            {
+                case 0: changeWeapon(); break;
+                case 1: MoveToScene(0); break;
+            }
         }
         
         if (InteractAction.triggered)
         {
-            Interact();
+            if (InteractAction.activeControl is KeyControl keyControl)
+            {
+                switch (keyControl.keyCode)
+                {
+                    case Key.E: 
+                        if(currentNPC != null){NPCInteract();} 
+                        if(currRope != null){currRope.Interact();}
+                        break;
+                    case Key.Q: ItemInteract(); break;
+
+                }
+            }
+            
+            // NPCInteract();
         }
+
+// -> Debug to show all items in player inventory
+        // string builder = "";
+        // for(int i =0; i < inventory.getLen(); i++)
+        // {
+        //     builder += inventory.getItem(i).Name;
+        //     if(i+1 < inventory.getLen()){builder += ", ";}
+        // }
+        // if(builder == ""){Debug.Log("No inventoryItems to display");}
+        // else{Debug.Log(builder);}
     }
 
     private void changeWeapon()
@@ -174,15 +276,16 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
         if (sword == null){Debug.LogWarning("Cannot change sword colour because sword is not assigned.");return;}
         CacheSwordVisuals();
 
-        int colourIndex = GetPressedNumberKeyIndex();
-        if (colourIndex < 0 || colourIndex >= swordMaterials.Length)
-        {
-            Debug.LogWarning("NumberKeys was triggered, but no supported number key was detected.");
-            return;
-        }
+        // int colourIndex = GetPressedNumberKeyIndex();
+        currWeaponIndex = currWeaponIndex > 2 ? 0 : currWeaponIndex + 1; 
+        // if (colourIndex < 0 || colourIndex >= swordMaterials.Length)
+        // {
+        //     Debug.LogWarning("NumberKeys was triggered, but no supported number key was detected.");
+        //     return;
+        // }
         if (swordRenderer != null)
         {
-            swordRenderer.material = swordMaterials[colourIndex];
+            swordRenderer.material = swordMaterials[currWeaponIndex];
             return;
         }
 
@@ -366,6 +469,20 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
     }
     public override void Move()
     {
+        if (moveAction.IsPressed()){isInMotion = true;/*Debug.Log("Moving");*/}
+        else{isInMotion = false;/*Debug.Log("Not Moving");*/}
+
+        if (!isInMotion && stairCollision)
+        {
+            //if the player is colliding with the stair but not moving(not pressing a move key), gravity will move then downwards by default                
+            //      -> do not let the player move in this case
+            rigidBody.constraints = RigidbodyConstraints.FreezeAll;
+
+            //this dosen't stop the player moving tho lol
+            // Rigidbody body = gameObject.GetComponent("Rigidbody");
+            return;
+        }
+        rigidBody.constraints = RigidbodyConstraints.None;
         //camera and player body movement
         Vector2 dir = moveAction.ReadValue<Vector2>();
 
@@ -391,14 +508,68 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
             preMovePosition = transform.position;
         }
     }
-    
-    private UpdatedNPC currentNPC;
+
+    private void Jump()
+    {
+        if (rigidBody == null)
+        {
+            Debug.LogWarning("Player cannot jump because no Rigidbody was found.");
+            return;
+        }
+
+        if (!IsGrounded())
+        {
+            return;
+        }
+
+        Vector3 velocity = rigidBody.linearVelocity;
+        if (velocity.y < 0f)
+        {
+            velocity.y = 0f;
+            rigidBody.linearVelocity = velocity;
+        }
+
+        float jumpVelocity = Mathf.Sqrt(jumpHeight * -2f * Physics.gravity.y);
+        rigidBody.AddForce(Vector3.up * jumpVelocity * rigidBody.mass, ForceMode.Impulse);
+    }
+    private bool IsGrounded()
+    {
+        if (playerCollider == null)
+        {
+            return false;
+        }
+
+        Bounds bounds = playerCollider.bounds;
+        Vector3 halfExtents = bounds.extents;
+        halfExtents.y = Mathf.Max(halfExtents.y - 0.05f, 0.01f);
+
+        if (!Physics.BoxCast(bounds.center, halfExtents, Vector3.down, out RaycastHit hit, transform.rotation, groundCheckDistance, Physics.AllLayers, QueryTriggerInteraction.Ignore))
+        {
+            return false;
+        }
+
+        return hit.normal.y >= groundNormalMinY;
+    }
+
+    public void MoveToScene(int sceneIndex)
+    {
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
+
+        while (!operation.isDone)
+        {
+            float progress = Mathf.Clamp01(operation.progress / 0.9f);
+            Debug.Log("Loading progress: " + (progress * 100) + "%");
+
+            return;
+        }
+        // SceneManager.LoadScene(sceneIndex);
+    }
+
 
     public void SetCurrentNPC(UpdatedNPC npc)
     {
         currentNPC = npc;
     }
-
     public void ClearCurrentNPC(UpdatedNPC npc)
     {
         if (currentNPC == npc)
@@ -407,7 +578,32 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
         }
     }
 
-    private void Interact()
+    public void setCurrItem(Item item)
+    {
+        currItem = item;
+    }
+    public void clearCurrItem(Item item)
+    {
+        if (currItem == item)
+        {
+            currItem = null;
+        }else{Debug.Log("Item we are trying to clear is not the curr item -> " + item.ID);}
+    }
+
+    public void setCurrRope(Rope rope)
+    {
+        currRope = rope;
+    }
+
+    public void clearCurrRope(Rope rope)
+    {
+        if (rope == currRope)
+        {
+            currRope = null;
+        }else{Debug.Log("Item we are trying to clear is no the curr item -> " + rope.name);}
+    }
+
+    private void NPCInteract()
     {
         if (dialogueSystem == null)
         {
@@ -433,21 +629,39 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
         }
     }
 
+    private void ItemInteract()
+    {
+        if (currItem != null)
+        {
+            inventory.addItem(currItem); 
+            GameObject.Destroy(currItem.itemContainer);
+        }
+    }
+
     public void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Collision detected");
+        // Debug.Log("Collision detected");
         HandleSolidCollision(collision);
         // Debug.Log("Checking collisions...");
         if (collision.gameObject.CompareTag("Stairs"))
         {
-            Debug.Log("Collision with stair!");
-            transform.position += new Vector3(0, 0.1f, 0);
+            stairCollision = true;
+            if (isInMotion)
+            {
+                // Debug.Log("Collision with stair!");
+                transform.position += new Vector3(0, 0.1f, 0);
+            }
+            else{
+                //if the player is colliding with the stair but not moving(not pressing a move key), gravity will move then downwards by default                
+                //      -> do not let the player move in this case
+            }
         }
     }
 
     public void OnCollisionStay(Collision collision)
     {
         HandleSolidCollision(collision);
+        HazardCollide(collision);
     }
     
 
@@ -462,7 +676,11 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
         // throw new NotImplementedException();
         //check other cases of collision
         // if player walks into an NPC, start dialogue directly
-        
+
+        if (collision.gameObject.CompareTag("Stairs"))
+        {
+            stairCollision = false;
+        }
     }
 
     private void HandleSolidCollision(Collision collision)
@@ -480,18 +698,18 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
         isCollidingSolid = true;
 
         //i don't know if this does anything, could probably remove it
-        if (collision.contactCount > 0)
-        {
-            Vector3 normal = collision.GetContact(0).normal;
-            if (Vector3.Dot(lastMoveDelta, normal) < 0f)
-            {
-                transform.position = preMovePosition;
-            }
-        }
-        else
-        {
-            transform.position = preMovePosition;
-        }
+        // if (collision.contactCount > 0)
+        // {
+        //     Vector3 normal = collision.GetContact(0).normal;
+        //     if (Vector3.Dot(lastMoveDelta, normal) < 0f)
+        //     {
+        //         transform.position = preMovePosition;
+        //     }
+        // }
+        // else
+        // {
+        //     transform.position = preMovePosition;
+        // }
 
 
     }
