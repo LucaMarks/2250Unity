@@ -54,8 +54,9 @@ public class LightBeam : MonoBehaviour
                 }
                 else if (hit.collider.CompareTag("Pillar"))
                 {
-                    // beam hit a pillar, try to activate it
-                    Pillar pillar = hit.collider.GetComponent<Pillar>();
+                    // beam hit a pillar - check the hit object AND its parents
+                    // because the pillar may be made of child meshes
+                    Pillar pillar = hit.collider.GetComponentInParent<Pillar>();
                     if (pillar != null)
                     {
                         pillar.ActivatePillar();

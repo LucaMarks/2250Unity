@@ -12,9 +12,9 @@ public class EarthGolem : EnemyAI
 
     private bool stompOnCooldown = false;
 
-    private new void Awake()
+    private void Start()
     {
-        base.Awake();   // let EnemyAI do its setup
+        // EnemyAI's private Awake already ran, now we override the stats
         Health = golemHealth;
         Damage = 20;
     }

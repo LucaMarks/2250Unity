@@ -17,7 +17,11 @@ public class Pillar : MonoBehaviour
 
     void Start()
     {
+        // check this object first, then search children
+        // (parent is often an empty GameObject with meshes on child objects)
         pillarRenderer = GetComponent<Renderer>();
+        if (pillarRenderer == null)
+            pillarRenderer = GetComponentInChildren<Renderer>();
         totalPillars++;
     }
 
