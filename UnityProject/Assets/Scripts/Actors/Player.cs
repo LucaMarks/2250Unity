@@ -11,6 +11,7 @@ using UnityEngine.SceneManagement;
 
 public class Player : Actor //this also gives us access to MonoBehavoiour
 {
+    public GameObject waterLevelShip;
     public LayerMask whatIsEnemy;
 
     public int Currency = 100;//default currency
@@ -53,11 +54,13 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
 
 
     private bool isInMotion = false;
+    private bool onShip = false;
     private bool stairCollision = false;
     private Rigidbody rigidBody;
     private Collider playerCollider;
     [SerializeField] private float groundCheckDistance = 0.15f;
     [SerializeField] private float groundNormalMinY = 0.5f;
+    private bool inRangeOfShip = false;
     
     // public InputAction
 
@@ -251,6 +254,7 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
                     case Key.E: 
                         if(currentNPC != null){NPCInteract();} 
                         if(currRope != null){currRope.Interact();}
+                        if(inRangeOfShip){this.BoardShip();}
                         break;
                     case Key.Q: ItemInteract(); break;
 
@@ -469,6 +473,12 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
     }
     public override void Move()
     {
+        if (onShip)
+        {
+            moveShip();
+            return;
+        }
+
         if (moveAction.IsPressed()){isInMotion = true;/*Debug.Log("Moving");*/}
         else{isInMotion = false;/*Debug.Log("Not Moving");*/}
 
@@ -477,7 +487,7 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
             //if the player is colliding with the stair but not moving(not pressing a move key), gravity will move then downwards by default                
             //      -> do not let the player move in this case
             rigidBody.constraints = RigidbodyConstraints.FreezeAll;
-
+            // rigidBody.constraints = RigidbodyConstraints.FreezePositionX;
             //this dosen't stop the player moving tho lol
             // Rigidbody body = gameObject.GetComponent("Rigidbody");
             return;
@@ -507,6 +517,27 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
         {
             preMovePosition = transform.position;
         }
+    }
+    public void moveShip()
+    {
+        Vector2 dir = moveAction.ReadValue<Vector2>();
+
+        Vector3 moveDirection = transform.forward*dir.y + transform.right*dir.x;
+        
+        preMovePosition = transform.position;
+        lastMoveDelta = moveDirection * Speed * Time.deltaTime;
+        waterLevelShip.transform.position += lastMoveDelta;
+
+        Vector2 look = orientationAction.ReadValue<Vector2>() * lookSensitivity;
+        yaw += look.x;
+        pitch -= look.y;
+        pitch = Mathf.Clamp(pitch, -90f, 90f);
+
+        waterLevelShip.transform.rotation = Quaternion.Euler(0f, yaw, 0f);
+        if (cameraPivot != null)
+        {
+            cameraPivot.localRotation = Quaternion.Euler(pitch, 0f, 0f);
+        }       
     }
 
     private void Jump()
@@ -594,13 +625,17 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
     {
         currRope = rope;
     }
-
     public void clearCurrRope(Rope rope)
     {
         if (rope == currRope)
         {
             currRope = null;
         }else{Debug.Log("Item we are trying to clear is no the curr item -> " + rope.name);}
+    }
+
+    public void setIsInRangeOfShip(bool val)
+    {
+        inRangeOfShip = val;
     }
 
     private void NPCInteract()
@@ -638,6 +673,21 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
         }
     }
 
+    private void BoardShip()
+    {
+        thisObject.transform.SetParent(waterLevelShip.transform);        
+        thisObject.transform.localPosition = Vector3.zero;
+        thisObject.transform.rotation = new Quaternion(0, 0, 0, 0);
+        this.thisObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+        thisObject.transform.localPosition -= new Vector3(0, 1, 14);
+        //restrict movement 
+        // rigidBody.constraints = RigidbodyConstraints.FreezeAll;
+        // thisObject.transform.SetParent(null);
+        // waterLevelShip.transform.SetParent(thisObject.transform);
+        onShip = true;
+        // BoardShip();
+        // BoardShip.
+    }
     public void OnCollisionEnter(Collision collision)
     {
         // Debug.Log("Collision detected");

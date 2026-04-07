@@ -25,7 +25,7 @@ public class RopeInteractionRange : MonoBehaviour
         Player player =  other.GetComponentInParent<Player>();
         if (player != null)
         {
-            player.setCurrRope(rope);            
+            player.clearCurrRope(rope);            
         }
     }
 }
