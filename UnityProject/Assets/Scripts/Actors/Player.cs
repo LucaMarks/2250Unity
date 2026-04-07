@@ -61,6 +61,7 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
     [SerializeField] private float groundCheckDistance = 0.15f;
     [SerializeField] private float groundNormalMinY = 0.5f;
     private bool inRangeOfShip = false;
+    private float prevShipYRot = 0;
     
     // public InputAction
 
@@ -520,6 +521,55 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
     }
     public void moveShip()
     {
+        // Vector2 dir = moveAction.ReadValue<Vector2>();
+        // Debug.Log("moveShip");
+        if (moveAction.activeControl is KeyControl keyControl)
+        {
+            // Debug.Log("KeyControl");
+            if (keyControl.keyCode.Equals(Key.W))
+            {
+                moveForward();
+            }
+            if (keyControl.keyCode.Equals(Key.A))
+            {
+                rotateLeft();
+            }
+            if (keyControl.keyCode.Equals(Key.D))
+            {
+                rotateRight();
+            }
+            // switch (keyControl.keyCode)
+            // {
+            //     case Key.W: moveForward(); 
+            //     case Key.A: rotateLeft();  
+            //     case Key.D: rotateRight();
+            //     default: break;
+            //         
+            // }
+            // if (moveAction.)
+        }
+
+        // Vector3 moveDirection = transform.forward*dir.y + transform.right*dir.x;
+        //
+        // preMovePosition = transform.position;
+        // lastMoveDelta = moveDirection * Speed * Time.deltaTime;
+        // waterLevelShip.transform.position += lastMoveDelta;
+        //
+        // Vector2 look = orientationAction.ReadValue<Vector2>() * lookSensitivity;
+        // yaw += look.x;
+        // pitch -= look.y;
+        // pitch = Mathf.Clamp(pitch, -90f, 90f);
+        //
+        // waterLevelShip.transform.rotation = Quaternion.Euler(0f, yaw, 0f);
+        // if (cameraPivot != null)
+        // {
+        //     cameraPivot.localRotation = Quaternion.Euler(pitch, 0f, 0f);
+        // }       
+    }
+
+    private void moveForward()
+    {
+        // Debug.Log("moveForward");
         Vector2 dir = moveAction.ReadValue<Vector2>();
 
         Vector3 moveDirection = transform.forward*dir.y + transform.right*dir.x;
@@ -527,17 +577,31 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
         preMovePosition = transform.position;
         lastMoveDelta = moveDirection * Speed * Time.deltaTime;
         waterLevelShip.transform.position += lastMoveDelta;
+    }
 
-        Vector2 look = orientationAction.ReadValue<Vector2>() * lookSensitivity;
-        yaw += look.x;
-        pitch -= look.y;
-        pitch = Mathf.Clamp(pitch, -90f, 90f);
+    private void rotateLeft()
+    {
+        prevShipYRot -= 0.5f;
+        waterLevelShip.transform.rotation = Quaternion.Euler(0f, prevShipYRot, 0f);
 
-        waterLevelShip.transform.rotation = Quaternion.Euler(0f, yaw, 0f);
-        if (cameraPivot != null)
-        {
-            cameraPivot.localRotation = Quaternion.Euler(pitch, 0f, 0f);
-        }       
+        // yaw += 5;
+        // pitch -= 5;
+        // pitch = Mathf.Clamp(pitch, -90f, 90f);
+        //
+        // waterLevelShip.transform.rotation = Quaternion.Euler(0f, yaw, 0f);       
+        // waterLevelShip.transform.localRotation = Quaternion.Euler(0f, pitch, 0f);
+    }
+
+    private void rotateRight()
+    {
+        prevShipYRot += 0.5f;
+        waterLevelShip.transform.rotation = Quaternion.Euler(0f, prevShipYRot, 0f);
+        // yaw -= 5;
+        // pitch -= 5;
+        // pitch = Mathf.Clamp(pitch, -90f, 90f);
+        //
+        // waterLevelShip.transform.rotation = Quaternion.Euler(0f, yaw, 0f);       
+        // waterLevelShip.transform.localRotation = Quaternion.Euler(0f, pitch, 0f);
     }
 
     private void Jump()
