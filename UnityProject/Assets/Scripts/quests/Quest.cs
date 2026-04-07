@@ -13,6 +13,7 @@ public abstract class Quest : MonoBehaviour
 
     public UpdatedNPC associatedNPC;
     public DialogueStage dialogueToUnlock;
+    public Item fireWood;
 
     [Header("Quest State")]
     public bool hasStarted;

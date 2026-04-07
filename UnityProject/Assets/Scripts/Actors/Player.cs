@@ -17,9 +17,11 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
     public int Currency = 100;//default currency
     public int jumpHeight = 1;
     private List<string> skills;
-    public Inventory inventory = new Inventory();
     private int SkillPoints;
-    
+
+    public Inventory inventory = new Inventory();
+    public Item fireWood;   
+
     //refernce to the XP system attatched to this game object
     public ProgressionSystem progressionSystem;//this isn't set up rn and is not connected on unity
 
@@ -133,6 +135,12 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
 
 		//find DialogueSystem
 		dialogueSystem = FindFirstObjectByType<UpdatedDialogueSystem>();
+
+        //adding this isem frequency
+        ItemFrequency IF = new ItemFrequency();
+        IF.item = fireWood;
+        IF.maxStorage = 1;
+        inventory.addFrequency(IF);
 
         // base(health, damage, xRotation, yRotation);
         playerInput = GetComponent<PlayerInput>();
@@ -732,8 +740,11 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
     {
         if (currItem != null)
         {
-            inventory.addItem(currItem); 
-            GameObject.Destroy(currItem.itemContainer);
+            if (inventory.addItem(currItem))
+            {
+                // Debug.Log("Destoying Object");
+                GameObject.Destroy(currItem.itemContainer);
+            }
         }
     }
 
