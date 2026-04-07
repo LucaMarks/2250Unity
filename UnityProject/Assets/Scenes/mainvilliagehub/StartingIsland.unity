@@ -252,7 +252,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7519790867137718326, guid: fe671f8d79a85d04eb23aeb6feb40ac9, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe671f8d79a85d04eb23aeb6feb40ac9, type: 3}
@@ -2215,6 +2216,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5634600720249213955, guid: e2875c1b538d6744caeb6200ef576a94, type: 3}
       propertyPath: m_LODs.Array.data[0].renderers.Array.data[0].renderer
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5659332422638920726, guid: e2875c1b538d6744caeb6200ef576a94, type: 3}
+      propertyPath: 'audioSources.Array.data[36]'
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5659332422638920726, guid: e2875c1b538d6744caeb6200ef576a94, type: 3}
