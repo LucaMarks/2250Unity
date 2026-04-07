@@ -50,13 +50,11 @@ public class UpdatedNPC : MonoBehaviour
         }
 
         DialogueStage stage = dialogueStages[currentStage];
-        if (currentStage + 1 < dialogueStages.Length)
-        {
-            currentStage++;
-        }
+
 
         if (stage.startQuest)
         {
+            // Debug.Log("Quest started...");
             questStarters[questStarterIndex].StartQuest();
             questStarterIndex++;
         }
@@ -82,6 +80,11 @@ public class UpdatedNPC : MonoBehaviour
         }
 
         dialogueSystem.StartDialogue(this, npcName, stage.lines);
+
+        if (currentStage + 1 < dialogueStages.Length)
+        {
+            currentStage++;
+        }
     }
 
     public void AdvanceDialogueStage()

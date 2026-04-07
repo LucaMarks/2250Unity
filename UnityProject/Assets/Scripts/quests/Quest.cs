@@ -21,7 +21,7 @@ public abstract class Quest : MonoBehaviour
     public Item[] gemstoneRewards;
 
     //hardcoded gemstone rewards
-    public void Awake()
+    public void Start()
     {
         gemstoneRewards[0] = new Item("WaterGemstone", "Water Gemstone", 100);
         gemstoneRewards[1] = new Item("AirGemstone", "Air Gemstone", 100);
