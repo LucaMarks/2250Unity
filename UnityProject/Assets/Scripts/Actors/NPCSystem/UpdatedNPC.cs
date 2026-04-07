@@ -7,6 +7,8 @@ public class DialogueStage
     public string[] lines;
 
     public bool isLocked;
+    [Header("Start the quest associated with this npc when the player reads this dialogue")] 
+    public bool startQuest;
 
     [TextArea(2, 5)]
     public string[] lockedLines;
@@ -17,10 +19,13 @@ public class UpdatedNPC : MonoBehaviour
     [Header("NPC Info")]
     public string npcName;
 
+    public QuestStarter[] questStarters;
+    private int questStarterIndex = 0;
+    
     [Header("Dialogue Stages")]
     public DialogueStage[] dialogueStages;
+    public int currentStage = 0;
 
-    private int currentStage = 0;
 
     public void StartDialogue()
     {
@@ -46,11 +51,22 @@ public class UpdatedNPC : MonoBehaviour
 
         DialogueStage stage = dialogueStages[currentStage];
 
+
+        if (stage.startQuest)
+        {
+            // Debug.Log("Quest started...");
+            if (questStarters[questStarterIndex] != null)
+            {
+                questStarters[questStarterIndex].StartQuest();
+                questStarterIndex++;
+            }else{Debug.Log("Add quest starter element to QuestStarters list in UpdatedNPC inspector (Find your npc object, you are need to add one more Object!");}
+        }
+
         if (stage.isLocked)
         {
             if (stage.lockedLines != null && stage.lockedLines.Length > 0)
             {
-                dialogueSystem.StartDialogue(npcName, stage.lockedLines);
+                dialogueSystem.StartDialogue(this, npcName, stage.lockedLines);
             }
             else
             {
@@ -66,7 +82,12 @@ public class UpdatedNPC : MonoBehaviour
             return;
         }
 
-        dialogueSystem.StartDialogue(npcName, stage.lines);
+        dialogueSystem.StartDialogue(this, npcName, stage.lines);
+
+        if (currentStage + 1 < dialogueStages.Length)
+        {
+            currentStage++;
+        }
     }
 
     public void AdvanceDialogueStage()

@@ -8,10 +8,12 @@ public class QuestStarter : MonoBehaviour
     {
         if (QuestManager.Instance == null)
         {
-            Debug.LogWarning("No QuestManager found in scene.");
-            return;
+            QuestManager.Instance = new QuestManager();
+            // Debug.LogWarning("No QuestManager found in scene.");
+            // return;
         }
 
+        Debug.Log("Quest started...");
         QuestManager.Instance.StartQuest(questToStart);
     }
 }
