@@ -12,6 +12,7 @@ public class UpdatedDialogueSystem : MonoBehaviour
     private string[] currentLines;
     private int currentLineIndex;
     private bool isTalking;
+    private UpdatedNPC currNPC;
 
     private void Awake()
     {
@@ -31,8 +32,9 @@ public class UpdatedDialogueSystem : MonoBehaviour
         isTalking = false;
     }
 
-    public void StartDialogue(string speakerName, string[] lines)
+    public void StartDialogue(UpdatedNPC npc, string speakerName, string[] lines)
     {
+        currNPC = npc;
         if (lines == null || lines.Length == 0)
             return;
 
@@ -66,6 +68,8 @@ public class UpdatedDialogueSystem : MonoBehaviour
     {
         isTalking = false;
         dialoguePanel.SetActive(false);
+
+        // currNPC.currentStage+1 < currNPC.dialogueStages.Length? currNPC.currentStage++ : currNPC.currentStage = currNPC.currentStage;
     }
 
     public bool IsTalking()
