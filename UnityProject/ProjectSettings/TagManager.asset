@@ -9,6 +9,8 @@ TagManager:
   - SolidObject
   - Volumes
   - Stairs
+  - Pillar
+  - Mirror
   layers:
   - Default
   - TransparentFX
