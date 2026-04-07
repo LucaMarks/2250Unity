@@ -181,143 +181,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1439825590609749429, guid: 72f8caf72e30221479a131800468d98f, type: 3}
   m_PrefabInstance: {fileID: 2277247}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &3425310
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3425311}
-  - component: {fileID: 3425313}
-  - component: {fileID: 3425312}
-  m_Layer: 5
-  m_Name: DialogueText
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &3425311
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3425310}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1944807161}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &3425312
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3425310}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_text: New Text
-  m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_fontSharedMaterials: []
-  m_fontMaterial: {fileID: 0}
-  m_fontMaterials: []
-  m_fontColor32:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
-  m_enableVertexGradient: 0
-  m_colorMode: 3
-  m_fontColorGradient:
-    topLeft: {r: 1, g: 1, b: 1, a: 1}
-    topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 0}
-  m_tintAllSprites: 0
-  m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: -1183493901
-  m_overrideHtmlColors: 0
-  m_faceColor:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
-  m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
-  m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
-  m_textAlignment: 65535
-  m_characterSpacing: 0
-  m_characterHorizontalScale: 1
-  m_wordSpacing: 0
-  m_lineSpacing: 0
-  m_lineSpacingMax: 0
-  m_paragraphSpacing: 0
-  m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
-  m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
-  m_linkedTextComponent: {fileID: 0}
-  parentLinkedComponent: {fileID: 0}
-  m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
-  m_enableExtraPadding: 0
-  checkPaddingRequired: 0
-  m_isRichText: 1
-  m_EmojiFallbackSupport: 1
-  m_parseCtrlCharacters: 1
-  m_isOrthographic: 1
-  m_isCullingEnabled: 0
-  m_horizontalMapping: 0
-  m_verticalMapping: 0
-  m_uvLineOffset: 0
-  m_geometrySortingOrder: 0
-  m_IsTextObjectScaleStatic: 0
-  m_VertexBufferAutoSizeReduction: 0
-  m_useMaxVisibleDescender: 1
-  m_pageToDisplay: 1
-  m_margin: {x: -334.67502, y: -69.62425, z: -332.15344, w: -183.81178}
-  m_isUsingLegacyAnimationComponent: 0
-  m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_baseMaterial: {fileID: 0}
-  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!222 &3425313
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3425310}
-  m_CullTransparentMesh: 1
 --- !u!1001 &13834136
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5804,41 +5667,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4569210884194899160, guid: ffc03504e03eb864d9bd4f331d8a5c25, type: 3}
   m_PrefabInstance: {fileID: 483421164}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &488752876
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 488752877}
-  m_Layer: 5
-  m_Name: ObjectivePanel
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &488752877
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 488752876}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1944807161}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &494184324
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9016,7 +8844,7 @@ PrefabInstance:
     - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
       propertyPath: 'questStarters.Array.data[0]'
       value: 
-      objectReference: {fileID: 848557838}
+      objectReference: {fileID: 770126514}
     - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
       propertyPath: dialogueStages.Array.data[0].isLocked
       value: 0
@@ -9181,6 +9009,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4084723722235495469, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: questToStart
+      value: 
+      objectReference: {fileID: 770126511}
     - target: {fileID: 4911717464202620484, guid: d021415f26a98114b8e25653e970283b, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -9189,6 +9021,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MainQuestNPC
       objectReference: {fileID: 0}
+    - target: {fileID: 8337438333475193955, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: m_Name
+      value: Quest1 (Rudder)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 2677819606056739258, guid: d021415f26a98114b8e25653e970283b, type: 3}
@@ -9196,16 +9032,49 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2923649722382067362, guid: d021415f26a98114b8e25653e970283b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1507582884}
-    - targetCorrespondingSourceObject: {fileID: 2923649722382067362, guid: d021415f26a98114b8e25653e970283b, type: 3}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8337438333475193955, guid: d021415f26a98114b8e25653e970283b, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 848557837}
-    m_AddedComponents: []
+      addedObject: {fileID: 770126511}
   m_SourcePrefab: {fileID: 100100000, guid: d021415f26a98114b8e25653e970283b, type: 3}
 --- !u!4 &770126509 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2923649722382067362, guid: d021415f26a98114b8e25653e970283b, type: 3}
   m_PrefabInstance: {fileID: 770126508}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &770126510 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8337438333475193955, guid: d021415f26a98114b8e25653e970283b, type: 3}
+  m_PrefabInstance: {fileID: 770126508}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &770126511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 770126510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0d1d4ead0cd4ae9a2968c264f004cdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MainQuest
+  questName: Collect the Rudder & Repair the Ship
+  description: 'Explore the backroads to collect the rudder.
+
+    Return to Jimothy
+    II to collect the Water Gemstone'
+  associatedNPC: {fileID: 770126512}
+  dialogueToUnlock:
+    lines: []
+    isLocked: 0
+    startQuest: 0
+    lockedLines: []
+  hasStarted: 0
+  isCompleted: 0
+  gemstoneRewards: []
+  player: {fileID: 500333685}
+  rudderItem: {fileID: 1216236426}
 --- !u!114 &770126512 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
@@ -9217,6 +9086,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f507a3c3ff4f1f4ba8610674bd56e1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UpdatedNPC
+--- !u!114 &770126514 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4084723722235495469, guid: d021415f26a98114b8e25653e970283b, type: 3}
+  m_PrefabInstance: {fileID: 770126508}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 770126510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bbc1a22a4b9203469c755ccc38df0fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::QuestStarter
 --- !u!1 &771227510
 GameObject:
   m_ObjectHideFlags: 0
@@ -10247,80 +10127,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 457610, guid: d06c1431672647f46babf6f932d09fb9, type: 3}
   m_PrefabInstance: {fileID: 843128684}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &848557836
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 848557837}
-  - component: {fileID: 848557838}
-  - component: {fileID: 848557839}
-  m_Layer: 0
-  m_Name: Quest1(RudderQuest)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &848557837
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 848557836}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 770126509}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &848557838
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 848557836}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bbc1a22a4b9203469c755ccc38df0fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::QuestStarter
-  questToStart: {fileID: 848557839}
---- !u!114 &848557839
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 848557836}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0d1d4ead0cd4ae9a2968c264f004cdd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MainQuest
-  questName: Collect the Rudder & Repair the Ship
-  description: 'Explore the backroads to collect the rudder.
-
-    Return to Jimothy
-    II to collect the Water Gemstone'
-  associatedNPC: {fileID: 770126512}
-  dialogueToUnlock:
-    lines: []
-    isLocked: 0
-    startQuest: 0
-    lockedLines: []
-  hasStarted: 0
-  isCompleted: 0
-  gemstoneRewards: []
-  player: {fileID: 500333685}
-  rudderItem: {fileID: 1216236426}
 --- !u!1001 &848844872
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14983,8 +14789,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21b213be43be76d438806ef615b274ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::QuestObjectiveUI
-  objectivePanel: {fileID: 488752876}
-  objectiveText: {fileID: 3425312}
+  objectivePanel: {fileID: 0}
+  objectiveText: {fileID: 0}
 --- !u!114 &1147361693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19459,10 +19265,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 3847678478040074170, guid: d1659aff4f2b2d54284be0444ba575d1, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1944807161}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d1659aff4f2b2d54284be0444ba575d1, type: 3}
 --- !u!114 &1519682390 stripped
@@ -25111,52 +24914,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1944289172}
   m_Mesh: {fileID: 4790000225344279549, guid: 331e6cacaa5064ecb91f918c9aca93fd, type: 3}
---- !u!1 &1944807160
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1944807161}
-  - component: {fileID: 1944807163}
-  m_Layer: 5
-  m_Name: QuestPanel
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1944807161
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1944807160}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 0, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 3425311}
-  - {fileID: 488752877}
-  m_Father: {fileID: 1519682393}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 125}
-  m_SizeDelta: {x: 0, y: 250}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &1944807163
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1944807160}
-  m_CullTransparentMesh: 1
 --- !u!1 &1965102366
 GameObject:
   m_ObjectHideFlags: 0

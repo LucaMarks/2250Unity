@@ -55,8 +55,11 @@ public class UpdatedNPC : MonoBehaviour
         if (stage.startQuest)
         {
             // Debug.Log("Quest started...");
-            questStarters[questStarterIndex].StartQuest();
-            questStarterIndex++;
+            if (questStarters[questStarterIndex] != null)
+            {
+                questStarters[questStarterIndex].StartQuest();
+                questStarterIndex++;
+            }else{Debug.Log("Add quest starter element to QuestStarters list in UpdatedNPC inspector (Find your npc object, you are need to add one more Object!");}
         }
 
         if (stage.isLocked)

@@ -32,7 +32,7 @@ public class MainQuest : Quest
     protected override void GiveReward()
     {
         base.GiveReward();
-        player.inventory.addItem(gemstoneRewards[0]);        
+        player.inventory.addItem(waterGemstone);        
         Debug.Log("Water Gemstone reward is added to your inventory");
     }
 }

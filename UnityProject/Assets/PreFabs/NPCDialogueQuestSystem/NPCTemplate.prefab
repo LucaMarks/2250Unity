@@ -248,6 +248,7 @@ Transform:
   m_Children:
   - {fileID: 5441843932512372150}
   - {fileID: 8925477920276198055}
+  - {fileID: 4558694848455347746}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &862432905181989318
@@ -263,9 +264,58 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UpdatedNPC
   npcName: Gilbert Himoty
+  questStarters:
+  - {fileID: 4084723722235495469}
   dialogueStages:
   - lines:
     - Test
     - Test 1
     isLocked: 0
+    startQuest: 0
     lockedLines: []
+  currentStage: 0
+--- !u!1 &8337438333475193955
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4558694848455347746}
+  - component: {fileID: 4084723722235495469}
+  m_Layer: 0
+  m_Name: QuestTemplate -> ADD YOUR OWN SCRIPT THAT INHERITS FROM Quest.cs AS A COMPONENT
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4558694848455347746
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8337438333475193955}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 11.686289, y: 0, z: -5.06603}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2923649722382067362}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4084723722235495469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8337438333475193955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bbc1a22a4b9203469c755ccc38df0fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::QuestStarter
+  questToStart: {fileID: 0}

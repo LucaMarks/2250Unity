@@ -18,21 +18,33 @@ public abstract class Quest : MonoBehaviour
     public bool hasStarted;
     public bool isCompleted;
 
-    public Item[] gemstoneRewards;
+    public Item[] gemstoneRewards = new Item[4];
+    public Item waterGemstone= new Item("WaterGemstone", "Water Gemstone", 100);
+    public Item airGemstone= new Item("AirGemstone", "Air Gemstone", 100);
+    public Item fireGemstone= new Item("FireGemstone", "Fire Gemstone", 100);
+    public Item iceGemstone= new Item("IceGemstone", "Ice Gemstone", 100);
+    public Item earthGemstone = new Item("Earth Gemstone", "Earth Gemstone", 100);
+
 
     //hardcoded gemstone rewards
     public void Start()
+    {
+        // setRewards();
+        // throw new NotImplementedException();
+    }
+
+    private void setRewards()
     {
         gemstoneRewards[0] = new Item("WaterGemstone", "Water Gemstone", 100);
         gemstoneRewards[1] = new Item("AirGemstone", "Air Gemstone", 100);
         gemstoneRewards[2] = new Item("FireGemstone", "Fire Gemstone", 100);
         gemstoneRewards[3] = new Item("IceGemstone", "Ice Gemstone", 100);
         gemstoneRewards[4] = new Item("Earth Gemstone", "Earth Gemstone", 100);
-        // throw new NotImplementedException();
     }
-
     public virtual void StartQuest()
     {
+        // setRewards();
+
         if (hasStarted || isCompleted)
             return;
 
