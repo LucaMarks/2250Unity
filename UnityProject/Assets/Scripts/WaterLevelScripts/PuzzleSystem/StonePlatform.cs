@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class StonePlatform : MonoBehaviour
@@ -6,6 +8,8 @@ public class StonePlatform : MonoBehaviour
     public GameObject thisObject;
     public int moveFactor = 1;
     private Vector3 startPos;
+    // private Vector3 prevPos;
+    private bool canMove = false;
     [SerializeField] private float moveDuration = 0.35f;
 
     private Coroutine moveRoutine;
@@ -44,7 +48,26 @@ public class StonePlatform : MonoBehaviour
             moveRoutine = null;
         }
 
-        thisObject.transform.position = startPos;
+        if (canMove)
+        {
+            thisObject.transform.position = startPos;
+        }
+        else
+        {
+            canMove = true;
+        }
+    }
+
+    private void OnTriggerEnter(Collider collision)
+    {
+        Debug.Log("Collision with stone");
+        StonePlatform platform = collision.gameObject.GetComponent<StonePlatform>();
+        if (platform != null)
+        {
+            canMove = false;
+            Reset();
+            // thisObject.transform.position = prevPos;
+        }
     }
 
     private void moveRight()
@@ -69,6 +92,7 @@ public class StonePlatform : MonoBehaviour
 
     private void BeginMove(Vector3 direction)
     {
+        // canMove = true;
         if (thisObject == null)
         {
             thisObject = gameObject;
@@ -82,7 +106,6 @@ public class StonePlatform : MonoBehaviour
         Vector3 targetPosition = thisObject.transform.position + (direction * moveFactor);
         moveRoutine = StartCoroutine(AnimateMove(targetPosition));
     }
-
     private IEnumerator AnimateMove(Vector3 targetPosition)
     {
         Transform platformTransform = thisObject.transform;
@@ -101,5 +124,6 @@ public class StonePlatform : MonoBehaviour
 
         platformTransform.position = targetPosition;
         moveRoutine = null;
+        // prevPos = thisObject.transform.position;
     }
 }

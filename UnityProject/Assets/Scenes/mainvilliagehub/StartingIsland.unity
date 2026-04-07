@@ -3958,6 +3958,10 @@ PrefabInstance:
       value: 128
       objectReference: {fileID: 0}
     - target: {fileID: 2640219862400282323, guid: 4e746d462ded6584ab8a9a0d60e4e93f, type: 3}
+      propertyPath: jumpKeyAction.m_Name
+      value: Jump Key
+      objectReference: {fileID: 0}
+    - target: {fileID: 2640219862400282323, guid: 4e746d462ded6584ab8a9a0d60e4e93f, type: 3}
       propertyPath: numberKeyAction.m_Name
       value: Number Key
       objectReference: {fileID: 0}
@@ -4542,26 +4546,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 310bf071be4ac114abc07f517a27f930, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
-  playerInput: {fileID: 0}
-  moveAction:
-    m_Name: Move
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 87edc68b-184b-4a91-988f-15562c122c66
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  playerOrientation: {fileID: 0}
-  orientationAction:
-    m_Name: Orientation
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: f8400e61-80ff-4e45-96a2-ed2785c09aa6
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
+  thisObject: {fileID: 0}
   Speed: 0
   Health: 0
   Damage: 0
