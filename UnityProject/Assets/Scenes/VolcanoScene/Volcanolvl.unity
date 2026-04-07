@@ -2369,6 +2369,7 @@ GameObject:
   - component: {fileID: 41380775}
   - component: {fileID: 41380774}
   - component: {fileID: 41380773}
+  - component: {fileID: 41380777}
   m_Layer: 0
   m_Name: LavaLake2
   m_TagString: Untagged
@@ -2469,6 +2470,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 578540350}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &41380777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 41380772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 749de44ebefb2dc40aa10a8baa70d36f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LavaDamage
+  damagePerSecond: 15
+  lavaTimer: 0
+  lavaTickRate: 1
 --- !u!1001 &42233352
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5340,6 +5356,7 @@ GameObject:
   - component: {fileID: 117519035}
   - component: {fileID: 117519034}
   - component: {fileID: 117519033}
+  - component: {fileID: 117519037}
   m_Layer: 0
   m_Name: LavaLake
   m_TagString: Untagged
@@ -5440,6 +5457,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 578540350}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &117519037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 117519032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 749de44ebefb2dc40aa10a8baa70d36f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LavaDamage
+  damagePerSecond: 15
+  lavaTimer: 0
+  lavaTickRate: 1
 --- !u!4 &120394232 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8107190456209775893, guid: 57ef16ee7712da6409e8836bf6001e3c, type: 3}
@@ -9664,6 +9696,7 @@ GameObject:
   - component: {fileID: 245539688}
   - component: {fileID: 245539687}
   - component: {fileID: 245539686}
+  - component: {fileID: 245539690}
   m_Layer: 0
   m_Name: Plane (2)
   m_TagString: Untagged
@@ -9765,6 +9798,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 293557769}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!114 &245539690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245539685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 749de44ebefb2dc40aa10a8baa70d36f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LavaDamage
+  damagePerSecond: 15
+  lavaTimer: 0
+  lavaTickRate: 1
 --- !u!1001 &246883003
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11921,6 +11969,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LavaDamage
   damagePerSecond: 15
+  lavaTimer: 0
+  lavaTickRate: 1
 --- !u!1001 &291155033
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14991,6 +15041,7 @@ GameObject:
   - component: {fileID: 373007211}
   - component: {fileID: 373007210}
   - component: {fileID: 373007209}
+  - component: {fileID: 373007213}
   m_Layer: 0
   m_Name: LavaLake4
   m_TagString: Untagged
@@ -15091,6 +15142,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 578540350}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &373007213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 373007208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 749de44ebefb2dc40aa10a8baa70d36f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LavaDamage
+  damagePerSecond: 15
+  lavaTimer: 0
+  lavaTickRate: 1
 --- !u!1 &373201043
 GameObject:
   m_ObjectHideFlags: 0
@@ -22154,6 +22220,7 @@ GameObject:
   - component: {fileID: 437219632}
   - component: {fileID: 437219631}
   - component: {fileID: 437219630}
+  - component: {fileID: 437219634}
   m_Layer: 0
   m_Name: LavaLake3
   m_TagString: Untagged
@@ -22254,6 +22321,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 578540350}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &437219634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 437219629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 749de44ebefb2dc40aa10a8baa70d36f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LavaDamage
+  damagePerSecond: 15
+  lavaTimer: 0
+  lavaTickRate: 1
 --- !u!4 &437263427 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: ca7ff24101826a141b95bc27f8d49174, type: 3}
@@ -35758,6 +35840,7 @@ GameObject:
   - component: {fileID: 638418473}
   - component: {fileID: 638418472}
   - component: {fileID: 638418471}
+  - component: {fileID: 638418475}
   m_Layer: 0
   m_Name: Plane (9)
   m_TagString: Untagged
@@ -35859,6 +35942,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 293557769}
   m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
+--- !u!114 &638418475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 638418470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 749de44ebefb2dc40aa10a8baa70d36f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LavaDamage
+  damagePerSecond: 15
+  lavaTimer: 0
+  lavaTickRate: 1
 --- !u!1001 &639171106
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -41478,6 +41576,7 @@ GameObject:
   - component: {fileID: 805071430}
   - component: {fileID: 805071429}
   - component: {fileID: 805071428}
+  - component: {fileID: 805071432}
   m_Layer: 0
   m_Name: VolcanoTop
   m_TagString: Untagged
@@ -41579,6 +41678,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1264285502}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &805071432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 805071427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 749de44ebefb2dc40aa10a8baa70d36f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LavaDamage
+  damagePerSecond: 15
+  lavaTimer: 0
+  lavaTickRate: 1
 --- !u!4 &810181046 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 91d652779ec7140488b6b8e360497937, type: 3}
@@ -45604,6 +45718,7 @@ GameObject:
   - component: {fileID: 902179442}
   - component: {fileID: 902179441}
   - component: {fileID: 902179440}
+  - component: {fileID: 902179444}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -45705,6 +45820,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 293557769}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &902179444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 902179439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 749de44ebefb2dc40aa10a8baa70d36f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LavaDamage
+  damagePerSecond: 15
+  lavaTimer: 0
+  lavaTickRate: 1
 --- !u!4 &903407060 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5291959691871055534, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
@@ -52365,6 +52495,7 @@ GameObject:
   - component: {fileID: 1095418092}
   - component: {fileID: 1095418091}
   - component: {fileID: 1095418090}
+  - component: {fileID: 1095418094}
   m_Layer: 0
   m_Name: VolcanoWaterfall1
   m_TagString: Untagged
@@ -52465,6 +52596,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1264285502}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 57.534}
+--- !u!114 &1095418094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1095418089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 749de44ebefb2dc40aa10a8baa70d36f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LavaDamage
+  damagePerSecond: 15
+  lavaTimer: 0
+  lavaTickRate: 1
 --- !u!1001 &1095431381
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -54323,6 +54469,7 @@ GameObject:
   - component: {fileID: 1139520484}
   - component: {fileID: 1139520483}
   - component: {fileID: 1139520482}
+  - component: {fileID: 1139520486}
   m_Layer: 0
   m_Name: Plane (5)
   m_TagString: Untagged
@@ -54424,6 +54571,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 293557769}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &1139520486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1139520481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 749de44ebefb2dc40aa10a8baa70d36f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LavaDamage
+  damagePerSecond: 15
+  lavaTimer: 0
+  lavaTickRate: 1
 --- !u!4 &1139781952 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 489698, guid: 065afdc0580dbbe498b318b35d182112, type: 3}
@@ -57843,6 +58005,7 @@ GameObject:
   - component: {fileID: 1232227959}
   - component: {fileID: 1232227958}
   - component: {fileID: 1232227957}
+  - component: {fileID: 1232227961}
   m_Layer: 0
   m_Name: Plane (7)
   m_TagString: Untagged
@@ -57944,6 +58107,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 293557769}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 90}
+--- !u!114 &1232227961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1232227956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 749de44ebefb2dc40aa10a8baa70d36f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LavaDamage
+  damagePerSecond: 15
+  lavaTimer: 0
+  lavaTickRate: 1
 --- !u!1001 &1233885635
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -58817,6 +58995,7 @@ GameObject:
   - component: {fileID: 1254903942}
   - component: {fileID: 1254903941}
   - component: {fileID: 1254903940}
+  - component: {fileID: 1254903944}
   m_Layer: 0
   m_Name: Plane (6)
   m_TagString: Untagged
@@ -58918,6 +59097,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 293557769}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &1254903944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1254903939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 749de44ebefb2dc40aa10a8baa70d36f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LavaDamage
+  damagePerSecond: 15
+  lavaTimer: 0
+  lavaTickRate: 1
 --- !u!1 &1256453874
 GameObject:
   m_ObjectHideFlags: 0
@@ -66575,6 +66769,7 @@ GameObject:
   - component: {fileID: 1462090966}
   - component: {fileID: 1462090965}
   - component: {fileID: 1462090964}
+  - component: {fileID: 1462090968}
   m_Layer: 0
   m_Name: LavaLake5
   m_TagString: Untagged
@@ -66675,6 +66870,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 578540350}
   m_LocalEulerAnglesHint: {x: 0, y: -25.25, z: 0}
+--- !u!114 &1462090968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1462090963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 749de44ebefb2dc40aa10a8baa70d36f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LavaDamage
+  damagePerSecond: 15
+  lavaTimer: 0
+  lavaTickRate: 1
 --- !u!4 &1462733640 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 91d652779ec7140488b6b8e360497937, type: 3}
@@ -66974,6 +67184,7 @@ GameObject:
   - component: {fileID: 1469614083}
   - component: {fileID: 1469614082}
   - component: {fileID: 1469614081}
+  - component: {fileID: 1469614085}
   m_Layer: 0
   m_Name: Plane (3)
   m_TagString: Untagged
@@ -67075,6 +67286,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 293557769}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!114 &1469614085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1469614080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 749de44ebefb2dc40aa10a8baa70d36f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LavaDamage
+  damagePerSecond: 15
+  lavaTimer: 0
+  lavaTickRate: 1
 --- !u!4 &1471051568 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: b2f96746c6005c64888263f64272a556, type: 3}
@@ -73091,6 +73317,7 @@ GameObject:
   - component: {fileID: 1636979344}
   - component: {fileID: 1636979343}
   - component: {fileID: 1636979342}
+  - component: {fileID: 1636979346}
   m_Layer: 0
   m_Name: Plane (8)
   m_TagString: Untagged
@@ -73192,6 +73419,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 293557769}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: -90}
+--- !u!114 &1636979346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1636979341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 749de44ebefb2dc40aa10a8baa70d36f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LavaDamage
+  damagePerSecond: 15
+  lavaTimer: 0
+  lavaTickRate: 1
 --- !u!1001 &1636994128
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -79922,6 +80164,7 @@ GameObject:
   - component: {fileID: 1831427936}
   - component: {fileID: 1831427935}
   - component: {fileID: 1831427934}
+  - component: {fileID: 1831427938}
   m_Layer: 0
   m_Name: VolcanoWaterfall3
   m_TagString: Untagged
@@ -80022,6 +80265,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1264285502}
   m_LocalEulerAnglesHint: {x: 1.47, y: -6.049, z: 13.605}
+--- !u!114 &1831427938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1831427933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 749de44ebefb2dc40aa10a8baa70d36f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LavaDamage
+  damagePerSecond: 15
+  lavaTimer: 0
+  lavaTickRate: 1
 --- !u!1001 &1831499388
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -81727,6 +81985,7 @@ GameObject:
   - component: {fileID: 1890201451}
   - component: {fileID: 1890201450}
   - component: {fileID: 1890201449}
+  - component: {fileID: 1890201453}
   m_Layer: 0
   m_Name: VolcanoWaterfall2
   m_TagString: Untagged
@@ -81827,6 +82086,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1264285502}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 39.94}
+--- !u!114 &1890201453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1890201448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 749de44ebefb2dc40aa10a8baa70d36f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LavaDamage
+  damagePerSecond: 15
+  lavaTimer: 0
+  lavaTickRate: 1
 --- !u!1001 &1893607871
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -82583,6 +82857,7 @@ GameObject:
   - component: {fileID: 1928688327}
   - component: {fileID: 1928688326}
   - component: {fileID: 1928688325}
+  - component: {fileID: 1928688329}
   m_Layer: 0
   m_Name: Plane (4)
   m_TagString: Untagged
@@ -82684,6 +82959,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 293557769}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &1928688329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1928688324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 749de44ebefb2dc40aa10a8baa70d36f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LavaDamage
+  damagePerSecond: 15
+  lavaTimer: 0
+  lavaTickRate: 1
 --- !u!4 &1932892704 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 448466, guid: 4715386e7afed1345a57603db6aace5c, type: 3}
@@ -83750,6 +84040,7 @@ GameObject:
   - component: {fileID: 1964430134}
   - component: {fileID: 1964430133}
   - component: {fileID: 1964430132}
+  - component: {fileID: 1964430136}
   m_Layer: 0
   m_Name: VolcanoWaterfall
   m_TagString: Untagged
@@ -83851,6 +84142,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1264285502}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1964430136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1964430131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 749de44ebefb2dc40aa10a8baa70d36f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LavaDamage
+  damagePerSecond: 15
+  lavaTimer: 0
+  lavaTickRate: 1
 --- !u!4 &1964929250 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 448466, guid: 4715386e7afed1345a57603db6aace5c, type: 3}
@@ -85427,6 +85733,7 @@ GameObject:
   - component: {fileID: 2012082612}
   - component: {fileID: 2012082611}
   - component: {fileID: 2012082610}
+  - component: {fileID: 2012082614}
   m_Layer: 0
   m_Name: LavaLake6
   m_TagString: Untagged
@@ -85527,6 +85834,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 578540350}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2012082614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2012082609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 749de44ebefb2dc40aa10a8baa70d36f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LavaDamage
+  damagePerSecond: 15
+  lavaTimer: 0
+  lavaTickRate: 1
 --- !u!1001 &2012665755
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -89704,6 +90026,7 @@ GameObject:
   - component: {fileID: 2111278601}
   - component: {fileID: 2111278600}
   - component: {fileID: 2111278599}
+  - component: {fileID: 2111278603}
   m_Layer: 0
   m_Name: Plane (1)
   m_TagString: Untagged
@@ -89805,6 +90128,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 293557769}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!114 &2111278603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2111278598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 749de44ebefb2dc40aa10a8baa70d36f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LavaDamage
+  damagePerSecond: 15
+  lavaTimer: 0
+  lavaTickRate: 1
 --- !u!4 &2111514082 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: ca7ff24101826a141b95bc27f8d49174, type: 3}
