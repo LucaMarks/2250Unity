@@ -182,6 +182,21 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
             Debug.Log($"Player collided with hazard: {hazard.name}");
             //handle hazard collision cases
         }
+        
+        if (collision.gameObject.TryGetComponent<LavaDamage>(out var lava))
+        {
+            lava.lavaTimer += Time.deltaTime;
+
+            if (lava.lavaTimer >= lava.lavaTickRate)
+            {
+                lava.lavaTimer = 0f;
+
+                Health -= lava.damagePerSecond;
+
+                Debug.Log("Player took lava damage!");
+                Debug.Log(Health);
+            }
+        }
     }
 
     public override void Update()
@@ -646,6 +661,7 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
     public void OnCollisionStay(Collision collision)
     {
         HandleSolidCollision(collision);
+        HazardCollide(collision);
     }
     
 
