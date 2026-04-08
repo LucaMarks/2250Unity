@@ -7,6 +7,12 @@ public class PlayerSkygliderState : MonoBehaviour
     public Skyglider equippedSkyglider;
     public bool isMounted;
     public Skyglider mountedSkyglider;
+    private Player cachedPlayer;
+
+    private void Awake()
+    {
+        cachedPlayer = GetComponent<Player>();
+    }
 
     public void GrantSkyglider(Skyglider skyglider)
     {
@@ -35,6 +41,7 @@ public class PlayerSkygliderState : MonoBehaviour
         mountedSkyglider = skyglider;
         hasSkyglider = true;
         equippedSkyglider = skyglider;
+        SetWeaponVisible(false);
         Debug.Log("PlayerSkygliderState -> MountSkyglider called. isMounted=true");
     }
 
@@ -42,6 +49,20 @@ public class PlayerSkygliderState : MonoBehaviour
     {
         isMounted = false;
         mountedSkyglider = null;
+        SetWeaponVisible(true);
         Debug.Log("PlayerSkygliderState -> DismountSkyglider called. isMounted=false");
+    }
+
+    private void SetWeaponVisible(bool isVisible)
+    {
+        if (cachedPlayer == null)
+        {
+            cachedPlayer = GetComponent<Player>();
+        }
+
+        if (cachedPlayer == null || cachedPlayer.sword == null)
+            return;
+
+        cachedPlayer.sword.SetActive(isVisible);
     }
 }

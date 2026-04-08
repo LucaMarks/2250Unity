@@ -2,18 +2,24 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(Collider))]
+
+
 public class Skyglider : MonoBehaviour
 {
     [Header("Mounting")]
     public Transform seatPoint;
+    public Vector3 dismountOffset = new Vector3(2f, 1f, 0f);
+    public Collider[] ignoredAutoDismountColliders;
 
     [Header("Flight")]
-    public float cruiseSpeed = 18f;
+    public float cruiseSpeed = 10f;
     public float turnSpeed = 65f;
     public float pitchSpeed = 45f;
     public float climbStrength = 6f;
-    public float glideFallSpeed = 2.5f;
+    public float glideFallSpeed = 0.5f;
     public float maxVerticalSpeed = 8f;
+    public float dismountInputDelay = 0.3f;
+    public float collisionDismountDelay = 1f;
 
     private Player nearbyPlayer;
     private Player mountedPlayer;
@@ -21,6 +27,9 @@ public class Skyglider : MonoBehaviour
     private Rigidbody gliderRigidbody;
     private Collider gliderCollider;
     private float currentPitch;
+    private Vector3 pendingDismountPosition;
+    private bool hasPendingDismountPosition;
+    private float mountTime;
 
     private void Awake()
     {
@@ -53,6 +62,8 @@ public class Skyglider : MonoBehaviour
             seatPoint = transform;
             Debug.Log("Skyglider -> SeatPoint not assigned, defaulting to transform.");
         }
+
+        SetParkedState();
     }
 
     private void Update()
@@ -67,10 +78,12 @@ public class Skyglider : MonoBehaviour
             return;
         }
 
-        if (mountedPlayer.InteractAction != null && mountedPlayer.InteractAction.triggered)
+        if (mountedPlayer.InteractAction != null &&
+            mountedPlayer.InteractAction.triggered &&
+            Time.time >= mountTime + dismountInputDelay)
         {
-            Debug.Log("Skyglider -> interact pressed while mounted. Dismounting.");
-            DismountPlayer();
+            Debug.Log("Skyglider -> interact pressed while mounted. Manual dismount requested.");
+            DismountPlayer("manual interact");
         }
     }
 
@@ -86,7 +99,6 @@ public class Skyglider : MonoBehaviour
     {
         if (nearbyPlayer == null)
         {
-            Debug.Log("Skyglider -> TryMountNearbyPlayer aborted. nearbyPlayer is null.");
             return;
         }
 
@@ -111,6 +123,8 @@ public class Skyglider : MonoBehaviour
         Debug.Log("Skyglider -> MountPlayer starting.");
         mountedPlayer = player;
         mountedPlayerState = skygliderState;
+        mountTime = Time.time;
+        SetFlightState();
 
         skygliderState.MountSkyglider(this);
         player.transform.SetParent(seatPoint);
@@ -132,10 +146,10 @@ public class Skyglider : MonoBehaviour
             playerCollider.enabled = false;
         }
 
-        Debug.Log("Player mounted skyglider.");
+        Debug.Log("Skyglider -> Player mounted successfully. Player=" + player.name + ", SeatPoint=" + seatPoint.name);
     }
 
-    private void DismountPlayer()
+    private void DismountPlayer(string reason)
     {
         if (mountedPlayer == null)
         {
@@ -147,14 +161,23 @@ public class Skyglider : MonoBehaviour
         PlayerSkygliderState skygliderState = mountedPlayerState;
 
         player.transform.SetParent(null);
-        player.transform.position = transform.position + transform.right * 2f + Vector3.down * 0.5f;
+        if (hasPendingDismountPosition)
+        {
+            player.transform.position = pendingDismountPosition;
+            Debug.Log("Skyglider -> Dismount position snapped to collision contact point: " + pendingDismountPosition);
+        }
+        else
+        {
+            player.transform.position = transform.position + transform.TransformDirection(dismountOffset);
+            Debug.Log("Skyglider -> Dismount position used fallback offset: " + player.transform.position);
+        }
 
         Rigidbody playerRigidbody = GetPlayerRigidbody(player);
         if (playerRigidbody != null)
         {
             playerRigidbody.isKinematic = false;
             playerRigidbody.useGravity = true;
-            playerRigidbody.linearVelocity = gliderRigidbody.linearVelocity;
+            playerRigidbody.linearVelocity = hasPendingDismountPosition ? Vector3.zero : gliderRigidbody.linearVelocity;
         }
 
         Collider playerCollider = GetPlayerCollider(player);
@@ -171,8 +194,10 @@ public class Skyglider : MonoBehaviour
         mountedPlayer = null;
         mountedPlayerState = null;
         currentPitch = 0f;
+        hasPendingDismountPosition = false;
+        SetParkedState();
 
-        Debug.Log("Player dismounted skyglider.");
+        Debug.Log("Skyglider -> Player dismounted. Reason: " + reason);
     }
 
     private void HandleFlight()
@@ -186,23 +211,50 @@ public class Skyglider : MonoBehaviour
             : Vector2.zero;
 
         float yawInput = moveInput.x;
-        float pitchInput = -lookInput.y;
+        float pitchInput = Mathf.Abs(lookInput.y) > 0.01f ? -lookInput.y : moveInput.y;
 
-        transform.Rotate(0f, yawInput * turnSpeed * Time.fixedDeltaTime, 0f, Space.Self);
+        Quaternion yawRotation = Quaternion.Euler(0f, yawInput * turnSpeed * Time.fixedDeltaTime, 0f);
+        gliderRigidbody.MoveRotation(gliderRigidbody.rotation * yawRotation);
 
         currentPitch += pitchInput * pitchSpeed * Time.fixedDeltaTime;
-        currentPitch = Mathf.Clamp(currentPitch, -35f, 35f);
+        currentPitch = Mathf.Clamp(currentPitch, -20f, 20f);
 
-        Vector3 currentEuler = transform.rotation.eulerAngles;
-        transform.rotation = Quaternion.Euler(currentPitch, currentEuler.y, 0f);
+        Vector3 currentEuler = gliderRigidbody.rotation.eulerAngles;
+        Quaternion flightRotation = Quaternion.Euler(currentPitch, currentEuler.y, 0f);
+        gliderRigidbody.MoveRotation(flightRotation);
 
-        float climbLift = Mathf.Sin(currentPitch * Mathf.Deg2Rad) * climbStrength;
+        float climbLift = (currentPitch / 20f) * climbStrength;
         float verticalSpeed = Mathf.Clamp(-glideFallSpeed + climbLift, -maxVerticalSpeed, maxVerticalSpeed);
 
         Vector3 forwardVelocity = transform.forward * cruiseSpeed;
         Vector3 targetVelocity = new Vector3(forwardVelocity.x, verticalSpeed, forwardVelocity.z);
 
         gliderRigidbody.linearVelocity = targetVelocity;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (mountedPlayer == null)
+            return;
+
+        if (Time.time < mountTime + collisionDismountDelay)
+        {
+            Debug.Log("Skyglider -> ignoring collision auto-dismount during launch grace period with " + collision.collider.name);
+            return;
+        }
+
+        if (collision.collider != null && !collision.collider.isTrigger)
+        {
+            if (ShouldIgnoreAutoDismount(collision.collider))
+            {
+                Debug.Log("Skyglider -> ignoring auto-dismount collision with " + collision.collider.name);
+                return;
+            }
+
+            CacheGroundDismountPosition(collision);
+            Debug.Log("Skyglider -> collided with " + collision.collider.name + ". Auto-dismounting player.");
+            DismountPlayer("collision with " + collision.collider.name);
+        }
     }
 
     private PlayerSkygliderState GetOrAddSkygliderState(Player player)
@@ -260,5 +312,53 @@ public class Skyglider : MonoBehaviour
             nearbyPlayer = null;
             Debug.Log("Skyglider -> ClearNearbyPlayer cleared current nearby player.");
         }
+    }
+
+    private void SetParkedState()
+    {
+        gliderRigidbody.linearVelocity = Vector3.zero;
+        gliderRigidbody.angularVelocity = Vector3.zero;
+        gliderRigidbody.isKinematic = true;
+    }
+
+    private void SetFlightState()
+    {
+        gliderRigidbody.isKinematic = false;
+        gliderRigidbody.linearVelocity = Vector3.zero;
+        gliderRigidbody.angularVelocity = Vector3.zero;
+    }
+
+    private bool ShouldIgnoreAutoDismount(Collider otherCollider)
+    {
+        if (ignoredAutoDismountColliders == null || otherCollider == null)
+            return false;
+
+        for (int i = 0; i < ignoredAutoDismountColliders.Length; i++)
+        {
+            Collider ignoredCollider = ignoredAutoDismountColliders[i];
+            if (ignoredCollider != null && ignoredCollider == otherCollider)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private void CacheGroundDismountPosition(Collision collision)
+    {
+        hasPendingDismountPosition = false;
+
+        if (collision.contactCount <= 0)
+        {
+            Debug.Log("Skyglider -> collision had no contact points. Cannot cache landing point.");
+            return;
+        }
+
+        ContactPoint contact = collision.GetContact(0);
+        pendingDismountPosition = contact.point + (contact.normal * 1.25f);
+        hasPendingDismountPosition = true;
+        Debug.Log("Skyglider -> cached collision contact point from " + collision.collider.name +
+                  " at " + contact.point + " with normal " + contact.normal);
     }
 }
