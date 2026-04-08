@@ -2,9 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 // Attach to an invisible trigger zone at the end of each chamber
-// Set the Collider to "Is Trigger" in the Inspector
-// Set the nextSceneName in the Inspector to the next scene (e.g. "EarthLevel2")
-// Optionally require all pillars to be activated before allowing transition
+
 public class SceneTransition : MonoBehaviour
 {
     public string nextSceneName; // name of the next scene to load

@@ -84,9 +84,14 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
     private Quaternion rightArmStartLocalRot;
     private bool swordCached;
     private Renderer swordRenderer;
+    private int attackAnimationDelay = 120;
+    private int attackValDelay = 60;
+
+
 
     public Material[] swordMaterials = new Material[4];
     private int currWeaponIndex = 0;
+    public int maxWeaponIndex = 1;
 
     //object collision handling variables
     private const string SolidObjectTag = "SolidObject";
@@ -170,6 +175,7 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
 
         preMovePosition = transform.position;
         Damage = 50;
+        
 
        // MoveToScene(0); 
     }    
@@ -211,6 +217,10 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
             return;
         }
 
+        if (Health <= 0)
+        {
+            Die();
+        }
         base.Update();
         attackCooldown++;
         attackAnimationCooldown++;
@@ -221,7 +231,7 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
          */
         if (mouseAction.triggered)
         {
-            if (attackAnimationCooldown > 120)
+            if (attackAnimationCooldown > attackAnimationDelay)//120 by default
             {
                 attackAnimationCooldown = 0;
                 Attack();
@@ -240,7 +250,7 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
              This is how the player will teleport between scenes
              Right now unity is set for keys 1-4 -> we can use indexes 0-3
              Can add more later if we need
-             To add your scene to the list:
+2             To add your scene to the list:
                 File -> Build Profiles -> Scene List, then drag & drop your scene
                 The index values are also shown there so you know which index to pass for MoveToScene() to switch to your scene
             we should have 6 total scenes in there by the time we're done
@@ -289,6 +299,18 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
         // }
         // if(builder == ""){Debug.Log("No inventoryItems to display");}
         // else{Debug.Log(builder);}
+        
+    }
+
+    protected override void Die()
+    {
+        //Need to add a die screen with a respawn button, so it isnt instant
+        Debug.Log("Player died!");
+
+        Health = 100;//reset health
+        
+        GetComponent<PlayerRespawn>()?.Respawn();
+        
     }
 
     private void changeWeapon()
@@ -297,7 +319,11 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
         CacheSwordVisuals();
 
         // int colourIndex = GetPressedNumberKeyIndex();
-        currWeaponIndex = currWeaponIndex > 2 ? 0 : currWeaponIndex + 1; 
+
+        // currWeaponIndex = currWeaponIndex > 2 ? 0 : currWeaponIndex + 1;
+        currWeaponIndex = currWeaponIndex < 3 && currWeaponIndex + 1 <= maxWeaponIndex ? currWeaponIndex + 1 : 0;
+        // Debug.Log(currWeaponIndex);
+        updateWeaponStats(currWeaponIndex);
         // if (colourIndex < 0 || colourIndex >= swordMaterials.Length)
         // {
         //     Debug.LogWarning("NumberKeys was triggered, but no supported number key was detected.");
@@ -310,6 +336,33 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
         }
 
         Debug.LogWarning("Sword has no Renderer or SpriteRenderer to recolour.");
+    }
+
+    private void updateWeaponStats(int val)
+    {
+        switch (val)
+        {
+            case 0: 
+                swordSwingDuration = 0.35f;
+                Damage = 40;
+                attackAnimationDelay = 120;                
+                break;
+            case 1:
+                swordSwingDuration = 0.45f;
+                Damage = 70;
+                attackAnimationDelay = 150;
+                break;
+            case 2:
+                swordSwingDuration = .15f;
+                Damage = 40;
+                attackAnimationDelay = 75;
+                break;
+            case 3:
+                swordSwingDuration = .3f;
+                Damage = 70;
+                attackAnimationDelay = 135;
+                break;
+        }
     }
     private void CacheSwordVisuals()
     {
@@ -692,6 +745,11 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
         {
             currentNPC = null;
         }
+    }
+
+    public UpdatedNPC getCurrentNPC()
+    {
+        return currentNPC;
     }
 
     public void setCurrItem(Item item)

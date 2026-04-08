@@ -5,6 +5,9 @@ public class PuzzleManager : MonoBehaviour
     public PressurePlate[] plates;
     public bool isSolved = false;
 
+    public Material green;
+    public Renderer button;
+    
     void Update()
     {
         CheckPuzzle();
@@ -25,6 +28,15 @@ public class PuzzleManager : MonoBehaviour
         {
             isSolved = true;
             Debug.Log("Box Puzzle Solved!");
+            ActivateButton();
+        }
+    }
+    
+    void ActivateButton()
+    {
+        if(button != null && green != null)
+        {
+            button.material = green;
         }
     }
 }

@@ -1,9 +1,8 @@
 using UnityEngine;
 
-// Attach to the stone pillar GameObjects in each chamber
-// Make sure the GameObject is tagged "Pillar" in the Unity Inspector
-// Activates when the light beam hits it
-// Tracks how many pillars are active using static counters
+
+//Activates when the light beam hits it
+//Tracks how many pillars are active using static counters
 public class Pillar : MonoBehaviour
 {
     public bool isActivated = false;
@@ -57,9 +56,7 @@ public class Pillar : MonoBehaviour
 
     private void OnAllPillarsActivated()
     {
-        Debug.Log("All pillars activated! Chamber unsealed.");
-        // TODO: hook this up to open a door or trigger a cave-in event
-        // will be implemented when level layout is built
+        Debug.Log("All pillars activated! Chamber unsealed.");//does nothing for now
     }
 
     // call this when loading a new scene to reset the static counters

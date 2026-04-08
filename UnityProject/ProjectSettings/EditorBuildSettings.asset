@@ -20,6 +20,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/skylevel/skylevel.unity
     guid: 4098dafa676c86346bcb6bd664dea430
+  - enabled: 1
+    path: Assets/Scenes/EarthLevels/EarthLevel1.unity
+    guid: a3c80859a1d3e42249165f8eef8f4493
+  - enabled: 1
+    path: Assets/Scenes/EarthLevels/EarthLevel2.unity
+    guid: 35aa60583efad430c806be4f8caada13
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
