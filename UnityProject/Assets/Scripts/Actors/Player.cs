@@ -255,7 +255,6 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
                     case Key.E: 
                         if(currentNPC != null){NPCInteract();} 
                         if(currRope != null){currRope.Interact();}
-<<<<<<< HEAD
                         if (Physics.Raycast(cameraPivot.position, cameraPivot.forward, out RaycastHit hit, 5f))
                         {
                             var pipe = hit.collider.GetComponentInParent<PipePiece>();
@@ -265,9 +264,7 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
                                 pipe.Rotate();
                             }
                         }
-=======
                         if(inRangeOfShip){this.BoardShip();}
->>>>>>> 34f46a2e1c05c2fe0b679300be060b9e9092fe10
                         break;
                     case Key.Q: ItemInteract(); break;
 
