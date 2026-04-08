@@ -1,9 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Attach to a GameObject that acts as the light source for the beam puzzle
-// Requires a LineRenderer component on the same GameObject
-// The beam bounces off objects tagged "Mirror" and activates objects tagged "Pillar"
+
+//The beam bounces off objects tagged "Mirror" and activates objects tagged "Pillar"
 [RequireComponent(typeof(LineRenderer))]
 public class LightBeam : MonoBehaviour
 {
@@ -16,7 +15,7 @@ public class LightBeam : MonoBehaviour
     {
         lineRenderer = GetComponent<LineRenderer>();
 
-        // basic beam appearance, can be changed in the inspector
+        //basic beam appearance, can be changed
         lineRenderer.startWidth = 0.05f;
         lineRenderer.endWidth = 0.05f;
         lineRenderer.startColor = Color.yellow;
@@ -36,8 +35,8 @@ public class LightBeam : MonoBehaviour
         List<Vector3> points = new List<Vector3>();
         points.Add(origin);
 
-        // keep track of which pillars the beam is currently hitting
-        // so we can deactivate ones the beam no longer reaches
+        //keep track of which pillars the beam is currently hitting
+        //so we can deactivate ones the beam no longer reaches
         for (int i = 0; i < maxBounces; i++)
         {
             RaycastHit hit;
@@ -47,37 +46,37 @@ public class LightBeam : MonoBehaviour
 
                 if (hit.collider.CompareTag("Mirror"))
                 {
-                    // calculate bounce direction using surface normal
+                    //calculate bounce direction using surface normal
                     direction = Vector3.Reflect(direction, hit.normal);
-                    // small offset so the new ray doesn't immediately re-hit the same mirror
+                    //small offset so the new ray doesn't immediately re-hit the same mirror
                     origin = hit.point + direction * 0.01f;
                 }
                 else if (hit.collider.CompareTag("Pillar"))
                 {
-                    // beam hit a pillar - check the hit object AND its parents
-                    // because the pillar may be made of child meshes
+                    //beam hit a pillar - check the hit object AND its parents
+                    //because the pillar may be made of child meshes
                     Pillar pillar = hit.collider.GetComponentInParent<Pillar>();
                     if (pillar != null)
                     {
                         pillar.ActivatePillar();
                     }
-                    break; // beam stops at pillar
+                    break; //beam stops at pillar
                 }
                 else
                 {
-                    // beam hit something that isn't a mirror or pillar, it stops here
+                    //beam hit something that isn't a mirror or pillar, it stops here
                     break;
                 }
             }
             else
             {
-                // beam didn't hit anything, draw it to max distance
+                //beam didn't hit anything, draw it to max distance
                 points.Add(origin + direction * maxDistance);
                 break;
             }
         }
 
-        // update the visual line renderer with the beam path
+        //update the visual line renderer with the beam path
         lineRenderer.positionCount = points.Count;
         lineRenderer.SetPositions(points.ToArray());
     }

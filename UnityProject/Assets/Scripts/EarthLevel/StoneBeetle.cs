@@ -1,12 +1,12 @@
 using UnityEngine;
 
-// Earth level unique enemy - the Stone Beetle
-// When killed, splits into 2 smaller Stone Beetles
-// Small beetles do not split again when killed
-// Extends EnemyAI to reuse all patrol, chase, and attack logic
+//earth level unique enemy - the Stone Beetle
+//when killed, splits into 2 smaller Stone Beetles
+//small beetles do not split again when killed
+//extends EnemyAI to reuse all patrol, chase, and attack logic
 public class StoneBeetle : EnemyAI
 {
-    public GameObject smallBeetlePrefab; // drag the small beetle prefab in the inspector
+    public GameObject smallBeetlePrefab;
     public bool isSmallBeetle = false;   // if true, this beetle won't split on death
     public int splitCount = 2;           // how many small beetles spawn on death
 
