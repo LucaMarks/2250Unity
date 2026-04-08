@@ -1,9 +1,8 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-// Attach to mirror GameObjects in the puzzle
-// Make sure the GameObject is tagged "Mirror" in the Unity Inspector
-// Player presses E when nearby to rotate the mirror 45 degrees
+
+// Player presses E when nearby to rotate the mirror 45 degrees (changable in unity)
 public class Mirror : MonoBehaviour
 {
     public float interactRange = 3f;  // how close player needs to be to rotate
