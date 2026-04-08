@@ -12,6 +12,15 @@ public class EarthGolem : EnemyAI
 
     private bool stompOnCooldown = false;
 
+    //static bool so SceneTransition can check if golem is dead
+    public static bool isDefeated = false;
+
+    private void OnEnable()
+    {
+        //reset when golem spawns (handles scene reload) for example when you die
+        isDefeated = false;
+    }
+
     private void Start()
     {
         //EnemyAI's private Awake already ran, now we override the stats
@@ -48,10 +57,10 @@ public class EarthGolem : EnemyAI
         stompOnCooldown = false;
     }
 
-    //when the golem dies, log it (you can hook up any win condition here)
     protected override void DestroyEnemy()
     {
-        Debug.Log("Earth Golem defeated! Level complete.");
+        isDefeated = true;//update so that the player can go on
+        Debug.Log("Earth Golem defeated!");
         base.DestroyEnemy();
     }
 
