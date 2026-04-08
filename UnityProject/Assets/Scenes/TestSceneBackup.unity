@@ -613,6 +613,18 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 8111459144701225253}
+    - target: {fileID: 2588446683109733428, guid: 0bef0eec3e5c33541995efb5271c6b84, type: 3}
+      propertyPath: walkPoint.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2588446683109733428, guid: 0bef0eec3e5c33541995efb5271c6b84, type: 3}
+      propertyPath: walkPoint.z
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2588446683109733428, guid: 0bef0eec3e5c33541995efb5271c6b84, type: 3}
+      propertyPath: walkPointSet
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3260342538656865694, guid: 0bef0eec3e5c33541995efb5271c6b84, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.79989
