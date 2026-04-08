@@ -58,11 +58,14 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
     private bool stairCollision = false;
     private Rigidbody rigidBody;
     private Collider playerCollider;
-    [SerializeField] private float groundCheckDistance = 0.15f;
-    [SerializeField] private float groundNormalMinY = 0.5f;
+    [SerializeField] private float groundCheckDistance = 0.3f;
+    [SerializeField] private float groundNormalMinY = 0.2f;
     private bool inRangeOfShip = false;
     private float prevShipYRot = 0;
-    
+
+    private float coyoteTime = 0.2f;
+    private float coyoteTimer;
+
     // public InputAction
 
     //Physical Objects associated with player
@@ -174,7 +177,7 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
         if (swordRenderer != null){swordRenderer.material = swordMaterials[currWeaponIndex];}
 
         preMovePosition = transform.position;
-        Damage = 50;
+        Damage = 20;
         
 
        // MoveToScene(0); 
@@ -211,6 +214,12 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
 
     public override void Update()
     {
+        PlayerSkygliderState skygliderState = GetComponent<PlayerSkygliderState>();
+        if (skygliderState != null && skygliderState.isMounted)
+        {
+            return;
+        }
+
         if (Health <= 0)
         {
             Die();
@@ -284,7 +293,7 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
             // NPCInteract();
         }
 
-// -> Debug to show all items in player inventory
+        // -> Debug to show all items in player inventory
         // string builder = "";
         // for(int i =0; i < inventory.getLen(); i++)
         // {
@@ -293,7 +302,16 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
         // }
         // if(builder == ""){Debug.Log("No inventoryItems to display");}
         // else{Debug.Log(builder);}
-        
+
+        if (IsGrounded())
+        {
+            coyoteTimer = coyoteTime;
+        }
+        else
+        {
+            coyoteTimer -= Time.deltaTime;
+        }
+
     }
 
     protected override void Die()
@@ -514,8 +532,9 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
         double swordRadius = Math.Sqrt(swordScale.x * swordScale.x + swordScale.y * swordScale.y + swordScale.z * swordScale.z);
         swordRadius *= 2;//increase this if colliosn detection with enemy is too buggy
         // Debug.Log(swordRadius);
-        Collider[] hits = Physics.OverlapSphere(sword.transform.position, (int)swordRadius, whatIsEnemy);
-        if(hits.Length > 0)
+        Collider[] hits = Physics.OverlapSphere(sword.transform.position, (int)swordRadius);
+        //Collider[] hits = Physics.OverlapSphere(sword.transform.position, (int)swordRadius, whatIsEnemy);
+        if (hits.Length > 0)
         {
             // Debug.Log("We hit something!");
         }
@@ -536,6 +555,12 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
     }
     public override void Move()
     {
+        PlayerSkygliderState skygliderState = GetComponent<PlayerSkygliderState>();
+        if (skygliderState != null && skygliderState.isMounted)
+        {
+            return;
+        }
+
         if (onShip)
         {
             moveShip();
@@ -674,7 +699,7 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
             return;
         }
 
-        if (!IsGrounded())
+        if (coyoteTimer <= 0f)
         {
             return;
         }
@@ -705,7 +730,9 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
             return false;
         }
 
-        return hit.normal.y >= groundNormalMinY;
+        // return hit.normal.y >= groundNormalMinY;
+         return hit.normal.y > 0.1f;
+        // return true;
     }
 
     public void MoveToScene(int sceneIndex)

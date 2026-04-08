@@ -10,12 +10,23 @@ public class EnemyAI : Actor
     public LayerMask whatIsGround, whatIsPlayer;
     // public float health; we don't need this since it is in the actor class
     public Player playerComponents;
-    
-    //Patrolling
+
+    // Random Patrol
     public Vector3 walkPoint;
     public bool walkPointSet;
-    public float walkPointRange;
-    
+    public float walkPointRange = 10f;
+
+    // Patrol Modes
+    public bool useRandomPatrol = true;
+    public bool useFixedPatrol = false;
+    public bool disablePatrol = false;
+
+    // Fixed Patrol Points
+    public Transform pointA;
+    public Transform pointB;
+    private Transform currentTarget;
+
+
     //Attacking
     public float timeBetweenAttacks;
     public bool alreadyAttacked;
@@ -28,13 +39,22 @@ public class EnemyAI : Actor
 
     private void Awake()
     {
-        player = GameObject.Find("Knight").transform;
+        playerComponents = FindObjectOfType<Player>();
+        player = playerComponents.transform;
         agent = GetComponent<NavMeshAgent>();
         enemyRenderer = GetComponent<Renderer>();
+
+        Debug.Log("Player found: " + player);
+        Debug.Log("PlayerComponents: " + playerComponents);
+
         //these are variables from actor
         Health = 100;
-        Damage = 25;
+        Damage = 15;
 
+        if (pointA != null)
+        {
+            currentTarget = pointA;
+        }
     }
 /*
     There is an issue with this when we try to add an asset as an enemy (and not just a capsul)
@@ -50,11 +70,21 @@ public class EnemyAI : Actor
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
         // Debug.Log("Sight: " + playerInSightRange + " Attack: " + playerInAttackRange);
-        
+
         if (!playerInSightRange && !playerInAttackRange)
         {
-            Patroling();
-            // enemyRenderer.material.color = Color.green;
+            if (disablePatrol)
+            {
+                agent.SetDestination(transform.position); // stay still
+            }
+            else if (useFixedPatrol)
+            {
+                FixedPatrol();
+            }
+            else if (useRandomPatrol)
+            {
+                Patroling(); // your original random system
+            }
         }
         else if (playerInSightRange && !playerInAttackRange)
         {
@@ -65,7 +95,7 @@ public class EnemyAI : Actor
         {
             
             // enemyRenderer.material.color = Color.red;
-            if (attackCooldown > 60)
+            if (attackCooldown > 120)
             {
                 attackCooldown = 0;
                 AttackPlayer();
@@ -80,10 +110,9 @@ public class EnemyAI : Actor
         if (walkPointSet)
             agent.SetDestination(walkPoint);
 
-        Vector3 distanceToWalkPoint = transform.position - walkPoint;
+        float distance = Vector3.Distance(transform.position, walkPoint);
 
-        //Walkpoint reached
-        if (distanceToWalkPoint.magnitude < 1f)
+        if (distance < 1f)
             walkPointSet = false;
     }
     private void SearchWalkPoint()
@@ -96,6 +125,20 @@ public class EnemyAI : Actor
 
         if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
             walkPointSet = true;
+    }
+
+    private void FixedPatrol()
+    {
+        if (currentTarget == null) return;
+
+        agent.SetDestination(currentTarget.position);
+
+        float distance = Vector3.Distance(transform.position, currentTarget.position);
+
+        if (distance < 1f)
+        {
+            currentTarget = (currentTarget == pointA) ? pointB : pointA;
+        }
     }
 
     private void ChasePlayer()

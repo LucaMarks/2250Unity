@@ -8,6 +8,9 @@ public class PipePuzzleManager : MonoBehaviour
     public Material lava;
     public Renderer lavaRenderer;
     
+    public Material green;
+    public Renderer button;
+    
     void Update()
     {
         CheckPuzzle();
@@ -31,6 +34,7 @@ public class PipePuzzleManager : MonoBehaviour
             Debug.Log("Pipe Puzzle Solved!");
 
             ActivateLava();
+            ActivateButton();
         }
     }
 
@@ -39,6 +43,14 @@ public class PipePuzzleManager : MonoBehaviour
         if(lavaRenderer != null && lava != null)
         {
             lavaRenderer.material = lava;
+        }
+    }
+    
+    void ActivateButton()
+    {
+        if(button != null && green != null)
+        {
+            button.material = green;
         }
     }
 }
