@@ -52,6 +52,8 @@ public class UpdatedDialogueSystem : MonoBehaviour
         if (!isTalking)
             return;
 
+        currNPC.checkStartQuest();
+
         currentLineIndex++;
 
         if (currentLineIndex < currentLines.Length)

@@ -55,12 +55,15 @@ public class UpdatedNPC : MonoBehaviour
         if (stage.startQuest)
         {
             // Debug.Log("Quest started...");
-            if (questStarters[questStarterIndex] != null)
+            if (questStarters[questStarterIndex] != null && QuestManager.Instance.currentQuest == null)
             {
-                questStarters[questStarterIndex].StartQuest();
                 questStarterIndex++;
-            }else{Debug.Log("Add quest starter element to QuestStarters list in UpdatedNPC inspector (Find your npc object, you are need to add one more Object!");}
+                questStarters[questStarterIndex-1].StartQuest();
+            }
+
+            if (questStarters[questStarterIndex-1] == null){Debug.Log("Add quest starter element to QuestStarters list in UpdatedNPC inspector (Find your npc object, you are need to add one more Object!");}
         }
+
 
         if (stage.isLocked)
         {
@@ -88,6 +91,21 @@ public class UpdatedNPC : MonoBehaviour
         {
             currentStage++;
         }
+    }
+
+    public void checkStartQuest()
+    {
+        DialogueStage stage = dialogueStages[currentStage];
+
+        if (stage.startQuest)
+        {
+            // Debug.Log("Quest started...");
+            if (questStarters[questStarterIndex] != null && QuestManager.Instance.currentQuest == null)
+            {
+                questStarters[questStarterIndex].StartQuest();
+                questStarterIndex++;
+            }else{Debug.Log("Add quest starter element to QuestStarters list in UpdatedNPC inspector (Find your npc object, you are need to add one more Object!");}
+        }       
     }
 
     public void AdvanceDialogueStage()

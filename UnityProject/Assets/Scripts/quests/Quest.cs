@@ -13,7 +13,6 @@ public abstract class Quest : MonoBehaviour
 
     public UpdatedNPC associatedNPC;
     public DialogueStage dialogueToUnlock;
-    public Item fireWood;
 
     [Header("Quest State")]
     public bool hasStarted;
@@ -76,6 +75,7 @@ public abstract class Quest : MonoBehaviour
         if (!CheckIfComplete())
             return;
 
+        QuestManager.Instance.ClearCurrentQuest();
         isCompleted = true;
         dialogueToUnlock.isLocked = false;
         GiveReward();

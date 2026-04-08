@@ -4192,7 +4192,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 816898959725972721, guid: 4e746d462ded6584ab8a9a0d60e4e93f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -29.52
+      value: 76.6
       objectReference: {fileID: 0}
     - target: {fileID: 816898959725972721, guid: 4e746d462ded6584ab8a9a0d60e4e93f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4200,7 +4200,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 816898959725972721, guid: 4e746d462ded6584ab8a9a0d60e4e93f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -84.46
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 816898959725972721, guid: 4e746d462ded6584ab8a9a0d60e4e93f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -9220,7 +9220,6 @@ MonoBehaviour:
     isLocked: 0
     startQuest: 0
     lockedLines: []
-  fireWood: {fileID: 0}
   hasStarted: 0
   isCompleted: 0
   gemstoneRewards: []
@@ -17893,7 +17892,18 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8337438333475193955, guid: d021415f26a98114b8e25653e970283b, type: 3}
   m_PrefabInstance: {fileID: 1912062520}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1385256132
+--- !u!114 &1385256134 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4084723722235495469, guid: d021415f26a98114b8e25653e970283b, type: 3}
+  m_PrefabInstance: {fileID: 1912062520}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1385256129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bbc1a22a4b9203469c755ccc38df0fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::QuestStarter
+--- !u!114 &1385256135
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -17902,18 +17912,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1385256129}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d213549c2dc4cd9a07cda6a2151c26f, type: 3}
+  m_Script: {fileID: 11500000, guid: 80c92da3fb3c4318b8693c31b13eea77, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SideQuest
-  questName: 
-  description: 
-  associatedNPC: {fileID: 0}
+  m_EditorClassIdentifier: Assembly-CSharp::Collect3
+  questName: Collect 3 Peices of Fire Wood
+  description: Collect 3 peices of fire wood from the forest
+  associatedNPC: {fileID: 1912062522}
   dialogueToUnlock:
     lines: []
     isLocked: 0
     startQuest: 0
     lockedLines: []
-  fireWood: {fileID: 0}
   hasStarted: 0
   isCompleted: 0
   gemstoneRewards:
@@ -17926,6 +17935,9 @@ MonoBehaviour:
   fireGemstone: {fileID: 0}
   iceGemstone: {fileID: 0}
   earthGemstone: {fileID: 0}
+  fireWood: {fileID: 1913686505}
+  player: {fileID: 500333685}
+  collectedFireWood: []
 --- !u!1001 &1395080374
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23858,6 +23870,87 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1860862856}
   m_Mesh: {fileID: -7174666112318797652, guid: b61cbb3a5418451ef879c216ad91ec47, type: 3}
+--- !u!1 &1861739305
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1861739306}
+  - component: {fileID: 1861739308}
+  - component: {fileID: 1861739307}
+  m_Layer: 0
+  m_Name: Collect1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1861739306
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1861739305}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1912062521}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1861739307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1861739305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c59b4267b26648f9901e6bff49cf4807, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Collect1
+  questName: Collect 1 Peice of Fire Wood
+  description: Collect 1 peice of fire wood from the forest
+  associatedNPC: {fileID: 1912062522}
+  dialogueToUnlock:
+    lines: []
+    isLocked: 0
+    startQuest: 0
+    lockedLines: []
+  hasStarted: 0
+  isCompleted: 0
+  gemstoneRewards:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  waterGemstone: {fileID: 0}
+  airGemstone: {fileID: 0}
+  fireGemstone: {fileID: 0}
+  iceGemstone: {fileID: 0}
+  earthGemstone: {fileID: 0}
+  fireWood: {fileID: 1913686505}
+  player: {fileID: 500333685}
+  collectedFireWood: []
+--- !u!114 &1861739308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1861739305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bbc1a22a4b9203469c755ccc38df0fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::QuestStarter
+  questToStart: {fileID: 1861739307}
 --- !u!1001 &1862561193
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24956,6 +25049,139 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 29383038}
     m_Modifications:
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: questStarters.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: dialogueStages.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: 'questStarters.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2090340790}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: 'questStarters.Array.data[2]'
+      value: 
+      objectReference: {fileID: 1861739308}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: 'questStarters.Array.data[3]'
+      value: 
+      objectReference: {fileID: 1385256134}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: dialogueStages.Array.data[1].isLocked
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: dialogueStages.Array.data[2].isLocked
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: dialogueStages.Array.data[3].isLocked
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: dialogueStages.Array.data[0].startQuest
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: dialogueStages.Array.data[1].startQuest
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: dialogueStages.Array.data[2].startQuest
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: dialogueStages.Array.data[3].startQuest
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: dialogueStages.Array.data[0].lines.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: dialogueStages.Array.data[1].lines.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: dialogueStages.Array.data[2].lines.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: dialogueStages.Array.data[3].lines.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: 'dialogueStages.Array.data[0].lines.Array.data[0]'
+      value: Hello traveller, I am in need of assitance...
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: 'dialogueStages.Array.data[0].lines.Array.data[1]'
+      value: 'I am looking for someone to collect Fire Wood from the forest.
+
+        Are
+        you up for the challenge?'
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: 'dialogueStages.Array.data[0].lines.Array.data[2]'
+      value: I will give you a reward for this, but it's a supprise!
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: 'dialogueStages.Array.data[1].lines.Array.data[0]'
+      value: Great you did it, now only 2 more to go...
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: 'dialogueStages.Array.data[1].lines.Array.data[1]'
+      value: 'I am looking for someone to collect Fire Wood from the forest.
+
+        Are
+        you up for the challenge?'
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: 'dialogueStages.Array.data[1].lines.Array.data[2]'
+      value: I will give you a reward for this, but it's a supprise!
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: 'dialogueStages.Array.data[2].lines.Array.data[0]'
+      value: 1 more to go...
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: 'dialogueStages.Array.data[3].lines.Array.data[0]'
+      value: Thanks for your help firend, you helped me out a lot today!
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: 'dialogueStages.Array.data[3].lines.Array.data[1]'
+      value: 'Here is your reward:
+
+        A sword of great might, and also of great
+        weight...'
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: dialogueStages.Array.data[1].lockedLines.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: dialogueStages.Array.data[2].lockedLines.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: dialogueStages.Array.data[3].lockedLines.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: 'dialogueStages.Array.data[1].lockedLines.Array.data[0]'
+      value: Collect 3 peices of wood from the forest...
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: 'dialogueStages.Array.data[2].lockedLines.Array.data[0]'
+      value: Collect 2 peices of wood from the forest...
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: 'dialogueStages.Array.data[3].lockedLines.Array.data[0]'
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2923649722382067362, guid: d021415f26a98114b8e25653e970283b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 83.84
@@ -24999,7 +25225,7 @@ PrefabInstance:
     - target: {fileID: 4084723722235495469, guid: d021415f26a98114b8e25653e970283b, type: 3}
       propertyPath: questToStart
       value: 
-      objectReference: {fileID: 1385256132}
+      objectReference: {fileID: 1385256135}
     - target: {fileID: 5441843932512372150, guid: d021415f26a98114b8e25653e970283b, type: 3}
       propertyPath: m_LocalScale.x
       value: 4
@@ -25020,23 +25246,44 @@ PrefabInstance:
       propertyPath: m_Name
       value: SideQuestNPC
       objectReference: {fileID: 0}
+    - target: {fileID: 8337438333475193955, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: m_Name
+      value: Collect3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 2677819606056739258, guid: d021415f26a98114b8e25653e970283b, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 2923649722382067362, guid: d021415f26a98114b8e25653e970283b, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 2090340788}
+    - targetCorrespondingSourceObject: {fileID: 2923649722382067362, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1861739306}
+    - targetCorrespondingSourceObject: {fileID: 2923649722382067362, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 1020996452}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8337438333475193955, guid: d021415f26a98114b8e25653e970283b, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1385256132}
+      addedObject: {fileID: 1385256135}
   m_SourcePrefab: {fileID: 100100000, guid: d021415f26a98114b8e25653e970283b, type: 3}
 --- !u!4 &1912062521 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2923649722382067362, guid: d021415f26a98114b8e25653e970283b, type: 3}
   m_PrefabInstance: {fileID: 1912062520}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1912062522 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+  m_PrefabInstance: {fileID: 1912062520}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f507a3c3ff4f1f4ba8610674bd56e1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UpdatedNPC
 --- !u!1 &1913013581
 GameObject:
   m_ObjectHideFlags: 0
@@ -25056,6 +25303,17 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1913686505 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1418246892254982474, guid: 1a09112e8b4f09b4f8c935ebb8eddb11, type: 3}
+  m_PrefabInstance: {fileID: 1539383823}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 994a235ed69f26144b9b6a73f4023e3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Item
 --- !u!1 &1915043725
 GameObject:
   m_ObjectHideFlags: 0
@@ -27634,6 +27892,87 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 409024204744052258, guid: dbbe236e1c4d3b54880ef968231c8005, type: 3}
   m_PrefabInstance: {fileID: 2089347479}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2090340787
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2090340788}
+  - component: {fileID: 2090340790}
+  - component: {fileID: 2090340789}
+  m_Layer: 0
+  m_Name: Collect2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2090340788
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2090340787}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1912062521}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2090340789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2090340787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20594e66ab374db6847cdb8236b0bfe1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Collect2
+  questName: Collect 2 peices of Fire Wood
+  description: collect 2 peices of fire wood from the forest
+  associatedNPC: {fileID: 1912062522}
+  dialogueToUnlock:
+    lines: []
+    isLocked: 0
+    startQuest: 0
+    lockedLines: []
+  hasStarted: 0
+  isCompleted: 0
+  gemstoneRewards:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  waterGemstone: {fileID: 0}
+  airGemstone: {fileID: 0}
+  fireGemstone: {fileID: 0}
+  iceGemstone: {fileID: 0}
+  earthGemstone: {fileID: 0}
+  fireWood: {fileID: 1913686505}
+  player: {fileID: 500333685}
+  collectedFireWood: []
+--- !u!114 &2090340790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2090340787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bbc1a22a4b9203469c755ccc38df0fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::QuestStarter
+  questToStart: {fileID: 2090340789}
 --- !u!1001 &2091694776
 PrefabInstance:
   m_ObjectHideFlags: 0
