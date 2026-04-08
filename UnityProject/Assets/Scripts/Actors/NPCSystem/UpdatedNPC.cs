@@ -50,16 +50,47 @@ public class UpdatedNPC : MonoBehaviour
         }
 
         DialogueStage stage = dialogueStages[currentStage];
-
+        Debug.Log(npcName + " StartDialogue -> currentStage=" + currentStage +
+                  ", isLocked=" + stage.isLocked +
+                  ", startQuest=" + stage.startQuest);
 
         if (stage.startQuest)
         {
-            // Debug.Log("Quest started...");
-            if (questStarters[questStarterIndex] != null)
+            if (questStarters == null || questStarters.Length == 0)
             {
-                questStarters[questStarterIndex].StartQuest();
-                questStarterIndex++;
-            }else{Debug.Log("Add quest starter element to QuestStarters list in UpdatedNPC inspector (Find your npc object, you are need to add one more Object!");}
+                Debug.LogWarning(npcName + " needs at least one QuestStarter assigned.");
+            }
+            else
+            {
+                int safeQuestStarterIndex = Mathf.Clamp(questStarterIndex, 0, questStarters.Length - 1);
+                QuestStarter questStarter = questStarters[safeQuestStarterIndex];
+
+                if (questStarter != null)
+                {
+                    Debug.Log(npcName + " calling QuestStarter at index " + safeQuestStarterIndex);
+                    questStarter.StartQuest();
+
+                    // Reuse the last quest starter instead of running off the end of the array.
+                    if (questStarterIndex < questStarters.Length - 1)
+                    {
+                        questStarterIndex++;
+                    }
+                }
+                else
+                {
+                    Debug.LogWarning("Add quest starter element to QuestStarters list in UpdatedNPC inspector.");
+                }
+            }
+
+            // Re-read the current stage after quest logic runs because the quest
+            // may have unlocked or jumped the NPC to a completion stage.
+            if (currentStage >= 0 && currentStage < dialogueStages.Length)
+            {
+                stage = dialogueStages[currentStage];
+                Debug.Log(npcName + " refreshed dialogue stage after quest logic -> currentStage=" + currentStage +
+                          ", isLocked=" + stage.isLocked +
+                          ", startQuest=" + stage.startQuest);
+            }
         }
 
         if (stage.isLocked)
@@ -84,9 +115,14 @@ public class UpdatedNPC : MonoBehaviour
 
         dialogueSystem.StartDialogue(this, npcName, stage.lines);
 
-        if (currentStage + 1 < dialogueStages.Length)
+        if (ShouldAdvanceToNextStage())
         {
+            Debug.Log(npcName + " advancing dialogue stage from " + currentStage + " to " + (currentStage + 1));
             currentStage++;
+        }
+        else
+        {
+            Debug.Log(npcName + " staying on dialogue stage " + currentStage);
         }
     }
 
@@ -115,5 +151,26 @@ public class UpdatedNPC : MonoBehaviour
     public int GetDialogueStage()
     {
         return currentStage;
+    }
+
+    private bool ShouldAdvanceToNextStage()
+    {
+        int nextStageIndex = currentStage + 1;
+
+        if (nextStageIndex >= dialogueStages.Length)
+        {
+            Debug.Log(npcName + " has no next dialogue stage to advance to.");
+            return false;
+        }
+
+        // Quest-giver NPCs often need to stay on an in-progress stage until the
+        // completion stage unlocks.
+        if (dialogueStages[nextStageIndex].isLocked)
+        {
+            Debug.Log(npcName + " next dialogue stage " + nextStageIndex + " is locked, so current stage repeats.");
+            return false;
+        }
+
+        return true;
     }
 }
