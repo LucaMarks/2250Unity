@@ -211,6 +211,12 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
 
     public override void Update()
     {
+        PlayerSkygliderState skygliderState = GetComponent<PlayerSkygliderState>();
+        if (skygliderState != null && skygliderState.isMounted)
+        {
+            return;
+        }
+
         if (Health <= 0)
         {
             Die();
@@ -536,6 +542,12 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
     }
     public override void Move()
     {
+        PlayerSkygliderState skygliderState = GetComponent<PlayerSkygliderState>();
+        if (skygliderState != null && skygliderState.isMounted)
+        {
+            return;
+        }
+
         if (onShip)
         {
             moveShip();
