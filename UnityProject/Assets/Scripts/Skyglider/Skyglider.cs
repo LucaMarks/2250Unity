@@ -1,5 +1,7 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(Collider))]
 public class Skyglider : MonoBehaviour
 {
     [Header("Mounting")]
@@ -17,16 +19,23 @@ public class Skyglider : MonoBehaviour
     private Player mountedPlayer;
     private PlayerSkygliderState mountedPlayerState;
     private Rigidbody gliderRigidbody;
+    private Collider gliderCollider;
     private float currentPitch;
 
     private void Awake()
     {
         Debug.Log("Skyglider -> Awake on " + name);
         gliderRigidbody = GetComponent<Rigidbody>();
+        gliderCollider = GetComponent<Collider>();
 
         if (gliderRigidbody == null)
         {
             gliderRigidbody = gameObject.AddComponent<Rigidbody>();
+        }
+
+        if (gliderCollider == null)
+        {
+            gliderCollider = gameObject.AddComponent<BoxCollider>();
         }
 
         gliderRigidbody.useGravity = false;
@@ -35,6 +44,9 @@ public class Skyglider : MonoBehaviour
         gliderRigidbody.constraints = RigidbodyConstraints.FreezeRotationZ;
         gliderRigidbody.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
         gliderRigidbody.interpolation = RigidbodyInterpolation.Interpolate;
+
+        // The main glider body must stay solid so it can collide with islands.
+        gliderCollider.isTrigger = false;
 
         if (seatPoint == null)
         {
