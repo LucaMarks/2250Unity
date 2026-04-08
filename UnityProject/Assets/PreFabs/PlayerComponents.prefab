@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5263100448548731373}
   - component: {fileID: 4027675691281098666}
   - component: {fileID: 4186087036739357701}
+  - component: {fileID: 7381184310346581114}
   m_Layer: 0
   m_Name: PlayerComponents
   m_TagString: Player
@@ -212,6 +213,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1.8, z: 1}
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &7381184310346581114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 389233261851085789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b329c8c3a6ee694bada6be7220a5a55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerRespawn
 --- !u!1 &3578956038313819520
 GameObject:
   m_ObjectHideFlags: 0
