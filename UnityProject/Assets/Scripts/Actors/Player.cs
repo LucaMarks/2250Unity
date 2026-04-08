@@ -205,6 +205,10 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
 
     public override void Update()
     {
+        if (Health <= 0)
+        {
+            Die();
+        }
         base.Update();
         attackCooldown++;
         attackAnimationCooldown++;
@@ -283,6 +287,18 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
         // }
         // if(builder == ""){Debug.Log("No inventoryItems to display");}
         // else{Debug.Log(builder);}
+        
+    }
+
+    protected override void Die()
+    {
+        //Need to add a die screen with a respawn button, so it isnt instant
+        Debug.Log("Player died!");
+
+        Health = 100;//reset health
+        
+        GetComponent<PlayerRespawn>()?.Respawn();
+        
     }
 
     private void changeWeapon()

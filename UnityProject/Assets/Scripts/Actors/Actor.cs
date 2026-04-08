@@ -110,9 +110,9 @@ public class Actor : MonoBehaviour
     // fade out?
     // play death animation
     // drop currency? 
-    void Die()
+    protected virtual void Die()
     {
-        // deathstate now freezes the game, drops and ui trigger will go here later
+        Debug.Log("Actor died");
     }
 
     //this method isn't used in the current npc system
