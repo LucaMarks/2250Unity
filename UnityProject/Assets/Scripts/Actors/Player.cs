@@ -205,6 +205,12 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
 
     public override void Update()
     {
+        PlayerSkygliderState skygliderState = GetComponent<PlayerSkygliderState>();
+        if (skygliderState != null && skygliderState.isMounted)
+        {
+            return;
+        }
+
         base.Update();
         attackCooldown++;
         attackAnimationCooldown++;
@@ -483,6 +489,12 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
     }
     public override void Move()
     {
+        PlayerSkygliderState skygliderState = GetComponent<PlayerSkygliderState>();
+        if (skygliderState != null && skygliderState.isMounted)
+        {
+            return;
+        }
+
         if (onShip)
         {
             moveShip();
