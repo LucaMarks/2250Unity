@@ -29,6 +29,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/WorkingScenes/EarthLevels/EarthLevel3.unity
     guid: 936806529607f491788968fc32165b77
+  - enabled: 1
+    path: Assets/Scenes/WorkingScenes/sky2.0/fixedskylevel.unity
+    guid: 93aec72db8026b84dab3ed3bf78340ad
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
