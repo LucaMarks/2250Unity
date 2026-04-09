@@ -2,18 +2,39 @@
 
 public class SaveWizard : Quest
 {
-    [Header("Clear Area Objective")]
-    public Transform npcToProtect;
-    public float checkRadius = 15f;
-    public LayerMask enemyLayers;
-    public string enemyTag = "Enemy";
+    [Header("Assigned Enemies")]
+    public EnemyAI[] enemiesToDefeat;
+
+    [Header("Wizard Dialogue")]
+    public int thankYouDialogueStage = 1;
 
     [Header("Reward")]
+    public Player player;
+    public WizardBoots bootsReward;
     public int goldReward = 100;
 
     public override string GetObjectiveText()
     {
-        return "Defeat all enemies near the Old Wizard";
+        int totalEnemies = enemiesToDefeat != null ? enemiesToDefeat.Length : 0;
+        int defeatedEnemies = CountDefeatedEnemies();
+        return "Defeat the enemies attacking the Old Wizard (" + defeatedEnemies + "/" + totalEnemies + ")";
+    }
+
+    public override void StartQuest()
+    {
+        Debug.Log("SaveWizard -> StartQuest called. hasStarted=" + hasStarted + ", isCompleted=" + isCompleted);
+        base.StartQuest();
+    }
+
+    public override void UpdateQuest()
+    {
+        if (!hasStarted || isCompleted)
+            return;
+
+        Debug.Log("SaveWizard -> UpdateQuest. Defeated=" + CountDefeatedEnemies() + "/" +
+                  (enemiesToDefeat != null ? enemiesToDefeat.Length : 0));
+
+        base.UpdateQuest();
     }
 
     public override bool CheckIfComplete()
@@ -21,43 +42,72 @@ public class SaveWizard : Quest
         if (!hasStarted || isCompleted)
             return false;
 
-        if (npcToProtect == null)
+        if (enemiesToDefeat == null || enemiesToDefeat.Length == 0)
         {
-            Debug.LogWarning(questName + " has no npcToProtect assigned.");
+            Debug.LogWarning(questName + " has no enemies assigned.");
             return false;
         }
 
-        Collider[] nearbyColliders = Physics.OverlapSphere(
-            npcToProtect.position,
-            checkRadius,
-            enemyLayers
-        );
-
-        foreach (Collider nearbyCollider in nearbyColliders)
+        for (int i = 0; i < enemiesToDefeat.Length; i++)
         {
-            if (nearbyCollider == null)
-                continue;
-
-            if (!string.IsNullOrEmpty(enemyTag) && !nearbyCollider.CompareTag(enemyTag))
-                continue;
-
-            return false;
+            if (enemiesToDefeat[i] != null)
+            {
+                Debug.Log("SaveWizard -> Enemy still alive at index " + i + ": " + enemiesToDefeat[i].name);
+                return false;
+            }
         }
 
+        Debug.Log("SaveWizard -> All assigned enemies are gone.");
         return true;
+    }
+
+    public override void CompleteQuest()
+    {
+        Debug.Log("SaveWizard -> CompleteQuest called.");
+
+        if (associatedNPC != null &&
+            associatedNPC.dialogueStages != null &&
+            thankYouDialogueStage >= 0 &&
+            thankYouDialogueStage < associatedNPC.dialogueStages.Length)
+        {
+            associatedNPC.dialogueStages[thankYouDialogueStage].isLocked = false;
+            associatedNPC.currentStage = thankYouDialogueStage;
+            Debug.Log("SaveWizard -> Unlocked wizard dialogue stage " + thankYouDialogueStage);
+        }
+
+        base.CompleteQuest();
     }
 
     protected override void GiveReward()
     {
+        if (player != null)
+        {
+            player.canDoubleJump = true;
+
+            if (bootsReward != null && !player.inventory.hasItem(bootsReward))
+            {
+                player.inventory.addItem(bootsReward);
+            }
+        }
+
         Debug.Log("Reward: Player received " + goldReward + " gold.");
     }
 
-    private void OnDrawGizmosSelected()
+    private int CountDefeatedEnemies()
     {
-        if (npcToProtect == null)
-            return;
+        if (enemiesToDefeat == null || enemiesToDefeat.Length == 0)
+            return 0;
 
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(npcToProtect.position, checkRadius);
+        int defeatedEnemies = 0;
+
+        for (int i = 0; i < enemiesToDefeat.Length; i++)
+        {
+            if (enemiesToDefeat[i] == null)
+            {
+                defeatedEnemies++;
+            }
+        }
+
+        return defeatedEnemies;
     }
 }

@@ -19,6 +19,7 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
 
     public int Currency = 100;//default currency
     public int jumpHeight = 1;
+    public bool canDoubleJump = false;
     private List<string> skills;
     public Inventory inventory = new Inventory();
     private int SkillPoints;
@@ -65,6 +66,7 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
    // [SerializeField] private float groundNormalMinY = 0.2f;
     private bool inRangeOfShip = false;
     private float prevShipYRot = 0;
+    private int extraJumpsRemaining = 0;
 
     private float coyoteTime = 0.2f;
     private float coyoteTimer;
@@ -332,6 +334,7 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
         if (IsGrounded())
         {
             coyoteTimer = coyoteTime;
+            extraJumpsRemaining = canDoubleJump ? 1 : 0;
         }
         else
         {
@@ -731,9 +734,20 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
             return;
         }
 
-        if (coyoteTimer <= 0f)
+        bool canUseGroundJump = coyoteTimer > 0f;
+
+        if (!canUseGroundJump)
         {
-            return;
+            if (!canDoubleJump || extraJumpsRemaining <= 0)
+            {
+                return;
+            }
+
+            extraJumpsRemaining--;
+        }
+        else
+        {
+            coyoteTimer = 0f;
         }
 
         Vector3 velocity = rigidBody.linearVelocity;
