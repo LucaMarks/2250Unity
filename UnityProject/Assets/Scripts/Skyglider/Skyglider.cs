@@ -165,9 +165,7 @@ public class Skyglider : MonoBehaviour
 
     private void HandleFlight()
     {
-        Vector2 moveInput = mountedPlayer.moveAction != null
-            ? mountedPlayer.moveAction.ReadValue<Vector2>()
-            : Vector2.zero;
+        Vector2 moveInput = mountedPlayer.moveAction != null ? mountedPlayer.moveAction.ReadValue<Vector2>() : Vector2.zero;
 
         Vector2 lookInput = mountedPlayer.orientationAction != null
             ? mountedPlayer.orientationAction.ReadValue<Vector2>()
