@@ -8,7 +8,7 @@ public class MainQuest : Quest
 
     public void Awake()
     {
-        dialogueToUnlock = associatedNPC.dialogueStages[2];
+        dialogueToUnlock = associatedNPC.dialogueStages[3];
     }
 
     public override string GetObjectiveText()
