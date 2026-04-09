@@ -4,8 +4,9 @@ public class QuestManager : MonoBehaviour
 {
     public static QuestManager Instance;
 
-    [Header("Current Quest")]
+    [Header("Active Quests")]
     public Quest currentQuest;
+    public Quest secondaryQuest;
 
     [Header("UI")]
     public QuestObjectiveUI objectiveUI;
@@ -28,13 +29,8 @@ public class QuestManager : MonoBehaviour
 
     private void Update()
     {
-        if (currentQuest == null)
-            return;
-
-        if (!currentQuest.hasStarted || currentQuest.isCompleted)
-            return;
-
-        currentQuest.UpdateQuest();
+        UpdateQuest(currentQuest);
+        UpdateQuest(secondaryQuest);
         UpdateObjectiveUI();
     }
 
@@ -43,8 +39,28 @@ public class QuestManager : MonoBehaviour
         if (quest == null)
             return;
 
-        currentQuest = quest;
-        currentQuest.StartQuest();
+        if (quest == currentQuest || quest == secondaryQuest)
+        {
+            quest.StartQuest();
+            UpdateObjectiveUI();
+            return;
+        }
+
+        if (currentQuest == null || currentQuest.isCompleted)
+        {
+            currentQuest = quest;
+        }
+        else if (secondaryQuest == null || secondaryQuest.isCompleted)
+        {
+            secondaryQuest = quest;
+        }
+        else
+        {
+            Debug.LogWarning("QuestManager already has two active quests.");
+            return;
+        }
+
+        quest.StartQuest();
         UpdateObjectiveUI();
     }
 
@@ -54,23 +70,61 @@ public class QuestManager : MonoBehaviour
         UpdateObjectiveUI();
     }
 
+    public void ClearSecondaryQuest()
+    {
+        secondaryQuest = null;
+        UpdateObjectiveUI();
+    }
+
     private void UpdateObjectiveUI()
     {
         if (objectiveUI == null)
             return;
 
-        if (currentQuest == null || !currentQuest.hasStarted)
+        string text = BuildObjectiveText();
+
+        if (string.IsNullOrEmpty(text))
         {
             objectiveUI.HideObjective();
             return;
         }
 
-        if (currentQuest.isCompleted)
-        {
-            objectiveUI.SetObjectiveText("Quest Complete: " + currentQuest.questName);
-            return;
-        }
+        objectiveUI.SetObjectiveText(text);
+    }
 
-        objectiveUI.SetObjectiveText(currentQuest.GetObjectiveText());
+    private void UpdateQuest(Quest quest)
+    {
+        if (quest == null)
+            return;
+
+        if (!quest.hasStarted || quest.isCompleted)
+            return;
+
+        quest.UpdateQuest();
+    }
+
+    private string BuildObjectiveText()
+    {
+        string first = GetQuestText(currentQuest);
+        string second = GetQuestText(secondaryQuest);
+
+        if (string.IsNullOrEmpty(first))
+            return second;
+
+        if (string.IsNullOrEmpty(second))
+            return first;
+
+        return first + "\n" + second;
+    }
+
+    private string GetQuestText(Quest quest)
+    {
+        if (quest == null || !quest.hasStarted)
+            return string.Empty;
+
+        if (quest.isCompleted)
+            return "Quest Complete: " + quest.questName;
+
+        return quest.GetObjectiveText();
     }
 }
