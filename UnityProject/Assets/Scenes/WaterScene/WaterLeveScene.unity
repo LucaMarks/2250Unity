@@ -17787,6 +17787,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3980194768292885838, guid: 1848a363a1ca7c94fb61dd713ba6f85e, type: 3}
+      propertyPath: ID
+      value: Rudder
+      objectReference: {fileID: 0}
+    - target: {fileID: 3980194768292885838, guid: 1848a363a1ca7c94fb61dd713ba6f85e, type: 3}
+      propertyPath: Name
+      value: Rudder
+      objectReference: {fileID: 0}
     - target: {fileID: 4103644993854372699, guid: 1848a363a1ca7c94fb61dd713ba6f85e, type: 3}
       propertyPath: m_Name
       value: ItemPickupSystem
