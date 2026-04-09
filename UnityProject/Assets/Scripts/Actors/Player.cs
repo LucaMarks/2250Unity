@@ -62,7 +62,7 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
     private Rigidbody rigidBody;
     private Collider playerCollider;
     [SerializeField] private float groundCheckDistance = 0.3f;
-    [SerializeField] private float groundNormalMinY = 0.2f;
+   // [SerializeField] private float groundNormalMinY = 0.2f;
     private bool inRangeOfShip = false;
     private float prevShipYRot = 0;
 
@@ -280,10 +280,33 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
                         if (Physics.Raycast(cameraPivot.position, cameraPivot.forward, out RaycastHit hit, 5f))
                         {
                             var pipe = hit.collider.GetComponentInParent<PipePiece>();
-
                             if (pipe != null)
                             {
                                 pipe.Rotate();
+                                break;
+                            }
+
+                            var lever = hit.collider.GetComponentInParent<LeverSwitch>();
+                            if (lever != null)
+                            {
+                                lever.Interact();
+                                break;
+                            }
+
+                            var boss = hit.collider.GetComponentInParent<BossAI>();
+                            if (boss != null)
+                            {
+                                boss.StartFight(); // scream trigger
+                                break;
+                            }
+
+                            var healthPickup = hit.collider.GetComponentInParent<HpObject>();
+
+                            if (healthPickup != null)
+                            {
+                              //  Debug.Log("Player Health" + Health);
+                                healthPickup.Interact(this);
+                                break;
                             }
                         }
                         if(inRangeOfShip){this.BoardShip();}
@@ -543,7 +566,7 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
         }
         for (int i = 0; i < hits.Length; i++)
         {
-            EnemyAI enemyObject = hits[i].GetComponent<EnemyAI>();
+            EnemyAI enemyObject = hits[i].GetComponentInParent<EnemyAI>();
             if (enemyObject != null)
             {
                 // enemyObject.Health -= Damage;
