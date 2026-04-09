@@ -17,7 +17,7 @@ public class Actor : MonoBehaviour
     // to-do: implement rest of fields needed
 
     private ActorState currentState;
-    private Animator animator;
+    protected Animator animator;
     public List<Item> Drops; // to-do: create Item script, then import
 
     //this is 
