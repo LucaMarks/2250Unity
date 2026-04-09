@@ -1520,12 +1520,12 @@ MonoBehaviour:
   ignoredAutoDismountColliders:
   - {fileID: 589058582}
   - {fileID: 570735600}
-  cruiseSpeed: 25
+  cruiseSpeed: 18
   turnSpeed: 65
   pitchSpeed: 45
   climbStrength: 6
   glideFallSpeed: 2.5
-  maxVerticalSpeed: 12
+  maxVerticalSpeed: 8
   dismountInputDelay: 0.3
   collisionDismountDelay: 1
 --- !u!54 &692793494
@@ -1592,11 +1592,15 @@ MonoBehaviour:
   solidMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  cruiseSpeed: 25
+  cruiseSpeed: 15
+  minCruiseSpeed: 10
+  maxCruiseSpeed: 30
+  throttleAcceleration: 10
   turnSpeed: 70
   pitchSpeed: 35
-  glideFallSpeed: 0.45
+  glideFallSpeed: 0.35
   climbStrength: 2.5
+  throttleVerticalInfluence: 1.5
   maxVerticalSpeed: 4
   landingCheckDistance: 1.2
   obstacleCheckPadding: 0.4
