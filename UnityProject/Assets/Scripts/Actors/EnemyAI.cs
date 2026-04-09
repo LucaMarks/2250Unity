@@ -37,15 +37,15 @@ public class EnemyAI : Actor
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
 
-    private void Awake()
+    public virtual void Awake()
     {
         playerComponents = FindObjectOfType<Player>();
         player = playerComponents.transform;
         agent = GetComponent<NavMeshAgent>();
         enemyRenderer = GetComponent<Renderer>();
 
-        Debug.Log("Player found: " + player);
-        Debug.Log("PlayerComponents: " + playerComponents);
+        // Debug.Log("Player found: " + player);
+        // Debug.Log("PlayerComponents: " + playerComponents);
 
         //these are variables from actor
         Health = 100;
@@ -74,7 +74,7 @@ public class EnemyAI : Actor
         if (!playerInSightRange && !playerInAttackRange)
         {
             if (disablePatrol)
-            {
+            {              
                 agent.SetDestination(transform.position); // stay still
             }
             else if (useFixedPatrol)
@@ -83,7 +83,7 @@ public class EnemyAI : Actor
             }
             else if (useRandomPatrol)
             {
-                Patroling(); // your original random system
+                Patroling(); // original random system
             }
         }
         else if (playerInSightRange && !playerInAttackRange)
@@ -189,7 +189,7 @@ public class EnemyAI : Actor
         alreadyAttacked = false;
     }
 
-    public void TakeDamage(int damage)
+    public virtual void TakeDamage(int damage)
     {
         Health -= damage;
 
@@ -201,6 +201,13 @@ public class EnemyAI : Actor
     }
     protected virtual void DestroyEnemy()
     {
+        BossDeathHandler boss = GetComponent<BossDeathHandler>();
+
+        if (boss != null)
+        {
+            boss.OnBossDeath();
+        }
+
         Destroy(gameObject);
     }
 

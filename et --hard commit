@@ -1,0 +1,198 @@
+[33m5d07647[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mglider-quest[m[33m, [m[1;31morigin/glider-quest[m[33m)[m glider working (finaly)
+[33m1b77ba1[m Merge branch 'glider-quest' of https://github.com/LucaMarks/2250Unity into glider-quest
+[33m3866a43[m Merge branch 'main' into glider-quest
+[33m106fd25[m Add skyglider system
+[33mf4d5738[m created a glider
+[33mb4126ab[m[33m ([m[1;32mmain[m[33m)[m Merge pull request #55 from LucaMarks/volcanolevel
+[33maae1d72[m[33m ([m[1;31morigin/volcanolevel[m[33m)[m Added a button that tells you when puzzle is solved and fixed map design
+[33md14514c[m Merge pull request #54 from LucaMarks/volcanolevel
+[33mc597288[m Added reward room with portal and gem
+[33m8c2e1e8[m Merge remote-tracking branch 'origin/main'
+[33me8a20cb[m Merge remote-tracking branch 'origin/main'
+[33m850295a[m Merge pull request #53 from LucaMarks/volcanolevel
+[33m676e626[m Merge branch 'main' of https://github.com/LucaMarks/2250Unity into volcanolevel
+[33m93099d9[m Added checkpoint boxes and respawn system with player
+[33m5ed4d99[m Merge pull request #52 from LucaMarks/WaterScene
+[33me512697[m finished level 2 layout, updated level scripts
+[33m0e4302c[m[33m ([m[1;31morigin/WaterScene[m[33m)[m added side quest. Side quest involves exploring the forest to collect fire wood for the farmer. In exchange for this, Farmer Fernando gives you an old sword
+[33m8948c82[m Merge pull request #51 from DarshPatel/Volcanolevel
+[33med1df8e[m Merge branch 'main' of https://github.com/LucaMarks/2250Unity into volcanolevel
+[33m46f9602[m Added lava escape room and fixed map bugs
+[33maffe09b[m Merge pull request #50 from LucaMarks/airship-quest
+[33m7110955[m[33m ([m[1;31morigin/airship-quest[m[33m, [m[1;32mairship-quest[m[33m)[m skylevel first quest
+[33me9ee648[m Merge branch 'main' of https://github.com/LucaMarks/2250Unity into volcanolevel
+[33m8a862f8[m Revert Player.cs to match main
+[33mbdd07ae[m sky scene quest 1 done. fixes to npc, dialog and quest
+[33m2b918ae[m Resolved merge conflicts
+[33m3000d42[m Merge pull request #49 from DarshPatel/Volcanolevel
+[33m3eba99c[m Merge branch 'main' into volcanolevel
+[33m5777316[m Added pipe rotation puzzle with a manager system
+[33m34f46a2[m[33m ([m[1;32mskylevel[m[33m)[m worked on sky level scene
+[33med2452e[m Merge pull request #48 from LucaMarks/WaterScene
+[33m8ca0a1a[m Made ship controls a little better. Working on making it smoother
+[33m3007b57[m added player controling pirate ship feature
+[33m4837ae3[m Merge pull request #47 from DarshPatel/volcanolevel
+[33m899b3cb[m Added box matching puzzle with pressure plates and puzzle manager
+[33m47b800a[m fixed bug with canvas ui
+[33m40d84a4[m Merge branch 'main' of https://github.com/LucaMarks/2250Unity into volcanolevel
+[33m8514c8c[m Merge pull request #46 from DarshPatel/mainhub
+[33m0dedcc4[m[33m ([m[1;31morigin/Archive/mainhub[m[33m)[m Fixed starter island collision and added portals to each level
+[33mac816b7[m Merge pull request #45 from LucaMarks/EarthLevel
+[33mb2fea56[m[33m ([m[1;31morigin/Archive/EarthLevel[m[33m)[m Merge pull request #44 from LucaMarks/main
+[33m64c66b7[m Merge branch 'EarthLevel' into main
+[33me199af8[m Merge pull request #43 from LucaMarks/WaterScene
+[33m7ed336e[m[33m ([m[1;31morigin/Archive/WaterScene[m[33m)[m added an npc prefab without the quest system attatched
+[33m5693e71[m added npcQuest system as a general template in PreFabs
+[33mdf08a5f[m completed quest system working in tandem with npc interaction system
+[33mbaaf001[m added indexing for dialogue conversations
+[33m0119fe3[m added ship & npc prefabs & updated quest system to integrate with npc dialogue
+[33m55ebd12[m Volcano Work in Progress
+[33m4c4bd27[m Merge pull request #42 from LucaMarks/volcanolevel
+[33m2b55d11[m[33m ([m[1;31morigin/Archive/volcanolevel[m[33m)[m Added lava damage system with tick-based damage
+[33mf637049[m Merge pull request #41 from LucaMarks/volcanolevel
+[33mfce5b90[m Volcano level clean import
+[33m01a8360[m Merge pull request #40 from LucaMarks/WaterScene
+[33m4df5a35[m fixed rope animation & imported assets
+[33mb3b1eab[m adding animation to rope pulley
+[33m6297b39[m Merge pull request #39 from LucaMarks/quest-system
+[33m5241a02[m[33m ([m[1;31morigin/Archive/quest-system[m[33m)[m Merge branch 'main' into quest-system
+[33m1309ef2[m Finished first earth level puzzle and transition
+[33mb918194[m Merge pull request #38 from LucaMarks/WaterScene
+[33m0470225[m still working on collision detection between rock platforms. Somewhat worked out
+[33m32dd427[m Implemented Puzzle. Need to work out collision handling for rock obejcts
+[33m34b31a4[m finished quest sytem
+[33m7a1f60a[m added pillars for rope pulley puzzle
+[33mb9a0815[m[33m ([m[1;31morigin/Archive/skylevel-2[m[33m)[m Merge pull request #37 from LucaMarks/VerticalMovement
+[33m4f0152f[m[33m ([m[1;31morigin/Archive/VerticalMovement[m[33m)[m Added jump for player. You can change the jump height in the inspector window. Recommended -> Change the jump height for your instance of the player prefab, not for the default prefab
+[33m862e801[m Merge pull request #36 from LucaMarks/WaterScene
+[33m537ccec[m added all rock platforms to puzzle area
+[33m493d2ca[m created rock platform prefab
+[33m00563ba[m Merge pull request #35 from LucaMarks/InventorySystem
+[33mfa5e46f[m[33m ([m[1;31morigin/Archive/InventorySystem[m[33m)[m created item pickupSystem which adds items to players inventory when they press q within a certian range. This works very similar to NPC interaction system. Will add documentation for how to implement these systems at some point but for now they are all saved on prefabs
+[33m11358a4[m Merge pull request #34 from LucaMarks/WaterScene
+[33m7f87079[m Finalized combat area with edges and water around the map
+[33m8adeb29[m added prefabs and scripts. Edited enemyAi and hazard
+[33m9760425[m Merge pull request #33 from LucaMarks/WaterScene
+[33mc2cfeb5[m creted new mesh for corners. Need to scale and place mesh into corners of battle arena
+[33m82a89c0[m Merge pull request #32 from LucaMarks/WaterScene
+[33ma6e086c[m added fences & a bridge to path, working on main battle area & implementing sand banks
+[33m8252e3a[m working on rope bridge & main quest area
+[33m199f7e6[m added map teleportation -> See line 178 in the Update method of player for comments on how to switch to your scene
+[33maed1453[m Added map teleportation
+[33m9fdb6da[m Merge pull request #30 from LucaMarks/VerticalMovement
+[33m49ab496[m Fixed verical movement, it's super smooth now :). Need to deactivate rigid body when standing on stairs but player is not moving. Otherwise gravity affect the player causing the movement to be really buggy
+[33m94d434c[m made stair movement a little smoother by restricing conditions when height gets increased. There's still some bugs that could be fixed to make it better
+[33m854b6a0[m Merge pull request #29 from LucaMarks/WaterScene
+[33md61e636[m added more details to wodded area
+[33m0757c0c[m added first of two npc's. Still need to work on dialogue and quest completion for both npc's however
+[33m1c52e48[m Merge branch 'main' into WaterScene
+[33m5d36f4f[m NPC PreFab Fix
+[33m7e8d13e[m Merge pull request #28 from LucaMarks/WaterScene
+[33mb424be4[m Merge branch 'main' into WaterScene
+[33mc19a618[m Added NPC system as a prefab making it easier to create an npc
+[33m9c5674b[m Duplicate fil fix
+[33m01c2f07[m Merge pull request #27 from LucaMarks/WaterScene
+[33mf484279[m adding trees and greenery to wooded area. Need to add extra tall trees and add more detials to make the are look more crowded
+[33md3f4226[m Merge pull request #26 from LucaMarks/npc-dialogue-system
+[33me2dce9b[m[33m ([m[1;31morigin/Archive/npc-dialogue-system[m[33m)[m reworked dialog system
+[33m87184d0[m Merge pull request #25 from LucaMarks/WaterScene
+[33ma5477da[m added paths and wodded area. Working on implementing npc
+[33m3953f13[m began work on first earth level of 3
+[33me31c877[m merge
+[33m4012ae8[m Fixed sword customization issue
+[33mce90f1e[m Merge branch 'main' into WaterScene
+[33mb38379f[m Organizing dialogue system
+[33m46011d1[m Merge new NPC system
+[33ma157219[m Merge pull request #24 from LucaMarks/npc-dialogue-system
+[33m699123c[m changes in npc, dialogue system and player classes to get dialogue with npc working
+[33m8d0374f[m added house, water, and path to main & side quests
+[33m972e482[m Merge pull request #23 from LucaMarks/VerticalMovement
+[33m41550c2[m added vertical movement. Add tag 'Stairs' to move upwards on on a slab
+[33m3791988[m refactored ChangeWeapon processes
+[33mdaaa7c2[m Merge pull request #22 from LucaMarks/master
+[33m3101fb0[m[33m ([m[1;31morigin/Archive/master[m[33m)[m Merge pull request #21 from LucaMarks/playerColourCustomization
+[33m9a1360f[m[33m ([m[1;31morigin/Archive/playerColourCustomization[m[33m)[m Added sword customization based on the number (1-4) keys pressed
+[33m9fa5e3b[m Merge pull request #20 from LucaMarks/master
+[33m5c2dbe0[m Fixed bug with imported assets as enemies
+[33m40f8b11[m added PlayerComponents game Object to EnemyAI inspector GameObject
+[33m532d563[m Merge pull request #19 from LucaMarks/CombatSystem
+[33ma77b93b[m[33m ([m[1;31morigin/Archive/CombatSystem[m[33m)[m Merge fix. Added cooldowns for attack animation and attack collision detection
+[33mf5015e2[m added cooldowns to attack animation and collison detection
+[33m95f19cf[m Merge pull request #18 from LucaMarks/CombatSystem
+[33m654247b[m Merge branch 'master' into CombatSystem
+[33m1c7d3fa[m fixing merge conflict
+[33mc3a41cc[m added collision detection & damage dealt when for sword swinging at player
+[33m08b751b[m Fixed enemy Render bug
+[33m320d779[m Merge pull request #17 from LucaMarks/enemy-ai
+[33med3176b[m[33m ([m[1;31morigin/Archive/enemy-ai[m[33m)[m Merge branch 'master' into enemy-ai
+[33m34a23a3[m Implemented enemy model
+[33m2ddde4e[m Fixed enemy model
+[33m7773e8f[m Merge pull request #16 from LucaMarks/xpsystem
+[33m7e007cb[m[33m ([m[1;31morigin/Archive/xpsystem[m[33m)[m added basic xp system (fuction to add xp, check for level up and check level)
+[33md425b73[m added functionality to player health bar. Made EnemyAi extend Actor class
+[33mc05090c[m Merge pull request #15 from LucaMarks/CombatSystem
+[33m72c8adb[m added functionality to player health bar
+[33md63da44[m fixed health textMesh issue
+[33mfcc8097[m Organizing maps. Issue with health text
+[33ma1f2958[m Merge pull request #13 from LucaMarks/swingAnimationFix
+[33m1ff9ba1[m[33m ([m[1;31morigin/Archive/swingAnimationFix[m[33m)[m Arms now move with sword
+[33mb0d2f6c[m made enemy tracking layer transparent
+[33mf9e538d[m Merged map with game mechanics
+[33m517e10e[m final map changes
+[33m9263db0[m[33m ([m[1;31morigin/Archive/mergeMainScene[m[33m)[m added enemy system with npc system
+[33m5efd005[m Fixed enemy AI with the knight model
+[33m8e291aa[m added wise elder npc and updated ui in NPCenemymerge scene
+[33m19e6f73[m adding pre-fabs + forgot to save unity on last commit
+[33m1049053[m Merge branch 'master' of https://github.com/LucaMarks/2250Unity
+[33m61ac372[m fixed issues with npc commit merge. Created new scene 'NPCEnemyMerge' do do this. this scene has the latest changes. Need to work on ui issues when npc dialogue pops up.
+[33m1a0f541[m conflict bug fix
+[33m74c5cde[m Merge pull request #9 from LucaMarks/CombatSystem
+[33m3b651c7[m Merge branch 'master' into CombatSystem
+[33m609ba58[m fix emeny & playerCustomization merge conflict. Added backup scene for next merge
+[33mc2404b8[m[33m ([m[1;31morigin/Archive/playerCustomizationFix[m[33m)[m Merge with master
+[33mb03c6df[m Merge pull request #10 from LucaMarks/master
+[33m1d90db5[m Merge branch 'playerCustomizationFix' into master
+[33mdd8ffda[m Creating backup scene for merge
+[33m3f8d897[m Fixed enemy AI
+[33m25d454d[m Added enemy AI
+[33m316e5f9[m adding player asset with collision fixed. Still working on player animation
+[33mb3ea810[m Merge pull request #8 from LucaMarks/dialogue
+[33m47103c0[m Add TextMesh Pro package
+[33m1023e84[m fixed bug and rearranged gui dialogue now works
+[33mcd2ea66[m added a merchant to test dialogue and updated UI
+[33m45298a3[m implemented NPC dialogue system with E interaction key and arrow key navigation for dialogue options
+[33ma6e7f91[m Merge pull request #7 from LucaMarks/XpSystem
+[33m3993075[m undo movement debug
+[33md04b49e[m fixed HUD bugs added some color
+[33m967bef3[m added a HUD and its script displaying player information to test scene
+[33mcd5b08c[m simple debug method displaying stats
+[33m455b5d7[m integrated XP system into quest.cs
+[33m5ebb074[m added simple ProgressionSystem intergrations to player
+[33m526bf80[m added ProgressionSystem tracking XP and level up logic
+[33m5545051[m Merge pull request #6 from LucaMarks/CollisionSystem
+[33mfc7b0e7[m[33m ([m[1;31morigin/Archive/CollisionSystem[m[33m)[m Added solid object tag to help with collision handling
+[33m9c3d828[m Handing collision detection. Also added rigid bodies to player and solid objects
+[33md8bbc52[m added collision detection for Object with tag 'SolidObject'
+[33mabbffdc[m Updated animator controller state machine with idle animation as default that transitions into omni directional movement animations which then exit, behavior scripts have not been attached yet
+[33md02b286[m Imported melee animations to use with sword
+[33m12b1c41[m Imported UMA package for character customization and better player model. Replaced current player model with base UMA model
+[33me2dccad[m Imported basic animations for player states from asset store
+[33m8f13c33[m Imported PrimeTween to handle animation implementation
+[33mc695ea6[m Merge branch 'master' of https://github.com/LucaMarks/2250Unity
+[33m484d488[m Imported terrain presets and brushes from StampIT! collection (free from unity asset store)
+[33md012af7[m Merge pull request #4 from LucaMarks/CombatSystem
+[33m50d523a[m Created Swing system for player
+[33mce7d0f3[m Adding sword and working on triggering a sword swing that deals damage
+[33m172e2f9[m Merge pull request #3 from LucaMarks/initUMLSetupLuca
+[33m73e8f66[m[33m ([m[1;31morigin/Archive/initUMLSetupLuca[m[33m)[m implemented player movement
+[33mb7ca257[m Merge pull request #2 from LucaMarks/initUMLSetupLuca
+[33mfec4b30[m added boiler plate code for Player class. In the near future we will need to update UseSkill method once SkillSystem is implemented
+[33mb907c6d[m added Position array for actor, added inventory class
+[33mec88255[m Added Quest class
+[33me187e7f[m Added Hazard and NPC classes
+[33m81d2eba[m Added StaticObject class, updated Item class to inherit from it as well as populating Item fields.
+[33m0bf6d90[m Implemented state machine for actor class, updated actor class to reflect changes
+[33m49fd52e[m Merge pull request #1 from LucaMarks/master
+[33m8353a98[m added actor class, move function, and some to-dos
+[33me851c27[m init
+[33m6516eff[m Initial commit

@@ -12,7 +12,10 @@ using UnityEngine.SceneManagement;
 public class Player : Actor //this also gives us access to MonoBehavoiour
 {
     public GameObject waterLevelShip;
+    public GameObject shipRange;
+    public BoxCollider thisBoxCollider;
     public LayerMask whatIsEnemy;
+    public Rigidbody thisRigidBody;
 
     public int Currency = 100;//default currency
     public int jumpHeight = 1;
@@ -59,7 +62,7 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
     private Rigidbody rigidBody;
     private Collider playerCollider;
     [SerializeField] private float groundCheckDistance = 0.3f;
-    [SerializeField] private float groundNormalMinY = 0.2f;
+   // [SerializeField] private float groundNormalMinY = 0.2f;
     private bool inRangeOfShip = false;
     private float prevShipYRot = 0;
 
@@ -277,10 +280,33 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
                         if (Physics.Raycast(cameraPivot.position, cameraPivot.forward, out RaycastHit hit, 5f))
                         {
                             var pipe = hit.collider.GetComponentInParent<PipePiece>();
-
                             if (pipe != null)
                             {
                                 pipe.Rotate();
+                                break;
+                            }
+
+                            var lever = hit.collider.GetComponentInParent<LeverSwitch>();
+                            if (lever != null)
+                            {
+                                lever.Interact();
+                                break;
+                            }
+
+                            var boss = hit.collider.GetComponentInParent<BossAI>();
+                            if (boss != null)
+                            {
+                                boss.StartFight(); // scream trigger
+                                break;
+                            }
+
+                            var healthPickup = hit.collider.GetComponentInParent<HpObject>();
+
+                            if (healthPickup != null)
+                            {
+                              //  Debug.Log("Player Health" + Health);
+                                healthPickup.Interact(this);
+                                break;
                             }
                         }
                         if(inRangeOfShip){this.BoardShip();}
@@ -540,7 +566,7 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
         }
         for (int i = 0; i < hits.Length; i++)
         {
-            EnemyAI enemyObject = hits[i].GetComponent<EnemyAI>();
+            EnemyAI enemyObject = hits[i].GetComponentInParent<EnemyAI>();
             if (enemyObject != null)
             {
                 // enemyObject.Health -= Damage;
@@ -610,12 +636,14 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
     {
         // Vector2 dir = moveAction.ReadValue<Vector2>();
         // Debug.Log("moveShip");
+        moveForward();
+        waterLevelShip.transform.rotation = Quaternion.Euler(0f, prevShipYRot, 0f);
         if (moveAction.activeControl is KeyControl keyControl)
         {
             // Debug.Log("KeyControl");
             if (keyControl.keyCode.Equals(Key.W))
             {
-                moveForward();
+                // moveForward();
             }
             if (keyControl.keyCode.Equals(Key.A))
             {
@@ -657,9 +685,13 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
     private void moveForward()
     {
         // Debug.Log("moveForward");
-        Vector2 dir = moveAction.ReadValue<Vector2>();
-
+        // Vector2 dir = moveAction.ReadValue<Vector2>();
+        // Debug.Log(dir);
+        // Vector2 dir = new Vector2(thisObject.transform.position.x, thisObject.transform.position.z);
+        Vector2 dir = new Vector2(0, 1);
         Vector3 moveDirection = transform.forward*dir.y + transform.right*dir.x;
+        // Debug.Log(moveDirection);
+        // Vector3 moveDirection = new Vector3(0, 0, 1);
         
         preMovePosition = transform.position;
         lastMoveDelta = moveDirection * Speed * Time.deltaTime;
@@ -668,7 +700,7 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
 
     private void rotateLeft()
     {
-        prevShipYRot -= 0.5f;
+        prevShipYRot -= 0.2f;
         waterLevelShip.transform.rotation = Quaternion.Euler(0f, prevShipYRot, 0f);
 
         // yaw += 5;
@@ -681,7 +713,7 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
 
     private void rotateRight()
     {
-        prevShipYRot += 0.5f;
+        prevShipYRot += 0.2f;
         waterLevelShip.transform.rotation = Quaternion.Euler(0f, prevShipYRot, 0f);
         // yaw -= 5;
         // pitch -= 5;
@@ -843,6 +875,15 @@ public class Player : Actor //this also gives us access to MonoBehavoiour
         // thisObject.transform.SetParent(null);
         // waterLevelShip.transform.SetParent(thisObject.transform);
         onShip = true;
+        GameObject.Destroy(shipRange);
+        GameObject.Destroy(thisBoxCollider);
+        GameObject.Destroy(thisRigidBody);
+        Destroy(sword);
+        Destroy(leftArm);
+        Destroy(rightArm);
+        // BoxCollider bc = thisObject.GetComponent<BoxCollider>;
+        
+
         // BoardShip();
         // BoardShip.
     }

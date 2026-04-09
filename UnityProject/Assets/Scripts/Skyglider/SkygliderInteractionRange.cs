@@ -13,10 +13,6 @@ public class SkygliderInteractionRange : MonoBehaviour
             skyglider.SetNearbyPlayer(player);
             Debug.Log("Player entered skyglider range.");
         }
-        else
-        {
-            Debug.Log("Cannot find player for skyglider range.");
-        }
     }
 
     private void OnTriggerExit(Collider other)
