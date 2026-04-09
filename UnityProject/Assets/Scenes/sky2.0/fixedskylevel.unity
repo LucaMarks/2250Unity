@@ -2897,7 +2897,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
       propertyPath: dialogueStages.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
       propertyPath: dialogueStages.Array.data[0].isLocked
@@ -2905,11 +2905,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
       propertyPath: dialogueStages.Array.data[1].isLocked
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
       propertyPath: dialogueStages.Array.data[0].startQuest
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
       propertyPath: dialogueStages.Array.data[1].startQuest
@@ -2917,36 +2917,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
       propertyPath: dialogueStages.Array.data[0].lines.Array.size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
       propertyPath: dialogueStages.Array.data[1].lines.Array.size
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
       propertyPath: 'dialogueStages.Array.data[0].lines.Array.data[0]'
-      value: Help, someone kill those monsters
+      value: i! what are you doing all the way up here
       objectReference: {fileID: 0}
     - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
       propertyPath: 'dialogueStages.Array.data[0].lines.Array.data[1]'
-      value: here take these boots, the will help you navigate the cloud kingdom.
+      value: Oh i actually saw a rudder behind the well
       objectReference: {fileID: 0}
     - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
       propertyPath: 'dialogueStages.Array.data[0].lines.Array.data[2]'
-      value: when you wear them you can jump again in the air.
+      value: You can use my glider to get back to the main island
       objectReference: {fileID: 0}
     - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
       propertyPath: 'dialogueStages.Array.data[1].lines.Array.data[0]'
-      value: Wow, great job killing those monsters. i cant thank you enough for saving
-        me
+      value: Hi! what are you doing all the way up here
       objectReference: {fileID: 0}
     - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
       propertyPath: 'dialogueStages.Array.data[1].lines.Array.data[1]'
-      value: here take these boots, the will help you navigate the cloud kingdom.
+      value: Oh i actually saw a rudder behind the well
       objectReference: {fileID: 0}
     - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
       propertyPath: 'dialogueStages.Array.data[1].lines.Array.data[2]'
-      value: when you wear them you can jump again in the air.
+      value: You can use my glider to get back to the main island
       objectReference: {fileID: 0}
     - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
       propertyPath: 'dialogueStages.Array.data[1].lines.Array.data[3]'
@@ -2959,11 +2958,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
       propertyPath: 'dialogueStages.Array.data[1].lines.Array.data[5]'
-      value: i also saw a proller on the next isalnd aswell! good Luck with that
+      value: i also saw a Energy crystal  on the next isalnd aswell! good Luck with
+        that
       objectReference: {fileID: 0}
     - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
       propertyPath: dialogueStages.Array.data[0].lockedLines.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
       propertyPath: dialogueStages.Array.data[1].lockedLines.Array.size
@@ -2971,7 +2971,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
       propertyPath: 'dialogueStages.Array.data[0].lockedLines.Array.data[0]'
-      value: help, kill those monsters
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
       propertyPath: 'dialogueStages.Array.data[1].lockedLines.Array.data[0]'
@@ -3036,6 +3036,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2923649722382067362, guid: d021415f26a98114b8e25653e970283b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 21112931}
+    - targetCorrespondingSourceObject: {fileID: 2923649722382067362, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 708032742}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8181513410922212878, guid: d021415f26a98114b8e25653e970283b, type: 3}
       insertIndex: -1
@@ -4291,6 +4294,228 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 704915192}
   m_Mesh: {fileID: 6737439204680920865, guid: c4a27633b9561034691a45f7176bb1e7, type: 3}
+--- !u!1001 &708032741
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2091134601}
+    m_Modifications:
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: npcName
+      value: Old wizard
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: isQuestNPC
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: questStartStage
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: stageToUnlockAfterQuest
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: dialogueStages.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: dialogueStages.Array.data[0].isLocked
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: dialogueStages.Array.data[1].isLocked
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: dialogueStages.Array.data[0].startQuest
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: dialogueStages.Array.data[1].startQuest
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: dialogueStages.Array.data[0].lines.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: dialogueStages.Array.data[1].lines.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: 'dialogueStages.Array.data[0].lines.Array.data[0]'
+      value: Help, someone kill those monsters
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: 'dialogueStages.Array.data[0].lines.Array.data[1]'
+      value: here take these boots, the will help you navigate the cloud kingdom.
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: 'dialogueStages.Array.data[0].lines.Array.data[2]'
+      value: when you wear them you can jump again in the air.
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: 'dialogueStages.Array.data[1].lines.Array.data[0]'
+      value: Wow, great job killing those monsters. i cant thank you enough for saving
+        me
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: 'dialogueStages.Array.data[1].lines.Array.data[1]'
+      value: here take these boots, the will help you navigate the cloud kingdom.
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: 'dialogueStages.Array.data[1].lines.Array.data[2]'
+      value: when you wear them you can jump again in the air.
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: 'dialogueStages.Array.data[1].lines.Array.data[3]'
+      value: 'Wait what are you doing here anyways? '
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: 'dialogueStages.Array.data[1].lines.Array.data[4]'
+      value: oh i actualy saw a rudder right behind me. press e when touching it
+        to pick it up
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: 'dialogueStages.Array.data[1].lines.Array.data[5]'
+      value: i also saw a Energy crystal  on the next isalnd aswell! good Luck with
+        that
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: dialogueStages.Array.data[0].lockedLines.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: dialogueStages.Array.data[1].lockedLines.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: 'dialogueStages.Array.data[0].lockedLines.Array.data[0]'
+      value: help, kill those monsters
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: 'dialogueStages.Array.data[1].lockedLines.Array.data[0]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: 'dialogueStages.Array.data[1].lockedLines.Array.data[1]'
+      value: Have you got the propellor yet?
+      objectReference: {fileID: 0}
+    - target: {fileID: 2923649722382067362, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2923649722382067362, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 43.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 2923649722382067362, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -148.62
+      objectReference: {fileID: 0}
+    - target: {fileID: 2923649722382067362, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2923649722382067362, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2923649722382067362, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2923649722382067362, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2923649722382067362, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2923649722382067362, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2923649722382067362, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4084723722235495469, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4084723722235495469, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: questToStart
+      value: 
+      objectReference: {fileID: 1542514451}
+    - target: {fileID: 8181513410922212878, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: m_Name
+      value: Wizard Guy (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects:
+    - {fileID: 2677819606056739258, guid: d021415f26a98114b8e25653e970283b, type: 3}
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 2923649722382067362, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1470545962}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8181513410922212878, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 708032744}
+  m_SourcePrefab: {fileID: 100100000, guid: d021415f26a98114b8e25653e970283b, type: 3}
+--- !u!4 &708032742 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2923649722382067362, guid: d021415f26a98114b8e25653e970283b, type: 3}
+  m_PrefabInstance: {fileID: 708032741}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &708032743 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8181513410922212878, guid: d021415f26a98114b8e25653e970283b, type: 3}
+  m_PrefabInstance: {fileID: 708032741}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &708032744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 708032743}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 102de7b43a1e4df2b57bd6740cf4b1d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SaveWizard
+  questName: 
+  description: 
+  associatedNPC: {fileID: 0}
+  dialogueToUnlock:
+    lines: []
+    isLocked: 0
+    startQuest: 0
+    lockedLines: []
+  hasStarted: 0
+  isCompleted: 0
+  gemstoneRewards:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  waterGemstone: {fileID: 0}
+  airGemstone: {fileID: 0}
+  fireGemstone: {fileID: 0}
+  iceGemstone: {fileID: 0}
+  earthGemstone: {fileID: 0}
+  enemiesToDefeat: []
+  thankYouDialogueStage: 1
+  player: {fileID: 0}
+  bootsReward: {fileID: 0}
+  goldReward: 100
 --- !u!1 &750229161
 GameObject:
   m_ObjectHideFlags: 0
@@ -7800,6 +8025,68 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1433746111}
   m_Mesh: {fileID: 6737439204680920865, guid: 25d384453e4cb114eb3ae04c01b4c6e1, type: 3}
+--- !u!1001 &1470545961
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 708032742}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: de76d67d0ab88dc439b10b32370775ea, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.63082886
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: de76d67d0ab88dc439b10b32370775ea, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.48097992
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: de76d67d0ab88dc439b10b32370775ea, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.32
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: de76d67d0ab88dc439b10b32370775ea, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: de76d67d0ab88dc439b10b32370775ea, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: de76d67d0ab88dc439b10b32370775ea, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: de76d67d0ab88dc439b10b32370775ea, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: de76d67d0ab88dc439b10b32370775ea, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: de76d67d0ab88dc439b10b32370775ea, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: de76d67d0ab88dc439b10b32370775ea, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: de76d67d0ab88dc439b10b32370775ea, type: 3}
+      propertyPath: m_Name
+      value: Peasant Nolant(Free Version)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: de76d67d0ab88dc439b10b32370775ea, type: 3}
+--- !u!4 &1470545962 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: de76d67d0ab88dc439b10b32370775ea, type: 3}
+  m_PrefabInstance: {fileID: 1470545961}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1511678989
 GameObject:
   m_ObjectHideFlags: 0
