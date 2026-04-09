@@ -8199,6 +8199,22 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 457610, guid: d06c1431672647f46babf6f932d09fb9, type: 3}
   m_PrefabInstance: {fileID: 637969584}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &639737291 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5325565006996215531, guid: 1848a363a1ca7c94fb61dd713ba6f85e, type: 3}
+  m_PrefabInstance: {fileID: 1216236423}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &639737292 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3980194768292885838, guid: 1848a363a1ca7c94fb61dd713ba6f85e, type: 3}
+  m_PrefabInstance: {fileID: 1216236423}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 994a235ed69f26144b9b6a73f4023e3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Item
 --- !u!1001 &642040077
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9887,7 +9903,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
       propertyPath: dialogueStages.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
       propertyPath: 'questStarters.Array.data[0]'
@@ -9899,6 +9915,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
       propertyPath: dialogueStages.Array.data[2].isLocked
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: dialogueStages.Array.data[3].isLocked
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
@@ -9915,10 +9935,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
       propertyPath: dialogueStages.Array.data[2].lines.Array.size
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
       propertyPath: dialogueStages.Array.data[3].lines.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: dialogueStages.Array.data[4].lines.Array.size
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
@@ -9969,8 +9993,13 @@ PrefabInstance:
         when you''re done with it though.'
       objectReference: {fileID: 0}
     - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: 'dialogueStages.Array.data[1].lines.Array.data[4]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
       propertyPath: 'dialogueStages.Array.data[2].lines.Array.data[0]'
-      value: Great, you found the rudder!
+      value: Go collect the gemstone from one of the islands, and then I will give
+        you the gemstone...
       objectReference: {fileID: 0}
     - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
       propertyPath: 'dialogueStages.Array.data[2].lines.Array.data[1]'
@@ -10005,13 +10034,40 @@ PrefabInstance:
       value: Head over to the ship and you will be able to sail away!
       objectReference: {fileID: 0}
     - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: 'dialogueStages.Array.data[3].lines.Array.data[3]'
+      value: 'However, there may be a fiew more things to checkout around the village
+        before you leave...
+
+        Other villagers might also strike some deals
+        with you...'
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: 'dialogueStages.Array.data[3].lines.Array.data[4]'
+      value: Safe travels, friend!
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: 'dialogueStages.Array.data[4].lines.Array.data[0]'
+      value: Great, you found the rudder!
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: 'dialogueStages.Array.data[4].lines.Array.data[1]'
+      value: Here is the gemstone!
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: 'dialogueStages.Array.data[4].lines.Array.data[2]'
+      value: Head over to the ship and you will be able to sail away!
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
       propertyPath: dialogueStages.Array.data[2].lockedLines.Array.size
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: dialogueStages.Array.data[3].lockedLines.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
       propertyPath: 'dialogueStages.Array.data[2].lockedLines.Array.data[0]'
-      value: Go collect the gemstone from one of the islands, and then I will give
-        you the gemstone...
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 905253122386466355, guid: d021415f26a98114b8e25653e970283b, type: 3}
       propertyPath: m_Radius
@@ -10127,7 +10183,7 @@ MonoBehaviour:
   iceGemstone: {fileID: 0}
   earthGemstone: {fileID: 0}
   player: {fileID: 500333685}
-  rudderItem: {fileID: 0}
+  rudderItem: {fileID: 639737292}
 --- !u!114 &770126512 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
@@ -17687,6 +17743,10 @@ PrefabInstance:
       propertyPath: Name
       value: New Rudder
       objectReference: {fileID: 0}
+    - target: {fileID: 1016480978355639007, guid: 1848a363a1ca7c94fb61dd713ba6f85e, type: 3}
+      propertyPath: m_Name
+      value: Rudder
+      objectReference: {fileID: 0}
     - target: {fileID: 2541875510128986042, guid: 1848a363a1ca7c94fb61dd713ba6f85e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 17.725372
@@ -17747,6 +17807,18 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 5325565006996215531, guid: 1848a363a1ca7c94fb61dd713ba6f85e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.51
+      objectReference: {fileID: 0}
+    - target: {fileID: 5325565006996215531, guid: 1848a363a1ca7c94fb61dd713ba6f85e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5325565006996215531, guid: 1848a363a1ca7c94fb61dd713ba6f85e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 46.7
+      objectReference: {fileID: 0}
     - target: {fileID: 7642445487482133569, guid: 1848a363a1ca7c94fb61dd713ba6f85e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.05
@@ -17763,9 +17835,10 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 8978181192942082758, guid: 1848a363a1ca7c94fb61dd713ba6f85e, type: 3}
     - {fileID: 27410903106186379, guid: 1848a363a1ca7c94fb61dd713ba6f85e, type: 3}
+    - {fileID: 2464107030449919674, guid: 1848a363a1ca7c94fb61dd713ba6f85e, type: 3}
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 2541875510128986042, guid: 1848a363a1ca7c94fb61dd713ba6f85e, type: 3}
-      insertIndex: -1
+    - targetCorrespondingSourceObject: {fileID: 5325565006996215531, guid: 1848a363a1ca7c94fb61dd713ba6f85e, type: 3}
+      insertIndex: 0
       addedObject: {fileID: 1864993860}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1848a363a1ca7c94fb61dd713ba6f85e, type: 3}
@@ -25997,11 +26070,11 @@ Transform:
   m_GameObject: {fileID: 1864993859}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -0.4, y: 0, z: 0}
+  m_LocalPosition: {x: -0.31, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.25, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1216236424}
+  m_Father: {fileID: 639737291}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!23 &1864993861
 MeshRenderer:
@@ -27001,15 +27074,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
       propertyPath: dialogueStages.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
       propertyPath: dialogueStages.Array.data[1].isLocked
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
       propertyPath: dialogueStages.Array.data[2].isLocked
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
       propertyPath: dialogueStages.Array.data[0].startQuest
@@ -27025,10 +27098,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
       propertyPath: dialogueStages.Array.data[1].lines.Array.size
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
       propertyPath: dialogueStages.Array.data[2].lines.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: dialogueStages.Array.data[3].lines.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
@@ -27052,7 +27129,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
       propertyPath: 'dialogueStages.Array.data[1].lines.Array.data[0]'
-      value: Great you got all three!
+      value: Collect 3 peices of fire wood from the forest area...
       objectReference: {fileID: 0}
     - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
       propertyPath: 'dialogueStages.Array.data[1].lines.Array.data[1]'
@@ -27069,7 +27146,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
       propertyPath: 'dialogueStages.Array.data[2].lines.Array.data[0]'
-      value: Thanks for your help friend. See you around!
+      value: Great you got all three!
       objectReference: {fileID: 0}
     - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
       propertyPath: 'dialogueStages.Array.data[2].lines.Array.data[1]'
@@ -27089,11 +27166,19 @@ PrefabInstance:
       value: Press '1' to cycle to your new weapon. See how it feels.
       objectReference: {fileID: 0}
     - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: 'dialogueStages.Array.data[3].lines.Array.data[0]'
+      value: Thanks for your help friend. See you around!
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
       propertyPath: dialogueStages.Array.data[1].lockedLines.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
       propertyPath: dialogueStages.Array.data[2].lockedLines.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: dialogueStages.Array.data[3].lockedLines.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
@@ -27102,6 +27187,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
       propertyPath: 'dialogueStages.Array.data[2].lockedLines.Array.data[0]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 862432905181989318, guid: d021415f26a98114b8e25653e970283b, type: 3}
+      propertyPath: 'dialogueStages.Array.data[3].lockedLines.Array.data[0]'
       value: Collect 3 peices of fire wood from the forest area...
       objectReference: {fileID: 0}
     - target: {fileID: 2923649722382067362, guid: d021415f26a98114b8e25653e970283b, type: 3}

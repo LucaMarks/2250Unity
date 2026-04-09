@@ -10,7 +10,7 @@ public class SideQuest : Quest
 
     private void Awake()
     {
-        dialogueToUnlock = associatedNPC.dialogueStages[1];
+        dialogueToUnlock = associatedNPC.dialogueStages[2];
     }
 
     public override string GetObjectiveText()
