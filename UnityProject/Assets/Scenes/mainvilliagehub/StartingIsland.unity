@@ -6578,7 +6578,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ff01c4875c799745b4f036cc2928310, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Portal
-  sceneToLoad: skylevel
+  sceneToLoad: fixedskylevel
   interactRange: 2
 --- !u!4 &761858275 stripped
 Transform:
