@@ -258,6 +258,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy AI
       objectReference: {fileID: 0}
+    - target: {fileID: 2588446683109733428, guid: 0bef0eec3e5c33541995efb5271c6b84, type: 3}
+      propertyPath: playerComponents
+      value: 
+      objectReference: {fileID: 1615674011}
     - target: {fileID: 3260342538656865694, guid: 0bef0eec3e5c33541995efb5271c6b84, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.49
